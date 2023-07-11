@@ -18,6 +18,9 @@
     <modules>
         <module>payload</module>
         <module>app</module>
+        <module>loan_selection_agreement_service</module>
+        <module>loan_agreement_service</module>
+
     </modules>
 
     <properties>
