@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="07627e74-d02f-4731-a1a7-835a0cecd8db" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../lender/src/main/java/com/decagon/lendingservice/repo/InvestmentPreferenceRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/main/java/com/decagon/app/AppApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/main/java/com/decagon/app/Controller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/test/java/com/decagon/app/AppApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lender/src/main/java/com/decagon/lendingservice/entity/InvestmentPreference.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lender/src/main/java/com/decagon/lendingservice/entity/InvestmentPreference.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lender/src/main/java/com/decagon/lendingservice/entity/Loan.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lender/src/main/java/com/decagon/lendingservice/entity/Loan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../payload/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../payload/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../payload/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../payload/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../payload/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../payload/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../payload/src/main/java/com/decagon/payload/PayloadApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../payload/src/main/java/com/decagon/payload/Request.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../payload/src/main/java/com/decagon/payload/Response.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../payload/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../untitled/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../untitled/src/main/java/com/decagon/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../userRegistrationService/src/main/java/com/easyLend/userservice/config/ApplicationConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../userRegistrationService/src/main/java/com/easyLend/userservice/config/AuthEntryPoint.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../userRegistrationService/src/main/java/com/easyLend/userservice/config/BeanConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../userRegistrationService/src/main/java/com/easyLend/userservice/config/SecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../userRegistrationService/src/main/java/com/easyLend/userservice/controller/AuthController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../userRegistrationService/src/main/java/com/easyLend/userservice/domain/constant/UserType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../userRegistrationService/src/main/java/com/easyLend/userservice/domain/entity/AppUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../userRegistrationService/src/main/java/com/easyLend/userservice/domain/entity/JwtToken.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../userRegistrationService/src/main/java/com/easyLend/userservice/domain/entity/OTP.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../userRegistrationService/src/main/java/com/easyLend/userservice/domain/repository/AppUserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../userRegistrationService/src/main/java/com/easyLend/userservice/domain/repository/JwtTokenRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../userRegistrationService/src/main/java/com/easyLend/userservice/domain/repository/OTPRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../userRegistrationService/src/main/java/com/easyLend/userservice/event/RegisterEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../userRegistrationService/src/main/java/com/easyLend/userservice/event/RegisterEventListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../userRegistrationService/src/main/java/com/easyLend/userservice/exceptions/AppUserNotFoundExceptions.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../userRegistrationService/src/main/java/com/easyLend/userservice/exceptions/EasyLendExceptionResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../userRegistrationService/src/main/java/com/easyLend/userservice/exceptions/UserAlreadyExistExceptions.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../userRegistrationService/src/main/java/com/easyLend/userservice/exceptions/handler/ExceptionsHandlers.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../userRegistrationService/src/main/java/com/easyLend/userservice/request/RegisterRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../userRegistrationService/src/main/java/com/easyLend/userservice/response/ApiResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../userRegistrationService/src/main/java/com/easyLend/userservice/response/RegisterResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../userRegistrationService/src/main/java/com/easyLend/userservice/security/CustomUserDetailService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../userRegistrationService/src/main/java/com/easyLend/userservice/security/JwtAuthenticationFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../userRegistrationService/src/main/java/com/easyLend/userservice/security/JwtService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../userRegistrationService/src/main/java/com/easyLend/userservice/services/AppUserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../userRegistrationService/src/main/java/com/easyLend/userservice/services/OTPService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../userRegistrationService/src/main/java/com/easyLend/userservice/services/serviceImpl/AppUserServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../userRegistrationService/src/main/java/com/easyLend/userservice/services/serviceImpl/OTPServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../userRegistrationService/src/main/java/com/easyLend/userservice/utils/DateUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../userRegistrationService/src/main/java/com/easyLend/userservice/utils/EmailUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../userRegistrationService/src/main/java/com/easyLend/userservice/utils/RandomOtp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../userRegistrationService/src/main/java/com/easyLend/userservice/utils/UserContext.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="workspaceImportEnabled" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2SR5cZlt0HYRkMDvOnKl3AeY4PO" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/olorunlexe/Documents/GitHub/easy-lend-14/lender/pom.xml",
+    "settings.editor.selected.configurable": "terminal"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="07627e74-d02f-4731-a1a7-835a0cecd8db" name="Changes" comment="" />
+      <created>1689096632910</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1689096632910</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TerminalProjectNonSharedOptionsProvider">
+    <envs>
+      <env key="Path" value="C:\Program Files\Java\jdk-17\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Azure Data Studio\bin;C:\Program Files\dotnet\;C:\Program Files\PuTTY\;C:\Users\olorunlexe\scoop\apps\maven\current\bin;C:\Users\olorunlexe\scoop\shims;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\olorunlexe\AppData\Local\Microsoft\WindowsApps;C:\Users\olorunlexe\AppData\Local\GitHubDesktop\bin;C:\Program Files\Azure Data Studio\bin;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2022.3.3\bin" />
+    </envs>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

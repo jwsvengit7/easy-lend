@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.easyLend</groupId>
-    <artifactId>userregservice</artifactId>
+    <artifactId>user-registration-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>userregservice</name>
+    <name>user-registration-service</name>
     <description>user registration service</description>
     <properties>
         <java.version>17</java.version>
