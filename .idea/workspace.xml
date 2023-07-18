@@ -4,35 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea87701d-e819-4278-b20c-a16904c1dac4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/user-registration-service/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/config/SwaggerConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/domain/entity/Borrower.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/domain/entity/Lender.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/exceptions/EmailException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/exceptions/TokenNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/exceptions/UserNotActivatedException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/request/LoginRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/response/LoginResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/services/VerificationEmailService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/services/serviceImpl/VerificationEmailServiceImpl.java" afterDir="false" />
+    <list default="true" id="ea87701d-e819-4278-b20c-a16904c1dac4" name="Changes" comment="ini">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loan_agreement_service/loan_agreement_service.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-registration-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/domain/entity/AppUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/domain/entity/AppUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/domain/entity/JwtToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/domain/entity/JwtToken.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/domain/entity/OTP.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/domain/entity/VerificationEmail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/domain/repository/OTPRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/domain/repository/VerificationEmailRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/event/RegisterEventListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/event/RegisterEventListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/exceptions/handler/ExceptionsHandlers.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/exceptions/handler/ExceptionsHandlers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/security/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/security/JwtService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/services/AppUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/services/AppUserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/services/OTPService.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/services/serviceImpl/AppUserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/services/serviceImpl/AppUserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/services/serviceImpl/OTPServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/utils/UserContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/utils/UserUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-registration-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +19,9 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Rebase.Settings">
+    <option name="NEW_BASE" value="user-registration-service" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -66,36 +43,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "TODO_SCOPE": "All Places",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/olorunlexe/Documents/GitHub/easy-lend-14",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "spring.configuration.checksum": "2d126fa25b875d78055a45d1f0ed7c1e",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;TODO_SCOPE&quot;: &quot;All Places&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/olorunlexe/Documents/GitHub/easy-lend-14&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;2d126fa25b875d78055a45d1f0ed7c1e&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Spring Boot.UserRegApplication">
     <configuration name="All in user-registration-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="user-registration-service" />
@@ -162,11 +139,41 @@
       <workItem from="1689338402209" duration="8224000" />
       <workItem from="1689424322268" duration="607000" />
       <workItem from="1689575668429" duration="2059000" />
-      <workItem from="1689636493510" duration="710000" />
+      <workItem from="1689636493510" duration="2990000" />
     </task>
+    <task id="LOCAL-00001" summary="ini">
+      <created>1689672179871</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1689672179872</updated>
+    </task>
+    <task id="LOCAL-00002" summary="ini">
+      <created>1689672384674</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1689672384674</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="ini" />
+    <option name="LAST_COMMIT_MESSAGE" value="ini" />
   </component>
 </project>

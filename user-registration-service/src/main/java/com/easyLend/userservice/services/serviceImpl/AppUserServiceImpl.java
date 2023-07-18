@@ -27,7 +27,7 @@ public class AppUserServiceImpl implements AppUserService {
     private final ModelMapper modelMapper;
 
     private AppUser confirmUserExists(String email){
-        return appUserRepository.findAppUserByEmail(email).orElseThrow(()-> new UserAlreadyExistExceptions("USER ALREADY EXIST"));
+        return appUserRepository.findAppUserByEmail(email).orElseThrow(()-> new UserAlreadyExistExceptions("USER NOT FOUND"));
     }
     private void confirmUser(String email){
         Boolean appUser = appUserRepository.existsAppUserByEmail(email);
