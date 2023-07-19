@@ -6,7 +6,6 @@ import com.decagon.dto.response.ProfileResponseDTO;
 import com.decagon.entity.Profile;
 import com.decagon.repository.ProfileRepository;
 import com.decagon.service.ProfileService;
-import com.decagon.service.UserServiceFeignClient;
 import org.springframework.stereotype.Service;
 
 @Service
