@@ -1,7 +1,7 @@
-package com.decagon.entity;
+package com.decagon.domain.entity;
 
 import com.decagon.config.JsonConverter;
-import com.decagon.entity.pojo.*;
+import com.decagon.domain.pojo.*;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

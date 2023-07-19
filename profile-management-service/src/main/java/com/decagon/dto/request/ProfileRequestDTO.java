@@ -1,7 +1,7 @@
 package com.decagon.dto.request;
 
 
-import com.decagon.dto.*;
+import com.decagon.dto.pojoDTO.*;
 import lombok.Getter;
 import lombok.Setter;
 

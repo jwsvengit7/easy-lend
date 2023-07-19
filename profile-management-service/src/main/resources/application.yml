@@ -24,16 +24,38 @@ cloudinary:
   api_secret: WzXnPmgukKQXG6BxkQuPxMhuxYU
 
 
-#RabbitMQ settings
+# RabbitMQ settings
 rabbitmq:
   host: localhost
   virtualhost: /
   port: 15672
   username: guest
   password: guest
-  exchange: work-item-exchange
-  queue: work-items
-  routingkey: work-item-routingkey
+  exchange: profile-exchange
+
+  # Queue for profile creation
+  createProfileQueue: create-profile
+  createProfileRoutingKey: profile-routingkey
+
+  # Queues for screen updates
+  updateContactInformationQueue: update-contact-information
+  updateContactInformationRoutingKey: contact-information-routingkey
+
+  updateEmploymentStatusQueue: update-employment-status
+  updateEmploymentStatusRoutingKey: employment-status-routingkey
+
+  updateGovernmentIDQueue: update-government-id
+  updateGovernmentIDRoutingKey: government-id-routingkey
+
+  updateIncomeStatusQueue: update-income-status
+  updateIncomeStatusRoutingKey: income-status-routingkey
+
+  updateBankAccountQueue: update-bank-account
+  updateBankAccountRoutingKey: bank-account-routingkey
+
+  updateProofOfAddressQueue: update-proof-of-address
+  updateProofOfAddressRoutingKey: proof-of-address-routingkey
+
   reply:
     timeout: 60000
   concurrent:
