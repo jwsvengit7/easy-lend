@@ -19,7 +19,7 @@
       <module name="loan_agreement_service" target="17" />
       <module name="Loan_and_disbursement_Service" target="17" />
       <module name="Profile-Management-Service" target="17" />
-      <module name="user-registration-service" target="17" />
+      <module name="user-registration-service" target="1.6" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

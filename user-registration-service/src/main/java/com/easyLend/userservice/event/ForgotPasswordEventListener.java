@@ -1,8 +1,9 @@
 package com.easyLend.userservice.event;
 
+
 import com.easyLend.userservice.domain.entity.AppUser;
 import com.easyLend.userservice.domain.entity.VerificationEmail;
-import com.easyLend.userservice.services.serviceImpl.VerificationServiceImpl;
+import com.easyLend.userservice.services.VerificationEmailService;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
@@ -16,43 +17,37 @@ import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
-public class RegisterEventListener implements ApplicationListener<RegisterEvent> {
+public class ForgotPasswordEventListener implements ApplicationListener<PasswordEvent> {
+    private final VerificationEmailService confirmationTokenService;
     private final JavaMailSender javaMailSender;
-    private final VerificationServiceImpl confirmationTokenService;
     @Override
-    public void onApplicationEvent(RegisterEvent event) {
-
+    public void onApplicationEvent(PasswordEvent event) {
         AppUser appUser = event.getAppUser();
-    String token = UUID.randomUUID().toString();
-    VerificationEmail confirmationToken = new VerificationEmail(token, appUser);
+        String tokens = UUID.randomUUID().toString();
+        VerificationEmail confirmationToken = new VerificationEmail(tokens, appUser);
         confirmationTokenService.saveToken(confirmationToken);
-    String url = event.getUrl()+"/token/"+token;
+        String url = event.getUrl() + "/tokens?token=" + tokens;
         try{
-        sendConfirmationToken(url,appUser);
-    }catch(UnsupportedEncodingException | MessagingException e){
-        throw new RuntimeException(e.getMessage());
+            sendConfirmationToken(url,appUser);
+        }catch(UnsupportedEncodingException | MessagingException e){
+            throw new RuntimeException(e.getMessage());
+        }
     }
-}
 
     public void sendConfirmationToken(String url, AppUser appUser) throws MessagingException, UnsupportedEncodingException {
-        String subject = "Email Verification";
-        String senderName = "Easy Lend.";
+        String subject = "Password Reset Request";
+        String senderName = "Easy Lend .";
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage);
-        helper.setFrom("registration@easylend.com",senderName);
+        helper.setFrom("resetpassword@easylend.com",senderName);
         helper.setSubject(subject);
         helper.setTo(appUser.getEmail());
         String mailContent = "<p> Hi, "+appUser.getUsername()+" </p>"+
-                "<p> Welcome to Easy Lend. </p>"+
-                "<p>Thank you for registering with us, "+""+
-                "Please, follow the link below to complete your registration. </p>" +
-                "<a href=\""+url+"\"> Verify your email to activate your account</a>" +
+                "<p> Welcome to Easy Lend . </p>"+
+                "<p>Please, follow the link below to reset your password. </p>" +
+                "<a href=\""+url+"\"> Click here</a>" +
                 "<p> Thank you <br>" + senderName;
-
         helper.setText(mailContent,true);
         javaMailSender.send(mimeMessage);
     }
-
-
-
 }

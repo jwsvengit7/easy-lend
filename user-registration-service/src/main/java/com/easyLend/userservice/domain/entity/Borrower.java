@@ -1,2 +1,4 @@
-package com.easyLend.userservice.domain.entity;public class Borrower {
+package com.easyLend.userservice.domain.entity;
+public class Borrower {
+
 }

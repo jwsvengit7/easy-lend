@@ -15,4 +15,5 @@ public interface JwtTokenRepository extends JpaRepository<JwtToken,Integer> {
     JwtToken findByRefreshToken(String refreshToken);
     Optional<JwtToken> findJwtTokenByRefreshToken(String refreshToken);
     List<JwtToken> findAllByUser(AppUser user);
+    JwtToken findByUser(AppUser user);
 }

@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="easy_lend@localhost" uuid="37bce723-68a5-4a6c-86c5-338b06f74971">
+    <data-source source="LOCAL" name="easylend@localhost" uuid="a6f7d4f6-1319-40be-9348-a4712909fbd5">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/easy_lend</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="easy_lend@localhost [2]" uuid="d0fcfa23-8799-4851-b209-848bb45715c1">
-      <driver-ref>mysql.8</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/easy_lend</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:3306/easylend</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
