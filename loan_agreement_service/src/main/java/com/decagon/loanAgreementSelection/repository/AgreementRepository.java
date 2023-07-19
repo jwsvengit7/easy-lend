@@ -3,5 +3,8 @@ package com.decagon.loanAgreementSelection.repository;
 import com.decagon.loanAgreementSelection.models.LoanAgreement;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface LoanAgreementRepository extends JpaRepository<LoanAgreement, Integer> {
+import java.util.Optional;
+
+public interface AgreementRepository extends JpaRepository<LoanAgreement, Long> {
+    Optional<LoanAgreement> findByLoanId(Long loanId);
 }
