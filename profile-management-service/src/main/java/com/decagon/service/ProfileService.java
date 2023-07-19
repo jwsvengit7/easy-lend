@@ -4,7 +4,7 @@ import com.decagon.dto.*;
 import com.decagon.dto.response.ProfileResponseDTO;
 
 public interface ProfileService {
-    ProfileResponseDTO createProfile(Long user_id);
+    ProfileResponseDTO createProfile(Long user_id, String profileCreationStatus, ContactInformationDTO contactInformation);
 
     ContactInformationDTO updateContactInformation(Long profileId, ContactInformationDTO contactInfo);
 

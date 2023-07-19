@@ -1,59 +1,106 @@
 package com.decagon.service.serviceImplementation;
 
-import com.decagon.dto.ContactInformationDTO;
-import com.decagon.dto.UserDTO;
+import com.decagon.dto.*;
 import com.decagon.dto.response.ProfileResponseDTO;
 import com.decagon.entity.Profile;
+import com.decagon.entity.pojo.ContactInformation;
+import com.decagon.exception.ProfileNotFoundException;
 import com.decagon.repository.ProfileRepository;
 import com.decagon.service.ProfileService;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ProfileServiceImpl implements ProfileService {
     private final ProfileRepository profileRepository;
-    private final UserServiceFeignClient userServiceFeignClient;
 
-    public ProfileServiceImpl(ProfileRepository profileRepository, UserServiceFeignClient userServiceFeignClient) {
+
+    public ProfileServiceImpl(ProfileRepository profileRepository) {
         this.profileRepository = profileRepository;
-        this.userServiceFeignClient = userServiceFeignClient;
     }
 
     @Override
-    public ProfileResponseDTO createProfile(Long user_id) {
-        // Fetch user information using the FeignClient
-        UserDTO userDTO = userServiceFeignClient.getUserById(user_id);
-
-        // Split the full name into two parts (firstName and lastName)
-        String fullName = userDTO.getFullName();
-        String[] nameParts = fullName.split(" ");
-        String firstName = nameParts[0];
-        String lastName = nameParts[1];
-
-        // Create and save the ContactInformation screen
-        ContactInformationDTO contactInformation = new ContactInformationDTO();
-        contactInformation.setFirstName(firstName);
-        contactInformation.setLastName(lastName);
-        contactInformation.setEmail(userDTO.getEmail());
-        contactInformation.setPhoneNumber(userDTO.getPhoneNumber());
-
-        // Set the profileCreationStatus as "new"
-        String profileCreationStatus = "new";
+    public ProfileResponseDTO createProfile(Long user_id, String profileCreationStatus, ContactInformationDTO contactInformationDTO) {
+        // Convert ContactInformationDTO to ContactInformation
+        ContactInformation contactInformation = new ContactInformation();
+        contactInformation.setFirstName(contactInformationDTO.getFirstName());
+        contactInformation.setLastName(contactInformationDTO.getLastName());
+        contactInformation.setEmail(contactInformationDTO.getEmail());
+        contactInformation.setPhoneNumber(contactInformationDTO.getPhoneNumber());
 
         // Create the Profile entity and save it in the database
         Profile profile = new Profile();
         profile.setUser_id(user_id);
         profile.setProfileCreationStatus(profileCreationStatus);
         profile.setContactInformation(contactInformation);
-        // Initialize other screens as needed
 
         profileRepository.save(profile);
 
         // Prepare the response DTO
         ProfileResponseDTO responseDTO = new ProfileResponseDTO();
+//        responseDTO.setId(profile.getId());
+        responseDTO.setUser_id(user_id);
         responseDTO.setProfileCreationStatus(profileCreationStatus);
+        responseDTO.setContactInformation(contactInformation);
+        // Set other screens in the response DTO
 
         return responseDTO;
     }
 
-    // Implement update methods for other screens (ContactInformation, EmploymentStatus, GovernmentID, IncomeStatus, BankAccount, ProofOfAddress)
+
+    @Override
+    public ContactInformationDTO updateContactInformation(Long profileId, ContactInformationDTO contactInfo) {
+        // Fetch the profile from the database
+        Optional<Profile> optionalProfile = profileRepository.findById(profileId);
+
+        if (optionalProfile.isEmpty()) {
+            throw new ProfileNotFoundException("Profile not found with ID: " + profileId);
+        }
+
+        Profile profile = optionalProfile.get();
+
+        // Convert the ContactInformationDTO to ContactInformation
+        ContactInformation contactInformation = new ContactInformation();
+        contactInformation.setFirstName(contactInfo.getFirstName());
+        contactInformation.setLastName(contactInfo.getLastName());
+        contactInformation.setEmail(contactInfo.getEmail());
+        contactInformation.setPhoneNumber(contactInfo.getPhoneNumber());
+
+        // Update the ContactInformation screen
+        profile.setContactInformation(contactInformation);
+
+        // Update the profileCreationStatus to reflect the screen update
+        String updatedStatus = "ContactInformation_updated";
+        profile.setProfileCreationStatus(updatedStatus);
+
+        profileRepository.save(profile);
+
+        return contactInfo;
+    }
+
+    @Override
+    public EmploymentStatusDTO updateEmploymentStatus(Long profileId, EmploymentStatusDTO employmentStatus) {
+        return null;
+    }
+
+    @Override
+    public GovernmentIDDTO updateGovernmentID(Long profileId, GovernmentIDDTO governmentID) {
+        return null;
+    }
+
+    @Override
+    public IncomeStatusDTO updateIncomeStatus(Long profileId, IncomeStatusDTO incomeStatus) {
+        return null;
+    }
+
+    @Override
+    public BankAccountDTO updateBankAccount(Long profileId, BankAccountDTO bankAccount) {
+        return null;
+    }
+
+    @Override
+    public ProofOfAddressDTO updateProofOfAddress(Long profileId, ProofOfAddressDTO proofOfAddress) {
+        return null;
+    }
 }
