@@ -1,36 +1,56 @@
 package com.decagon.borrowerservice.model;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
-@Getter
-@Setter
+@AllArgsConstructor
 @Entity
-@Table (name = "loan")
+@Table(name = "loan")
+
 public class Loan {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int loanId;
+    private Long loanId;
 
     private int userId;
+
     @Column(name = "loanAmt", nullable = false)
     private double loanAmt;
 
-    @Column(name = "monthlyEmi", nullable = false)
-    private double monthlyEMI;
+    @Column(name = "monthly_emi", nullable = true)
+    private Double monthlyEmi;
+
+
+    @Column(name = "interestRate", nullable = false)
+    private double interestRate;
+
     @Column(name = "repaymentTerm", nullable = false)
     private int repaymentTerm;
+
+    @Column(name = "totalRepayment", nullable = false)
+    private double totalRepayment;
+
     @Column(name = "purpose", nullable = false)
     private String purpose;
-    private LocalDateTime created_at;
-    private LocalDateTime updated_at;
+
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
+
+    @ElementCollection
+    @CollectionTable(name = "loan_documents", joinColumns = @JoinColumn(name = "loan_id"))
+    private List<String> requiredDocuments = new ArrayList<>();
+
 }
