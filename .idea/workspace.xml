@@ -4,103 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea87701d-e819-4278-b20c-a16904c1dac4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lender/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/lending-service/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lender/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lending-service/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lender/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/lending-service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lender/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/lending-service/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lender/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/lending-service/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lender/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/lending-service/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lender/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/lending-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lender/src/main/java/com/decagon/lendingservice/LendingServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/lending-service/src/main/java/com/decagon/lendingservice/LendingServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lender/src/main/java/com/decagon/lendingservice/entity/InvestmentPreference.java" beforeDir="false" afterPath="$PROJECT_DIR$/lending-service/src/main/java/com/decagon/lendingservice/entity/InvestmentPreference.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lender/src/main/java/com/decagon/lendingservice/entity/Lender.java" beforeDir="false" afterPath="$PROJECT_DIR$/lending-service/src/main/java/com/decagon/lendingservice/entity/Lender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lender/src/main/java/com/decagon/lendingservice/entity/Loan.java" beforeDir="false" afterPath="$PROJECT_DIR$/lending-service/src/main/java/com/decagon/lendingservice/entity/Loan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lender/src/main/java/com/decagon/lendingservice/repo/InvestmentPreferenceRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/lending-service/src/main/java/com/decagon/lendingservice/repo/InvestmentPreferenceRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lender/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/lending-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lender/src/test/java/com/decagon/lendingservice/InvestmentPreferenceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/lending-service/src/test/java/com/decagon/lendingservice/InvestmentPreferenceApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management/src/main/java/com/decagon/ProjectManagementServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/ProjectManagementServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management/src/main/java/com/decagon/config/CloudinaryConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/config/CloudinaryConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management/src/main/java/com/decagon/config/WebClientConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/config/WebClientConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management/src/main/java/com/decagon/dto/request/AccountNameRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/dto/request/AccountNameRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management/src/main/java/com/decagon/dto/response/AccountNameResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/dto/response/AccountNameResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management/src/main/java/com/decagon/dto/response/NigerianBankResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/dto/response/NigerianBankResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management/src/main/java/com/decagon/entity/ContactInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/entity/ContactInformation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management/src/main/java/com/decagon/entity/EmploymentStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/entity/EmploymentStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management/src/main/java/com/decagon/entity/GovernmentID.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/entity/GovernmentID.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management/src/main/java/com/decagon/entity/IncomeStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/entity/IncomeStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management/src/main/java/com/decagon/entity/LinkedBankAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/entity/LinkedBankAccount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management/src/main/java/com/decagon/entity/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/entity/Profile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management/src/main/java/com/decagon/entity/ProofOfAddress.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/entity/ProofOfAddress.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management/src/main/java/com/decagon/enums/DocumentType.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/enums/DocumentType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management/src/main/java/com/decagon/enums/EmploymentSituation.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/enums/EmploymentSituation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management/src/main/java/com/decagon/enums/EmploymentStatusType.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/enums/EmploymentStatusType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management/src/main/java/com/decagon/enums/ExtraIncomeType.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/enums/ExtraIncomeType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management/src/main/java/com/decagon/enums/JobType.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/enums/JobType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management/src/main/java/com/decagon/enums/MonthlyIncomeRange.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/enums/MonthlyIncomeRange.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management/src/main/java/com/decagon/enums/UserType.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/enums/UserType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management/src/main/java/com/decagon/service/AccountNameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/service/AccountNameService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management/src/main/java/com/decagon/service/NigerianBankService.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/service/NigerianBankService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management/src/main/java/com/decagon/service/serviceImplementation/AccountNameServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/service/serviceImplementation/AccountNameServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management/src/main/java/com/decagon/service/serviceImplementation/NigerianBankServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/service/serviceImplementation/NigerianBankServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management/src/test/java/com/decagon/ProjectManagementServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/test/java/com/decagon/ProjectManagementServiceApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/src/main/java/com/easyLend/userservice/UserRegApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/UserRegApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/src/main/java/com/easyLend/userservice/config/ApplicationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/config/ApplicationConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/src/main/java/com/easyLend/userservice/config/AuthEntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/config/AuthEntryPoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/src/main/java/com/easyLend/userservice/config/BeanConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/config/BeanConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/src/main/java/com/easyLend/userservice/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/src/main/java/com/easyLend/userservice/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/src/main/java/com/easyLend/userservice/domain/constant/UserType.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/domain/constant/UserType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/src/main/java/com/easyLend/userservice/domain/entity/AppUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/domain/entity/AppUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/src/main/java/com/easyLend/userservice/domain/entity/JwtToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/domain/entity/JwtToken.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/src/main/java/com/easyLend/userservice/domain/entity/OTP.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/domain/entity/OTP.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/src/main/java/com/easyLend/userservice/domain/repository/AppUserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/domain/repository/AppUserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/src/main/java/com/easyLend/userservice/domain/repository/JwtTokenRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/domain/repository/JwtTokenRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/src/main/java/com/easyLend/userservice/domain/repository/OTPRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/domain/repository/OTPRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/src/main/java/com/easyLend/userservice/event/RegisterEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/event/RegisterEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/src/main/java/com/easyLend/userservice/event/RegisterEventListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/event/RegisterEventListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/src/main/java/com/easyLend/userservice/exceptions/AppUserNotFoundExceptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/exceptions/AppUserNotFoundExceptions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/src/main/java/com/easyLend/userservice/exceptions/EasyLendExceptionResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/exceptions/EasyLendExceptionResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/src/main/java/com/easyLend/userservice/exceptions/UserAlreadyExistExceptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/exceptions/UserAlreadyExistExceptions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/src/main/java/com/easyLend/userservice/exceptions/handler/ExceptionsHandlers.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/exceptions/handler/ExceptionsHandlers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/src/main/java/com/easyLend/userservice/request/RegisterRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/request/RegisterRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/src/main/java/com/easyLend/userservice/response/ApiResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/response/ApiResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/src/main/java/com/easyLend/userservice/response/RegisterResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/response/RegisterResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/src/main/java/com/easyLend/userservice/security/CustomUserDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/security/CustomUserDetailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/src/main/java/com/easyLend/userservice/security/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/security/JwtAuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/src/main/java/com/easyLend/userservice/security/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/security/JwtService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/src/main/java/com/easyLend/userservice/services/AppUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/services/AppUserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/src/main/java/com/easyLend/userservice/services/OTPService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/services/OTPService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/src/main/java/com/easyLend/userservice/services/serviceImpl/AppUserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/services/serviceImpl/AppUserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/src/main/java/com/easyLend/userservice/services/serviceImpl/OTPServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/services/serviceImpl/OTPServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/src/main/java/com/easyLend/userservice/utils/DateUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/utils/DateUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/src/main/java/com/easyLend/userservice/utils/EmailUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/utils/EmailUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/src/main/java/com/easyLend/userservice/utils/RandomOtp.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/utils/RandomOtp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/src/main/java/com/easyLend/userservice/utils/UserContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/utils/UserContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userregservice/src/test/java/com/decagon/regservice/UserRegApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/test/java/com/decagon/regservice/UserRegApplicationTests.java" afterDir="false" />
+    <list default="true" id="ea87701d-e819-4278-b20c-a16904c1dac4" name="Changes" comment="Lending Service">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lending-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/lending-service/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -116,34 +35,86 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectId" id="2SQy3nRaKiYl3s8puYUC2tsrCmb" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/olorunlexe/Documents/GitHub/easy-lend-14&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/olorunlexe/Documents/GitHub/easy-lend-14",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
+    "spring.configuration.checksum": "1a092d30c98942c337cd658093ca3951",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
   }
-}</component>
-  <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
+}]]></component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.LendingServiceApplication">
+    <configuration name="All in Lending-Service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Lending-Service" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <option name="filePath" />
+    <configuration name="LendingServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="Lending-Service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.decagon.lendingservice.LendingServiceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ProjectManagementServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="Profile-Management-Service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.decagon.ProjectManagementServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserRegApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="user-registration-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.easyLend.userservice.UserRegApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.All in Lending-Service" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -153,7 +124,19 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689092907536</updated>
+      <workItem from="1689248781769" duration="121000" />
+      <workItem from="1689248912992" duration="898000" />
+      <workItem from="1689354122287" duration="1557000" />
+      <workItem from="1689446349301" duration="13781000" />
+      <workItem from="1689780588966" duration="3505000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
