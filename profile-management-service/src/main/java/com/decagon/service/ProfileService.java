@@ -1,15 +1,20 @@
 package com.decagon.service;
 
-import com.decagon.dto.ContactInformationDTO;
-import com.decagon.dto.request.ProfileRequest;
-import com.decagon.dto.response.ProfileResponse;
+import com.decagon.dto.*;
+import com.decagon.dto.response.ProfileResponseDTO;
 
 public interface ProfileService {
-    ProfileResponse createProfile(ProfileRequest request);
+    ProfileResponseDTO createProfile(Long user_id);
 
-    ProfileResponse updateProfile(Long id, ProfileRequest profileRequest);
+    ContactInformationDTO updateContactInformation(Long profileId, ContactInformationDTO contactInfo);
 
-    ContactInformationDTO updateContactInfo(Long id, ContactInformationDTO contactInformationDTO);
+    EmploymentStatusDTO updateEmploymentStatus(Long profileId, EmploymentStatusDTO employmentStatus);
 
+    GovernmentIDDTO updateGovernmentID(Long profileId, GovernmentIDDTO governmentID);
 
+    IncomeStatusDTO updateIncomeStatus(Long profileId, IncomeStatusDTO incomeStatus);
+
+    BankAccountDTO updateBankAccount(Long profileId, BankAccountDTO bankAccount);
+
+    ProofOfAddressDTO updateProofOfAddress(Long profileId, ProofOfAddressDTO proofOfAddress);
 }
