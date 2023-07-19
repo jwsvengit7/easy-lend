@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-public class Lender {
+public class  Lender {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long lender_id;

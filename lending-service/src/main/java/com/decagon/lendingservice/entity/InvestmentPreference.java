@@ -19,7 +19,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Entity
 @Table (name = "investment_preference")
-public class InvestmentPreference {
+public class  InvestmentPreference {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int preference_id;
