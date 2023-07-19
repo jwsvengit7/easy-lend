@@ -12,6 +12,7 @@ import com.easyLend.userservice.request.LoginRequest;
 import com.easyLend.userservice.request.RegisterRequest;
 import com.easyLend.userservice.response.LoginResponse;
 import com.easyLend.userservice.response.RegisterResponse;
+import com.easyLend.userservice.response.UserResponse;
 import com.easyLend.userservice.security.JwtService;
 import com.easyLend.userservice.services.AppUserService;
 import com.easyLend.userservice.utils.EmailUtils;
@@ -28,6 +29,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -100,6 +103,16 @@ public class AppUserServiceImpl implements AppUserService {
 
         return null;
     }
+
+
+    @Override
+    public List<UserResponse> listOfUsers() {
+        List<AppUser> users = appUserRepository.findAll();
+        return users.stream()
+                .map(user -> modelMapper.map(user, UserResponse.class))
+                .collect(Collectors.toList());
+    }
+
 
     private AppUser saveUserDTO(RegisterRequest request){
         return AppUser.builder()
