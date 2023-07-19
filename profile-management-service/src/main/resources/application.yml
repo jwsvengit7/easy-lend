@@ -13,7 +13,7 @@ spring:
               MySQL8Dialect:
 
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     show-sql: true
 
 
@@ -22,3 +22,22 @@ cloudinary:
   cloud_name: dqqlpmdpm
   api_key: 967725158739296
   api_secret: WzXnPmgukKQXG6BxkQuPxMhuxYU
+
+
+#RabbitMQ settings
+rabbitmq:
+  host: localhost
+  virtualhost: /
+  port: 15672
+  username: guest
+  password: guest
+  exchange: work-item-exchange
+  queue: work-items
+  routingkey: work-item-routingkey
+  reply:
+    timeout: 60000
+  concurrent:
+    consumers: 1
+  max:
+    concurrent:
+      consumers: 1

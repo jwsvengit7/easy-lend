@@ -1,41 +1,50 @@
 package com.decagon.entity;
 
-import com.decagon.enums.UserType;
+import com.decagon.config.JsonConverter;
+import com.decagon.entity.pojo.*;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
+@Table (name = "profile")
 public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long profile_id;
+    private Long profileId;
 
-    //user id will be mapped here as foreign key
+    private Long user_id;
 
-    @Column(name = "user_type")
-    @Enumerated(EnumType.STRING)
-    private UserType userType;
+    @Column(name = "profile_status")
+    private String profileCreationStatus;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "contact_information_id")
+    @Column(columnDefinition = "json")
+    @Convert(converter = JsonConverter.class)
     private ContactInformation contactInformation;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "employment_status_id")
+    @Column(columnDefinition = "json")
+    @Convert(converter = JsonConverter.class)
     private EmploymentStatus employmentStatus;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "government_id_id")
+    @Column(columnDefinition = "json")
+    @Convert(converter = JsonConverter.class)
     private GovernmentID governmentID;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "income_status_id")
+    @Column(columnDefinition = "json")
+    @Convert(converter = JsonConverter.class)
     private IncomeStatus incomeStatus;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "proof_of_address_id")
+    @Column(columnDefinition = "json")
+    @Convert(converter = JsonConverter.class)
     private ProofOfAddress proofOfAddress;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "linked_bank_account_id")
-    private LinkedBankAccount linkedBankAccount;
+    @Column(columnDefinition = "json")
+    @Convert(converter = JsonConverter.class)
+    private BankAccount bankAccount;
 }
