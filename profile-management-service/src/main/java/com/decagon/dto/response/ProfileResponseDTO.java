@@ -1,6 +1,6 @@
 package com.decagon.dto.response;
 
-import com.decagon.entity.pojo.ContactInformation;
+import com.decagon.domain.pojo.ContactInformation;
 import lombok.Getter;
 import lombok.Setter;
 

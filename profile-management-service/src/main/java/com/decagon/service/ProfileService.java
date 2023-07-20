@@ -1,6 +1,6 @@
 package com.decagon.service;
 
-import com.decagon.dto.*;
+import com.decagon.dto.pojoDTO.*;
 import com.decagon.dto.response.ProfileResponseDTO;
 
 public interface ProfileService {

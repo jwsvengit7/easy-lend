@@ -31,9 +31,9 @@ rabbitmq:
   port: 15672
   username: guest
   password: guest
-  exchange: work-item-exchange
-  queue: work-items
-  routingkey: work-item-routingkey
+  exchange: profile-exchange
+  queue: create-profile
+  routingkey: profile-routingkey
   reply:
     timeout: 60000
   concurrent:

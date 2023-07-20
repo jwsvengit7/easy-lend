@@ -1,7 +1,7 @@
 package com.decagon.consumer;
 
-import com.decagon.dto.ContactInformationDTO;
-import com.decagon.entity.pojo.UserDetails;
+import com.decagon.domain.message.*;
+import com.decagon.dto.pojoDTO.*;
 import com.decagon.service.ProfileService;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
@@ -16,12 +16,11 @@ public class ProfileCreationConsumer {
     }
 
     @RabbitListener(queues = "${rabbitmq.queueName}")
-    public void receiveCreateProfileMessage(UserDetails userDetails) {
+    public void receiveCreateProfileMessage(CreateProfileMessage message) {
         // Fetch user information using the provided user_id from the userDetails
-        Long user_id = userDetails.getUser_id();
-        String fullName = userDetails.getFullName();
-        String email = userDetails.getEmail();
-        String phoneNumber = userDetails.getPhoneNumber();
+        Long user_id = message.getUser_id();
+        String fullName = message.getFullName();
+        String email = message.getEmail();
 
         // Split the full name into two parts (firstName and lastName)
         String[] nameParts = fullName.split(" ");
@@ -33,7 +32,6 @@ public class ProfileCreationConsumer {
         contactInformation.setFirstName(firstName);
         contactInformation.setLastName(lastName);
         contactInformation.setEmail(email);
-        contactInformation.setPhoneNumber(phoneNumber);
 
         // Set the profileCreationStatus as "new"
         String profileCreationStatus = "new";

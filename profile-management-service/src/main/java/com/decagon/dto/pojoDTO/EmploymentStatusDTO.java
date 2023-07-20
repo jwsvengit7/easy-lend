@@ -1,4 +1,4 @@
-package com.decagon.dto;
+package com.decagon.dto.pojoDTO;
 
 import lombok.Getter;
 import lombok.Setter;
