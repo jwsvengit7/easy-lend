@@ -1,4 +1,4 @@
-package com.decagon.lendingservice.lendingDTORequest;
+package com.decagon.lendingservice.dto;
 
 import com.decagon.lendingservice.entity.InvestmentPreference;
 import jakarta.validation.constraints.DecimalMin;
@@ -11,7 +11,6 @@ import java.math.BigDecimal;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class InvestmentDTORequest {
     @NotNull(message = "Loan amount must not be null")
     @DecimalMin(value = "0", inclusive = false, message = "Loan amount must be greater than 0")
