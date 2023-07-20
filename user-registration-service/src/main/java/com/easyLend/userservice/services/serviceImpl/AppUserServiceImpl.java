@@ -28,6 +28,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -61,7 +62,11 @@ public class AppUserServiceImpl implements AppUserService {
     }
     @Override
     public RegisterResponse registerUser(RegisterRequest request, UserType userType, HttpServletRequest httpServletRequest) {
-             confirmUser(request.getEmail());
+        String email = request.getEmail();
+        if (StringUtils.isEmpty(email) || !StringUtils.hasText(email)) {
+            throw new IllegalArgumentException("Email cannot be blank or empty.");
+        }
+        confirmUser(email);
             AppUser appUser = appUserRepository.save(saveUserDTO(request));
             rabbitMQSender.send(new UserResponse(appUser.getUserId(),appUser.getFullName(),appUser.getEmail()));
             publisher.publishEvent(new RegisterEvent(appUser, EmailUtils.applicationUrl(httpServletRequest)));
