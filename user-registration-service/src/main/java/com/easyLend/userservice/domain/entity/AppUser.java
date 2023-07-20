@@ -45,6 +45,11 @@ public class AppUser implements UserDetails  {
     private LocalDateTime updatedAt;
     @Column(name = "profile")
     private String image;
+    @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
+    private Borrower borrower;
+
+    @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
+    private Lender lender;
 
 
     @Override
