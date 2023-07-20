@@ -1,7 +1,8 @@
 package com.decagon.service.serviceImplementation;
 
 import com.decagon.domain.entity.Profile;
-import com.decagon.domain.pojo.*;
+import com.decagon.domain.pojo.ContactInformation;
+import com.decagon.domain.pojo.EmploymentStatus;
 import com.decagon.dto.pojoDTO.*;
 import com.decagon.dto.response.ProfileResponseDTO;
 import com.decagon.exception.ProfileNotFoundException;
@@ -27,7 +28,6 @@ public class ProfileServiceImpl implements ProfileService {
         contactInformation.setFirstName(contactInformationDTO.getFirstName());
         contactInformation.setLastName(contactInformationDTO.getLastName());
         contactInformation.setEmail(contactInformationDTO.getEmail());
-        contactInformation.setPhoneNumber(contactInformationDTO.getPhoneNumber());
 
         // Create the Profile entity and save it in the database
         Profile profile = new Profile();

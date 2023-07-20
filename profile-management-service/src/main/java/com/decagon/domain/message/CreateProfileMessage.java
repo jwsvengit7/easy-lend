@@ -11,5 +11,4 @@ public class CreateProfileMessage {
     private Long user_id;
     private String fullName;
     private String email;
-    private String phoneNumber;
 }
