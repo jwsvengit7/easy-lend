@@ -1,5 +1,6 @@
 package com.easyLend.userservice.security;
 
+import com.easyLend.userservice.domain.entity.AppUser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -35,7 +36,15 @@ public class JwtService {
     }
 
     public String generateToken(UserDetails userDetails) {
-        return generateToken(new HashMap<>(), userDetails);
+        // Extract the user's ID from userDetails
+        String userId = ((AppUser) userDetails).getUserId();
+
+        // Add the 'userId' claim to the extraClaims map
+        Map<String, Object> extraClaims = new HashMap<>();
+        extraClaims.put("userId", userId);
+
+        // Generate the token with the additional 'userId' claim
+        return generateToken(extraClaims, userDetails);
     }
 
     public String generateToken(

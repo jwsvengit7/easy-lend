@@ -19,6 +19,8 @@ import com.easyLend.userservice.utils.EmailUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.amqp.core.Queue;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -39,8 +41,12 @@ public class AppUserServiceImpl implements AppUserService {
     private final ApplicationEventPublisher publisher;
     private final PasswordEncoder passwordEncoder;
     private final ModelMapper modelMapper;
+    private final RabbitMQSenderImpl rabbitMQSender;
     private final JwtService jwtService;
     private final JwtTokenRepository jwtTokenRepository;
+    private final AmqpTemplate rabbitTemplate;
+
+    private final Queue queue;
     @Value("${application.security.jwt.expiration}")
     private long expirationTime;
 
@@ -57,7 +63,9 @@ public class AppUserServiceImpl implements AppUserService {
     public RegisterResponse registerUser(RegisterRequest request, UserType userType, HttpServletRequest httpServletRequest) {
              confirmUser(request.getEmail());
             AppUser appUser = appUserRepository.save(saveUserDTO(request));
+            rabbitMQSender.send(new UserResponse(appUser.getUserId(),appUser.getFullName(),appUser.getEmail()));
             publisher.publishEvent(new RegisterEvent(appUser, EmailUtils.applicationUrl(httpServletRequest)));
+
             return modelMapper.map(appUser,RegisterResponse.class);
 
 
@@ -112,6 +120,8 @@ public class AppUserServiceImpl implements AppUserService {
                 .map(user -> modelMapper.map(user, UserResponse.class))
                 .collect(Collectors.toList());
     }
+
+
 
 
     private AppUser saveUserDTO(RegisterRequest request){
