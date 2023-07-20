@@ -1,4 +1,4 @@
-package com.decagon.entity.pojo;
+package com.decagon.domain.pojo;
 
 import lombok.Getter;
 import lombok.Setter;

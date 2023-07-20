@@ -1,13 +1,14 @@
-package com.decagon.dto;
+package com.decagon.domain.pojo;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class ContactInformationDTO {
+public class ContactInformation {
     private String firstName;
     private String lastName;
     private String email;
     private String phoneNumber;
 }
+//TODO receives user's fullname user service, split into firstName and LastName

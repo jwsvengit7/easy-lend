@@ -1,12 +1,12 @@
 package com.decagon.service;
 
-import com.decagon.dto.*;
+import com.decagon.dto.pojoDTO.*;
 import com.decagon.dto.response.ProfileResponseDTO;
 
 public interface ProfileService {
     ProfileResponseDTO createProfile(Long user_id, String profileCreationStatus, ContactInformationDTO contactInformation);
 
-    ContactInformationDTO updateContactInformation(Long profileId, ContactInformationDTO contactInfo);
+    ProfileResponseDTO updateContactInformation(Long profileId, ContactInformationDTO contactInfo);
 
     EmploymentStatusDTO updateEmploymentStatus(Long profileId, EmploymentStatusDTO employmentStatus);
 

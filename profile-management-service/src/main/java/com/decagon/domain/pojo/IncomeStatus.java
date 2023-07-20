@@ -1,12 +1,11 @@
-package com.decagon.dto;
-
+package com.decagon.domain.pojo;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class IncomeStatusDTO {
+public class IncomeStatus {
     private String employmentStatus;
     private String monthlyPersonalIncome;
     private boolean hasOtherSourcesOfIncome;

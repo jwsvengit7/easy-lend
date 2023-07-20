@@ -1,7 +1,7 @@
-package com.decagon.entity;
+package com.decagon.domain.entity;
 
 import com.decagon.config.JsonConverter;
-import com.decagon.entity.pojo.*;
+import com.decagon.domain.pojo.*;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,12 +17,13 @@ import lombok.Setter;
 public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long profileId;
+    private Long id;
 
-    private Long user_id;
+    private Long userId;
 
-    @Column(name = "profile_status")
-    private String profileCreationStatus;
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private ProfileStatus status;
 
     @Column(columnDefinition = "json")
     @Convert(converter = JsonConverter.class)
@@ -34,7 +35,7 @@ public class Profile {
 
     @Column(columnDefinition = "json")
     @Convert(converter = JsonConverter.class)
-    private GovernmentID governmentID;
+    private GovernmentID governmentId;
 
     @Column(columnDefinition = "json")
     @Convert(converter = JsonConverter.class)
