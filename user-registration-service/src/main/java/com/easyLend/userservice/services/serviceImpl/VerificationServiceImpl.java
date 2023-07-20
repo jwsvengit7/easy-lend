@@ -6,10 +6,8 @@ import com.easyLend.userservice.domain.repository.AppUserRepository;
 import com.easyLend.userservice.domain.repository.VerificationEmailRepository;
 import com.easyLend.userservice.event.RegisterEvent;
 import com.easyLend.userservice.exceptions.TokenNotFoundException;
-import com.easyLend.userservice.request.LoginRequest;
 import com.easyLend.userservice.services.VerificationEmailService;
 import com.easyLend.userservice.utils.EmailUtils;
-import com.easyLend.userservice.utils.RandomOtp;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
@@ -82,7 +80,7 @@ public class VerificationServiceImpl implements VerificationEmailService {
         if(confirmUser!=null){
             emailRepository.delete(confirmUser);
         }
-        publisher.publishEvent(new RegisterEvent(appUser, RandomOtp.otpGererator()));
+        publisher.publishEvent(new RegisterEvent(appUser, EmailUtils.applicationUrl(request)));
         return "please check your email for verification link";
     }
 }
