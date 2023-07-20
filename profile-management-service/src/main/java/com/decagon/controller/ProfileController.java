@@ -1,6 +1,7 @@
 package com.decagon.controller;
 
 import com.decagon.dto.pojoDTO.*;
+import com.decagon.dto.response.ProfileResponseDTO;
 import com.decagon.service.ProfileService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,10 +17,10 @@ public class ProfileController {
     }
 
     @PutMapping("/{profileId}/contact-information")
-    public ResponseEntity<ContactInformationDTO> updateContactInformation(
+    public ResponseEntity<ProfileResponseDTO> updateContactInformation(
             @PathVariable Long profileId,
             @RequestBody ContactInformationDTO contactInformation) {
-        ContactInformationDTO responseDTO = profileService.updateContactInformation(profileId, contactInformation);
+        ProfileResponseDTO responseDTO = profileService.updateContactInformation(profileId, contactInformation);
         return ResponseEntity.ok(responseDTO);
     }
 
