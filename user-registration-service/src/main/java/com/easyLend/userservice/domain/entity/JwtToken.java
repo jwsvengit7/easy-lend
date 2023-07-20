@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.Date;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name ="jwt")
@@ -20,7 +22,8 @@ public class JwtToken {
 
     private String refreshToken;
 
-    private LocalDateTime localDateTime;
+    private Date generatedAt;
+    private Date expiresAt;
     private boolean isRevoked;
     private boolean expired;
     @OneToOne

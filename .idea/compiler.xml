@@ -2,31 +2,33 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="app" />
-        <module name="payload" />
+        <module name="Lending-Service" />
+        <module name="Profile-Management-Service" />
+        <module name="Loan_and_disbursement_Service" />
+        <module name="user-registration-service" />
+        <module name="loan_agreement_service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="demo" target="17" />
-      <module name="loan_agreement_selection_service" target="17" />
+      <module name="Lending-Service" target="17" />
       <module name="loan_agreement_service" target="17" />
-      <module name="loan_selection_agreement_service" target="17" />
-      <module name="untitled" target="17" />
+      <module name="Loan_and_disbursement_Service" target="17" />
+      <module name="Profile-Management-Service" target="17" />
+      <module name="user-registration-service" target="1.6" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="app" options="-parameters" />
-      <module name="demo" options="-parameters" />
-      <module name="loan_agreement_selection_service" options="-parameters" />
+      <module name="Lending-Service" options="-parameters" />
+      <module name="Loan_and_disbursement_Service" options="-parameters" />
+      <module name="Profile-Management-Service" options="-parameters" />
       <module name="loan_agreement_service" options="-parameters" />
-      <module name="loan_selection_agreement_service" options="-parameters" />
-      <module name="payload" options="-parameters" />
-      <module name="untitled" options="-parameters" />
+      <module name="user-registration-service" options="-parameters" />
     </option>
   </component>
 </project>
