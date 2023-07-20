@@ -1,4 +1,4 @@
-package com.decagon.lendingservice.lendingDTOResponse;
+package com.decagon.lendingservice.dto;
 
 import com.decagon.lendingservice.entity.InvestmentPreference;
 import lombok.*;
