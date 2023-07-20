@@ -1,4 +1,4 @@
-package com.decagon.loanAgreementSelection.models;
+package com.decagon.loanagreementservice.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -7,11 +7,10 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
-import static com.decagon.loanAgreementSelection.models.Status.NEW;
+import static com.decagon.loanagreementservice.models.Status.NEW;
 
 @Entity
 @AllArgsConstructor

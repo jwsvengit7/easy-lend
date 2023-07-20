@@ -1,10 +1,9 @@
-package com.decagon.loanAgreementSelection.loanTransactionService.model;
+package com.decagon.loanagreementservice.loanTransactionService.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.security.Timestamp;

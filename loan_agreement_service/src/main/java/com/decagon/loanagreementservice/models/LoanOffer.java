@@ -1,10 +1,9 @@
-package com.decagon.loanAgreementSelection.models;
+package com.decagon.loanagreementservice.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 @Getter
 @AllArgsConstructor

@@ -1,6 +1,6 @@
-package com.decagon.loanAgreementSelection.repository;
+package com.decagon.loanagreementservice.repository;
 
-import com.decagon.loanAgreementSelection.models.LoanAgreement;
+import com.decagon.loanagreementservice.models.LoanAgreement;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

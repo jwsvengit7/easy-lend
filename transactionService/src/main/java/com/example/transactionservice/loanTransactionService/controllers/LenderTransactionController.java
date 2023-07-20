@@ -1,4 +1,4 @@
-package com.decagon.loanAgreementSelection.loanTransactionService.controllers;
+package com.decagon.loanagreementservice.loanTransactionService.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;

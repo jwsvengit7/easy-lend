@@ -1,4 +1,4 @@
-package com.decagon.loanAgreementSelection.models;
+package com.decagon.loanagreementservice.models;
 
 public class LoanRequest {
 }

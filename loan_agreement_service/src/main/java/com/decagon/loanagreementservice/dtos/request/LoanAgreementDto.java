@@ -1,16 +1,13 @@
-package com.decagon.loanAgreementSelection.dtos.request;
+package com.decagon.loanagreementservice.dtos.request;
 
-import com.decagon.loanAgreementSelection.models.LoanAgreement;
-import com.decagon.loanAgreementSelection.models.Status;
+import com.decagon.loanagreementservice.models.LoanAgreement;
+import com.decagon.loanagreementservice.models.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.sql.Timestamp;
-
-import static com.decagon.loanAgreementSelection.models.Status.NEW;
+import static com.decagon.loanagreementservice.models.Status.NEW;
 
 @Getter
 @AllArgsConstructor

@@ -1,6 +1,6 @@
-package com.decagon.loanAgreementSelection.loanTransactionService.service.serviceImpl;
+package com.decagon.loanagreementservice.loanTransactionService.service.serviceImpl;
 
-import com.decagon.loanAgreementSelection.loanTransactionService.service.TransactionService;
+import com.decagon.loanagreementservice.loanTransactionService.service.TransactionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
