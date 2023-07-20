@@ -1,6 +1,6 @@
-package com.decagon.loanAgreementSelection.controllers;
+package com.decagon.loanagreementservice.controllers;
 
-import com.decagon.loanAgreementSelection.services.LenderService;
+import com.decagon.loanagreementservice.services.LenderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

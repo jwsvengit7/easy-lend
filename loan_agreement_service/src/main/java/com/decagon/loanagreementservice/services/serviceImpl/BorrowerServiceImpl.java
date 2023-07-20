@@ -1,28 +1,23 @@
-package com.decagon.loanAgreementSelection.services.serviceImpl;
+package com.decagon.loanagreementservice.services.serviceImpl;
 
-import ch.qos.logback.core.testUtil.RandomUtil;
-import com.decagon.loanAgreementSelection.dtos.request.LoanAgreementDto;
-import com.decagon.loanAgreementSelection.models.LoanAgreement;
-import com.decagon.loanAgreementSelection.models.LoanOffer;
-import com.decagon.loanAgreementSelection.models.Status;
-import com.decagon.loanAgreementSelection.repository.AgreementRepository;
-import com.decagon.loanAgreementSelection.services.ApiClient;
-import com.decagon.loanAgreementSelection.services.BorrowerService;
+import com.decagon.loanagreementservice.dtos.request.LoanAgreementDto;
+import com.decagon.loanagreementservice.models.LoanAgreement;
+import com.decagon.loanagreementservice.models.LoanOffer;
+import com.decagon.loanagreementservice.models.Status;
+import com.decagon.loanagreementservice.repository.AgreementRepository;
+import com.decagon.loanagreementservice.services.LoanOfferClient;
+import com.decagon.loanagreementservice.services.BorrowerService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.BeanUtils;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Random;
-import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
 public class BorrowerServiceImpl implements BorrowerService {
-    private final ApiClient apiClient;
+    private final LoanOfferClient loanOfferClient;
     private final AgreementRepository repository;
     Random random = new Random();
     long randomLong = random.nextLong(100);
@@ -51,7 +46,8 @@ public class BorrowerServiceImpl implements BorrowerService {
 
     private LoanOffer getLoanOffer(Long offerId) {
         // todo Use ur FeignClient to call the loanOffer service
-        ResponseEntity<LoanOffer> response = apiClient.getLoanOffer(offerId);
+        //fei
+        ResponseEntity<LoanOffer> response = loanOfferClient.getLoanOffer(offerId);
         if (response.getStatusCode().is2xxSuccessful()) {
             return response.getBody();
         } else {

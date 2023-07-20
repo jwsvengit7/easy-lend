@@ -1,9 +1,9 @@
-package com.decagon.loanAgreementSelection.services.serviceImpl;
+package com.decagon.loanagreementservice.services.serviceImpl;
 
-import com.decagon.loanAgreementSelection.dtos.request.LoanAgreementDto;
-import com.decagon.loanAgreementSelection.models.LoanAgreement;
-import com.decagon.loanAgreementSelection.repository.AgreementRepository;
-import com.decagon.loanAgreementSelection.services.LenderService;
+import com.decagon.loanagreementservice.dtos.request.LoanAgreementDto;
+import com.decagon.loanagreementservice.models.LoanAgreement;
+import com.decagon.loanagreementservice.repository.AgreementRepository;
+import com.decagon.loanagreementservice.services.LenderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
