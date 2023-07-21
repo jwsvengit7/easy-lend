@@ -1,17 +1,25 @@
 package com.example.transactionservice.dto.requests;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class LoanTransactionRequest {
 
+    @JsonProperty("loanId")
     private Long loanId;
-    private Long borrowerId;
+    @JsonProperty("borrowerId")
 
-    private Long lenderId;
+    private String borrowerId;
+    @JsonProperty("lenderId")
+    private String lenderId;
+    @JsonProperty("amount")
     private Double amount;
+    @JsonProperty("email")
     private String email;
-    public LoanTransactionRequest(Long loanId, Long borrowerId, Long lenderId, Double amount, String email) {
+
+    public LoanTransactionRequest(Long loanId, String borrowerId, String lenderId, Double amount, String email) {
         this.loanId = loanId;
         this.borrowerId = borrowerId;
         this.lenderId = lenderId;
@@ -30,19 +38,19 @@ public class LoanTransactionRequest {
         this.loanId = loanId;
     }
 
-    public Long getBorrowerId() {
+    public String getBorrowerId() {
         return borrowerId;
     }
 
-    public void setBorrowerId(Long borrowerId) {
+    public void setBorrowerId(String borrowerId) {
         this.borrowerId = borrowerId;
     }
 
-    public Long getLenderId() {
+    public String getLenderId() {
         return lenderId;
     }
 
-    public void setLenderId(Long lenderId) {
+    public void setLenderId(String lenderId) {
         this.lenderId = lenderId;
     }
 
