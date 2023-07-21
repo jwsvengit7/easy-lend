@@ -1,16 +1,21 @@
 package com.easyLend.userservice.request;
 
 import com.easyLend.userservice.domain.constant.UserType;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 
+
 public class RegisterRequest {
+    @NotBlank
     private String email;
+    @NotBlank
     private String fullName;
     private UserType userType;
+    @NotBlank
     private String password;
 
 

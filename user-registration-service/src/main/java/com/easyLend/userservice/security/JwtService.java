@@ -35,15 +35,10 @@ public class JwtService {
         return claimsResolver.apply(claims);
     }
 
-    public String generateToken(UserDetails userDetails) {
-        // Extract the user's ID from userDetails
-        String userId = ((AppUser) userDetails).getUserId();
-
-        // Add the 'userId' claim to the extraClaims map
+    public String generateToken(UserDetails userDetails,String userId) {
         Map<String, Object> extraClaims = new HashMap<>();
         extraClaims.put("userId", userId);
 
-        // Generate the token with the additional 'userId' claim
         return generateToken(extraClaims, userDetails);
     }
 

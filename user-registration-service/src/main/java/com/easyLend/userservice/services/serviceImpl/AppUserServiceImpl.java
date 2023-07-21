@@ -28,8 +28,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
-
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -37,6 +35,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+
 public class AppUserServiceImpl implements AppUserService {
     private final AppUserRepository appUserRepository;
     private final ApplicationEventPublisher publisher;
@@ -62,11 +61,7 @@ public class AppUserServiceImpl implements AppUserService {
     }
     @Override
     public RegisterResponse registerUser(RegisterRequest request, UserType userType, HttpServletRequest httpServletRequest) {
-        String email = request.getEmail();
-        if (StringUtils.isEmpty(email) || !StringUtils.hasText(email)) {
-            throw new IllegalArgumentException("Email cannot be blank or empty.");
-        }
-        confirmUser(email);
+        confirmUser(request.getEmail());
             AppUser appUser = appUserRepository.save(saveUserDTO(request));
             rabbitMQSender.send(new UserResponse(appUser.getUserId(),appUser.getFullName(),appUser.getEmail()));
             publisher.publishEvent(new RegisterEvent(appUser, EmailUtils.applicationUrl(httpServletRequest)));
@@ -89,7 +84,7 @@ public class AppUserServiceImpl implements AppUserService {
                 System.out.println(token.getAccessToken());
                 jwtTokenRepository.delete(token);
             }
-            String jwt = jwtService.generateToken(user);
+            String jwt = jwtService.generateToken(user,user.getUserId());
             String refresh = jwtService.generateRefreshToken(user);
             Authentication authentication = new UsernamePasswordAuthenticationToken(
                     user.getEmail(),user.getPassword());
