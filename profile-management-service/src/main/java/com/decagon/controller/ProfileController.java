@@ -1,69 +1,90 @@
 package com.decagon.controller;
 
 import com.decagon.dto.pojoDTO.*;
+import com.decagon.dto.response.ApiResponse;
 import com.decagon.dto.response.ProfileResponseDTO;
+import com.decagon.security.JwtTokenFilter;
 import com.decagon.service.ProfileService;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/profile")
 public class ProfileController {
+    @Value("${jwt.secret}")
+    private String jwtSecret;
 
     private final ProfileService profileService;
+    private final JwtTokenFilter jwtTokenFilter;
 
-    public ProfileController(ProfileService profileService) {
+    public ProfileController(ProfileService profileService, JwtTokenFilter jwtTokenFilter) {
         this.profileService = profileService;
+        this.jwtTokenFilter = jwtTokenFilter;
     }
 
-    @PutMapping("/{profileId}/contact-information")
-    public ResponseEntity<ProfileResponseDTO> updateContactInformation(
-            @PathVariable Long profileId,
-            @RequestBody ContactInformationDTO contactInformation) {
-        ProfileResponseDTO responseDTO = profileService.updateContactInformation(profileId, contactInformation);
-        return ResponseEntity.ok(responseDTO);
+    @PutMapping("/contact-information")
+    public ResponseEntity<ApiResponse<ProfileResponseDTO>> updateContactInformation(
+            @RequestBody ContactInformationDTO contactInformation,
+            @RequestHeader("Authorization") String accessToken) {
+
+        String userId = jwtTokenFilter.extractUserIdFromToken(accessToken);
+        ApiResponse<ProfileResponseDTO> responseDTO = new ApiResponse<>(profileService.updateContactInformation(contactInformation, userId));
+        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
-    @PutMapping("/{profileId}/employment-status")
-    public ResponseEntity<EmploymentStatusDTO> updateEmploymentStatus(
-            @PathVariable Long profileId,
-            @RequestBody EmploymentStatusDTO employmentStatusDTO) {
-        EmploymentStatusDTO responseDTO = profileService.updateEmploymentStatus(profileId, employmentStatusDTO);
-        return ResponseEntity.ok(responseDTO);
+    @PutMapping("/employment-status")
+    public ResponseEntity<ApiResponse<EmploymentStatusDTO>> updateEmploymentStatus(
+            @RequestBody EmploymentStatusDTO employmentStatusDTO,
+            @RequestHeader("Authorization") String accessToken) {
+
+        String userId = jwtTokenFilter.extractUserIdFromToken(accessToken);
+        ApiResponse<EmploymentStatusDTO> responseDTO = new ApiResponse<>(profileService.updateEmploymentStatus(employmentStatusDTO, userId));
+        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
-    @PutMapping("/{profileId}/government-id")
-    public ResponseEntity<GovernmentIDDTO> updateGovernmentID(
-            @PathVariable Long profileId,
-            @RequestBody GovernmentIDDTO governmentIDDTO) {
-        GovernmentIDDTO responseDTO = profileService.updateGovernmentID(profileId, governmentIDDTO);
-        return ResponseEntity.ok(responseDTO);
+    @PutMapping(value = "/government-id", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<ApiResponse<GovernmentIDDTO>> updateGovernmentID(
+            @RequestBody GovernmentIDDTO governmentIDDTO,
+            @RequestHeader("Authorization") String accessToken,
+            @RequestParam("file") MultipartFile file) {
+
+        String userId = jwtTokenFilter.extractUserIdFromToken(accessToken);
+        ApiResponse<GovernmentIDDTO> responseDTO = new ApiResponse<>(profileService.updateGovernmentID(governmentIDDTO, file, userId));
+        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
-    @PutMapping("/{profileId}/income-status")
-    public ResponseEntity<IncomeStatusDTO> updateIncomeStatus(
-            @PathVariable Long profileId,
-            @RequestBody IncomeStatusDTO incomeStatusDTO) {
-        IncomeStatusDTO responseDTO = profileService.updateIncomeStatus(profileId, incomeStatusDTO);
-        return ResponseEntity.ok(responseDTO);
+    @PutMapping("/income-status")
+    public ResponseEntity<ApiResponse<IncomeStatusDTO>> updateIncomeStatus(
+            @RequestBody IncomeStatusDTO incomeStatusDTO,
+            @RequestHeader("Authorization") String accessToken) {
+
+        String userId = jwtTokenFilter.extractUserIdFromToken(accessToken);
+        ApiResponse<IncomeStatusDTO> responseDTO = new ApiResponse<>(profileService.updateIncomeStatus(incomeStatusDTO, userId));
+        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
-    @PutMapping("/{profileId}/bank-account")
-    public ResponseEntity<BankAccountDTO> updateBankAccount(
-            @PathVariable Long profileId,
-            @RequestBody BankAccountDTO bankAccountDTO) {
-        BankAccountDTO responseDTO = profileService.updateBankAccount(profileId, bankAccountDTO);
-        return ResponseEntity.ok(responseDTO);
+    @PutMapping("/bank-account")
+    public ResponseEntity<ApiResponse<BankAccountDTO>> updateBankAccount(
+            @RequestBody BankAccountDTO bankAccountDTO,
+            @RequestHeader("Authorization") String accessToken) {
+
+        String userId = jwtTokenFilter.extractUserIdFromToken(accessToken);
+        ApiResponse<BankAccountDTO> responseDTO = new ApiResponse<>(profileService.updateBankAccount(bankAccountDTO, userId));
+        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
-    @PutMapping("/{profileId}/proof-of-address")
-    public ResponseEntity<ProofOfAddressDTO> updateProofOfAddress(
-            @PathVariable Long profileId,
-            @RequestBody ProofOfAddressDTO proofOfAddressDTO) {
-        ProofOfAddressDTO responseDTO = profileService.updateProofOfAddress(profileId, proofOfAddressDTO);
-        return ResponseEntity.ok(responseDTO);
+    @PutMapping(value = "/proof-of-address", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<ApiResponse<ProofOfAddressDTO>> updateProofOfAddress(
+            @RequestBody ProofOfAddressDTO proofOfAddressDTO,
+            @RequestHeader("Authorization") String accessToken,
+            @RequestParam("file") MultipartFile file) {
+
+        String userId = jwtTokenFilter.extractUserIdFromToken(accessToken);
+        ApiResponse<ProofOfAddressDTO> responseDTO = new ApiResponse<>(profileService.updateProofOfAddress(proofOfAddressDTO, file, userId));
+        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 }
-
-
-
