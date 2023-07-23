@@ -10,11 +10,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.web.servlet.HandlerInterceptor;
 
 import java.io.IOException;
 
 @Component
-public class JwtTokenFilter extends OncePerRequestFilter {
+public class JwtTokenFilter extends OncePerRequestFilter implements HandlerInterceptor {
 
     @Value("${jwt.secret}")
     private String secretKey;
