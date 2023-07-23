@@ -24,7 +24,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
         String token = extractTokenFromRequest(request);
 
         try {
-            // Validate the JWT token using the public key
+            // Validate the JWT token using the secret key
             Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
             // Extract user information (e.g., user ID) from the token's payload
             String userId = extractUserIdFromToken(token);

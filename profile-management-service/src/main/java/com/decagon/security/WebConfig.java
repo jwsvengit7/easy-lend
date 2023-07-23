@@ -6,7 +6,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class WebConfig implements HandlerInterceptor, WebMvcConfigurer {
+public class WebConfig implements WebMvcConfigurer {
 
     private final JwtTokenFilter jwtTokenFilter;
 
@@ -16,6 +16,6 @@ public class WebConfig implements HandlerInterceptor, WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor((HandlerInterceptor) jwtTokenFilter);
+        registry.addInterceptor(jwtTokenFilter).addPathPatterns("/api/profile/**");
     }
 }

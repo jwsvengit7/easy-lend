@@ -1,21 +1,20 @@
 package com.decagon.consumer;
 
-import com.decagon.domain.message.*;
-import com.decagon.dto.pojoDTO.*;
+import com.decagon.domain.message.CreateProfileMessage;
+import com.decagon.dto.pojoDTO.ContactInformationDTO;
 import com.decagon.service.ProfileService;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ProfileCreationConsumer {
-
     private final ProfileService profileService;
 
     public ProfileCreationConsumer(ProfileService profileService) {
         this.profileService = profileService;
     }
 
-    @RabbitListener(queues = "${rabbitmq.queueName}")
+    @RabbitListener(queues = "${rabbitmq.queue}")
     public void receiveCreateProfileMessage(CreateProfileMessage message) {
         // Fetch user information using the provided user_id from the userDetails
         String user_id = message.getUser_id();
