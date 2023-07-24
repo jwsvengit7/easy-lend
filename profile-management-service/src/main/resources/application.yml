@@ -11,6 +11,10 @@ spring:
           hibernate:
             dialect:
               MySQL8Dialect:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
 
     hibernate:
       ddl-auto: create
