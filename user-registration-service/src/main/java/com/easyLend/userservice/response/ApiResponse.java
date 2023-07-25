@@ -11,7 +11,8 @@ public class ApiResponse<T> {
 
     public ApiResponse(T data){
         this.data = data;
-        this.message = "response recieved";
+        this.message = "response received";
+        this.localDateTime=LocalDateTime.now();
 
     }
 }

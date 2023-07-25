@@ -1,7 +1,7 @@
 package com.decagon.lendingservice.controller;
 
-import com.decagon.lendingservice.lendingDTORequest.InvestmentDTORequest;
-import com.decagon.lendingservice.lendingDTOResponse.InvestmentDTOResponse;
+import com.decagon.lendingservice.dto.InvestmentDTORequest;
+import com.decagon.lendingservice.dto.InvestmentDTOResponse;
 import com.decagon.lendingservice.service.InvestmentPreferencePagination;
 import com.decagon.lendingservice.service.InvestmentPreferenceService;
 import com.decagon.lendingservice.utils.JwtUtils;

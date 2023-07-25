@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -45,6 +44,11 @@ public class AppUser implements UserDetails  {
     private LocalDateTime updatedAt;
     @Column(name = "profile")
     private String image;
+    @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
+    private Borrower borrower;
+
+    @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
+    private Lender lender;
 
 
     @Override

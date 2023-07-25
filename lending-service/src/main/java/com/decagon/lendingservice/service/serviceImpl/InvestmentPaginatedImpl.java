@@ -1,7 +1,7 @@
 package com.decagon.lendingservice.service.serviceImpl;
 
 import com.decagon.lendingservice.entity.InvestmentPreference;
-import com.decagon.lendingservice.lendingDTOResponse.InvestmentDTOResponse;
+import com.decagon.lendingservice.dto.InvestmentDTOResponse;
 import com.decagon.lendingservice.repo.InvestmentPreferencePaginationRepository;
 import com.decagon.lendingservice.service.InvestmentPreferencePagination;
 import lombok.RequiredArgsConstructor;

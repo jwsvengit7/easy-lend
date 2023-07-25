@@ -2,8 +2,8 @@ package com.easyLend.userservice.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import java.util.Date;
 
-import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name ="jwt")
@@ -20,7 +20,8 @@ public class JwtToken {
 
     private String refreshToken;
 
-    private LocalDateTime localDateTime;
+    private Date generatedAt;
+    private Date expiresAt;
     private boolean isRevoked;
     private boolean expired;
     @OneToOne

@@ -12,4 +12,5 @@ public interface  InvestmentPreferenceRepository extends JpaRepository<Investmen
     Optional<InvestmentPreference> findByUserId(String userId);
 
 
+
 }

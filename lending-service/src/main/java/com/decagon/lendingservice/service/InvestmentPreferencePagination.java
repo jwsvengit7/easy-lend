@@ -1,6 +1,6 @@
 package com.decagon.lendingservice.service;
 
-import com.decagon.lendingservice.lendingDTOResponse.InvestmentDTOResponse;
+import com.decagon.lendingservice.dto.InvestmentDTOResponse;
 import org.springframework.data.domain.Page;
 
 public interface InvestmentPreferencePagination {

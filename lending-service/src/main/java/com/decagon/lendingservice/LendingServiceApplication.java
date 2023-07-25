@@ -11,10 +11,4 @@ public class LendingServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(LendingServiceApplication.class, args);
     }
-    @Bean
-    public ModelMapper modelMapper(){
-        return new ModelMapper();
-    }
-
-
 }
