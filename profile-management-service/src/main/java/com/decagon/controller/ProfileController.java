@@ -5,9 +5,9 @@ import com.decagon.dto.response.ApiResponse;
 import com.decagon.dto.response.ProfileResponseDTO;
 import com.decagon.security.JwtTokenFilter;
 import com.decagon.service.ProfileService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/profile")
-@Api(tags = "Profile API")
+@Tag(name = "Profile API")
 public class ProfileController {
     @Value("${jwt.secret}")
     private String jwtSecret;
@@ -31,11 +31,10 @@ public class ProfileController {
     }
 
     @PutMapping("/contact-information")
-    @ApiOperation(value = "Update contact information for a user profile", response = ApiResponse.class)
+    @Operation(summary = "Update contact information for a user profile")
     public ResponseEntity<ApiResponse<ProfileResponseDTO>> updateContactInformation(
-            @ApiParam(value = "Contact information to update", required = true)
+            @Parameter(description = "Contact information to update", required = true)
             @RequestBody ContactInformationDTO contactInformation,
-            @ApiParam(value = "Access token", required = true)
             @RequestHeader("Authorization") String accessToken) {
 
         String userId = jwtTokenFilter.extractUserIdFromToken(accessToken);
@@ -44,11 +43,10 @@ public class ProfileController {
     }
 
     @PutMapping("/employment-status")
-    @ApiOperation(value = "Update employment status for a user profile", response = ApiResponse.class)
+    @Operation(summary = "Update employment status for a user profile")
     public ResponseEntity<ApiResponse<EmploymentStatusDTO>> updateEmploymentStatus(
-            @ApiParam(value = "Employment status to update", required = true)
+            @Parameter(description = "Employment status to update", required = true)
             @RequestBody EmploymentStatusDTO employmentStatusDTO,
-            @ApiParam(value = "Access token", required = true)
             @RequestHeader("Authorization") String accessToken) {
 
         String userId = jwtTokenFilter.extractUserIdFromToken(accessToken);
@@ -57,14 +55,12 @@ public class ProfileController {
     }
 
     @PutMapping(value = "/government-id", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    @ApiOperation(value = "Update government ID information for a user profile", response = ApiResponse.class)
+    @Operation(summary = "Update government ID information for a user profile")
     public ResponseEntity<ApiResponse<GovernmentIDDTO>> updateGovernmentID(
-            @ApiParam(value = "Government ID information to update", required = true)
-            @RequestBody GovernmentIDDTO governmentIDDTO,
-            @ApiParam(value = "Access token", required = true)
-            @RequestHeader("Authorization") String accessToken,
-            @ApiParam(value = "Government ID document file", required = true)
-            @RequestParam("file") MultipartFile file) {
+            @Parameter(description = "Government ID information to update", required = true)
+            @RequestPart("governmentIDDTO") GovernmentIDDTO governmentIDDTO,
+            @RequestPart("file") MultipartFile file,
+            @RequestHeader("Authorization") String accessToken) {
 
         String userId = jwtTokenFilter.extractUserIdFromToken(accessToken);
         ApiResponse<GovernmentIDDTO> responseDTO = new ApiResponse<>(profileService.updateGovernmentID(governmentIDDTO, file, userId));
@@ -72,11 +68,10 @@ public class ProfileController {
     }
 
     @PutMapping("/income-status")
-    @ApiOperation(value = "Update income status for a user profile", response = ApiResponse.class)
+    @Operation(summary = "Update income status for a user profile")
     public ResponseEntity<ApiResponse<IncomeStatusDTO>> updateIncomeStatus(
-            @ApiParam(value = "Income status to update", required = true)
+            @Parameter(description = "Income status to update", required = true)
             @RequestBody IncomeStatusDTO incomeStatusDTO,
-            @ApiParam(value = "Access token", required = true)
             @RequestHeader("Authorization") String accessToken) {
 
         String userId = jwtTokenFilter.extractUserIdFromToken(accessToken);
@@ -85,11 +80,10 @@ public class ProfileController {
     }
 
     @PutMapping("/bank-account")
-    @ApiOperation(value = "Update bank account information for a user profile", response = ApiResponse.class)
+    @Operation(summary = "Update bank account information for a user profile")
     public ResponseEntity<ApiResponse<BankAccountDTO>> updateBankAccount(
-            @ApiParam(value = "Bank account information to update", required = true)
+            @Parameter(description = "Bank account information to update", required = true)
             @RequestBody BankAccountDTO bankAccountDTO,
-            @ApiParam(value = "Access token", required = true)
             @RequestHeader("Authorization") String accessToken) {
 
         String userId = jwtTokenFilter.extractUserIdFromToken(accessToken);
@@ -98,14 +92,12 @@ public class ProfileController {
     }
 
     @PutMapping(value = "/proof-of-address", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    @ApiOperation(value = "Update proof of address information for a user profile", response = ApiResponse.class)
+    @Operation(summary = "Update proof of address information for a user profile")
     public ResponseEntity<ApiResponse<ProofOfAddressDTO>> updateProofOfAddress(
-            @ApiParam(value = "Proof of address information to update", required = true)
-            @RequestBody ProofOfAddressDTO proofOfAddressDTO,
-            @ApiParam(value = "Access token", required = true)
-            @RequestHeader("Authorization") String accessToken,
-            @ApiParam(value = "Proof of address document file", required = true)
-            @RequestParam("file") MultipartFile file) {
+            @Parameter(description = "Proof of address information to update", required = true)
+            @RequestPart("proofOfAddressDTO") ProofOfAddressDTO proofOfAddressDTO,
+            @RequestPart("file") MultipartFile file,
+            @RequestHeader("Authorization") String accessToken) {
 
         String userId = jwtTokenFilter.extractUserIdFromToken(accessToken);
         ApiResponse<ProofOfAddressDTO> responseDTO = new ApiResponse<>(profileService.updateProofOfAddress(proofOfAddressDTO, file, userId));
