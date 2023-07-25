@@ -9,6 +9,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import static com.decagon.loanagreementservice.models.Status.NEW;
 
@@ -27,10 +28,10 @@ import static com.decagon.loanagreementservice.models.Status.NEW;
         @Column(name = "loan_id")
         private Long loanId;
         @Column(name = "borrower_id")
-        private Long borrowerId;
+        private String borrowerId;
 
         @Column(name = "lender_id")
-        private Long lenderId;
+        private String lenderId;
 
         @Column(name = "interest")
         private double interestRate;

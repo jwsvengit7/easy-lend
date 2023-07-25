@@ -4,29 +4,43 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="07627e74-d02f-4731-a1a7-835a0cecd8db" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+    <list default="true" id="07627e74-d02f-4731-a1a7-835a0cecd8db" name="Changes" comment="Added borrower loan selection">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_07_2023,_09_15_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_07_2023__09_15__Changes_1.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/loan_agreement_service.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/decagon/LoanAgreementService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/decagon/LoanAgreementSelectionApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/decagon/loanAgreementSelection/controllers/BorrowerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/decagon/loanAgreementSelection/controllers/BorrowerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/decagon/loanAgreementSelection/controllers/LenderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/decagon/loanAgreementSelection/controllers/LenderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/decagon/loanAgreementSelection/models/LoanAgreement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/decagon/loanAgreementSelection/models/LoanAgreement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/decagon/loanAgreementSelection/repository/LoanAgreementRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/decagon/loanAgreementSelection/repository/AgreementRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/decagon/loanAgreementSelection/services/AgreementService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/decagon/loanAgreementSelection/services/BorrowerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/decagon/loanAgreementSelection/services/BorrowerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/decagon/loanagreementservice/controllers/BorrowerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/decagon/loanagreementservice/controllers/BorrowerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/decagon/loanagreementservice/controllers/LenderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/decagon/loanagreementservice/controllers/LenderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/decagon/loanagreementservice/dtos/request/LoanAgreementDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/decagon/loanagreementservice/dtos/request/LoanAgreementDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/decagon/loanagreementservice/models/LoanAgreement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/decagon/loanagreementservice/models/LoanAgreement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/decagon/loanagreementservice/models/LoanOffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/decagon/loanagreementservice/models/LoanOffer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/decagon/loanagreementservice/models/LoanRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/decagon/loanagreementservice/models/LoanRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/decagon/loanagreementservice/services/BorrowerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/decagon/loanagreementservice/services/BorrowerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/decagon/loanagreementservice/services/LenderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/decagon/loanagreementservice/services/LenderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/decagon/loanagreementservice/services/LoanOfferClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/decagon/loanagreementservice/services/LoanOfferClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/decagon/loanagreementservice/services/serviceImpl/BorrowerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/decagon/loanagreementservice/services/serviceImpl/BorrowerServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/decagon/loanagreementservice/services/serviceImpl/LenderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/decagon/loanagreementservice/services/serviceImpl/LenderServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/decagon/LoanAgreementService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/decagon/loanAgreementSelection/controllers/BorrowerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/decagon/loanAgreementSelection/controllers/BorrowerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/decagon/loanAgreementSelection/controllers/LenderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/decagon/loanAgreementSelection/controllers/LenderController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/decagon/loanAgreementSelection/models/LoanAgreement.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/decagon/loanAgreementSelection/models/LoanAgreement.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/decagon/loanAgreementSelection/repository/LoanAgreementRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/decagon/loanAgreementSelection/services/AgreementService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/decagon/loanAgreementSelection/services/BorrowerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/decagon/loanAgreementSelection/services/BorrowerService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/decagon/LoanAgreementSelectionApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/decagon/LoanAgreementSelectionApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/decagon/loanAgreementSelection/EasyLend14Application.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/decagon/loanAgreementSelection/controllers/BorrowerController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/decagon/loanAgreementSelection/controllers/LenderController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/decagon/loanAgreementSelection/models/LoanAgreement.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/decagon/loanAgreementSelection/models/LoanOffer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/decagon/loanAgreementSelection/models/LoanRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/decagon/loanAgreementSelection/models/Status.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/decagon/loanAgreementSelection/repository/AgreementRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/decagon/loanAgreementSelection/services/ApiClient.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/decagon/loanAgreementSelection/services/BorrowerService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/decagon/loanAgreementSelection/services/LenderService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/decagon/loanAgreementSelection/services/serviceImpl/BorrowerServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/decagon/loanAgreementSelection/services/serviceImpl/LenderServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/loan_agreement_service-0.0.1-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +50,6 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
       </list>
@@ -60,9 +73,6 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
-  </component>
   <component name="ProjectId" id="2SR5cZlt0HYRkMDvOnKl3AeY4PO" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -76,26 +86,19 @@
     &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/decagon/IdeaProjects/easy-lend-14-updated/loan_agreement_service/pom.xml&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;cc7bf2e9854aa28b28cd0158732ed400&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
-    ]
   }
 }</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.decagon.loanAgreementSelection.services" />
+      <recent name="com.decagon.loanagreementservice.exceptions" />
     </key>
   </component>
   <component name="RunManager">
@@ -126,10 +129,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689096632910</updated>
-      <workItem from="1689409723299" duration="4516000" />
-      <workItem from="1689459217294" duration="33848000" />
-      <workItem from="1689691869229" duration="1677000" />
-      <workItem from="1689694321921" duration="7740000" />
+      <workItem from="1689850315750" duration="35437000" />
+      <workItem from="1690211234934" duration="20278000" />
     </task>
     <servers />
   </component>
