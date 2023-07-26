@@ -9,11 +9,10 @@ import com.decagon.loanagreementservice.models.LoanOffer;
 import com.decagon.loanagreementservice.models.Status;
 import com.decagon.loanagreementservice.repository.AgreementRepository;
 import com.decagon.loanagreementservice.security_config.JwtUtils;
-import com.decagon.loanagreementservice.services.LoanOfferClient;
 import com.decagon.loanagreementservice.services.BorrowerService;
+import com.decagon.loanagreementservice.services.LoanOfferClient;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -27,40 +26,39 @@ public class BorrowerServiceImpl implements BorrowerService {
     private final JwtUtils jwtUtils;
 
 
-
     @Override
     public LoanAgreementDto selectLoanOffer(Long loanId, HttpServletRequest request) {
+        String authHeader = request.getHeader("Authorization");
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            throw new UserNotAuthorizedException("permission denied");
+        }
 
-        String auth = request.getHeader("Authorization");
-        String token = auth.substring(7);
-        if(jwtUtils.getUserTypeFromToken(token) != "BORROWER"){
-            throw  new UserNotAuthorizedException("permission denied");
+        String token = authHeader.substring(7);
+        if (!jwtUtils.getUserTypeFromToken(token).equalsIgnoreCase("BORROWER")) {
+            throw new UserNotAuthorizedException("permission denied");
         }
         String userId = jwtUtils.getUserIdFromToken(token);
-        System.out.println("user Id from controller " + userId +">>>>>>>>>>>>");
+        System.out.println("user Id from controller " + userId + ">>>>>>>>>>>>");
         if (userId == null) {
-
-           throw new InvalidTokenException("UserId is null");
+            throw new InvalidTokenException("UserId is null");
         }
-            LoanOffer loanOffer = getLoanOffer(loanId);
-            if (Objects.isNull(loanOffer)) {
-                throw new OfferNotFoundException("loan offer not found");
-            }
-            // todo Set the status of the loan offer to pending. NB the loan application entity is present in a different service
-            LoanAgreement loanAgreement = new LoanAgreement();
-            loanAgreement.setInterestRate(loanOffer.getInterestRate());
-            // todo get the id of the logged in user who in this case is a borrower and replace randomLong.
-            loanAgreement.setBorrowerId(userId);
-            loanAgreement.setLenderId(loanOffer.getLenderId());
-            loanAgreement.setStatus(Status.PENDING);
-            loanAgreement.setLoanId(loanOffer.getLoanId());
-            loanAgreement.setRepaymentSchedule(loanOffer.getRepaymentSchedule());
-            repository.save(loanAgreement);
-            //            BeanUtils.copyProperties(loanAgreement, loanAgreementDto);
-            return new LoanAgreementDto(loanAgreement);
+        LoanOffer loanOffer = getLoanOffer(loanId);
+        if (Objects.isNull(loanOffer)) {
+            throw new OfferNotFoundException("loan offer not found");
         }
-
-
+        // todo Set the status of the loan offer to pending. NB the loan application entity is present in a different service
+        LoanAgreement loanAgreement = new LoanAgreement();
+        loanAgreement.setInterestRate(loanOffer.getInterestRate());
+        // todo get the id of the logged in user who in this case is a borrower and replace randomLong.
+        loanAgreement.setBorrowerId(userId);
+        loanAgreement.setLenderId(loanOffer.getLenderId());
+        loanAgreement.setStatus(Status.PENDING);
+        loanAgreement.setLoanId(loanOffer.getLoanId());
+        loanAgreement.setRepaymentSchedule(loanOffer.getRepaymentSchedule());
+        repository.save(loanAgreement);
+        //            BeanUtils.copyProperties(loanAgreement, loanAgreementDto);
+        return new LoanAgreementDto(loanAgreement);
+    }
 
 
     public LoanOffer getLoanOffer(Long offerId) {
@@ -75,6 +73,6 @@ public class BorrowerServiceImpl implements BorrowerService {
     }
 
 
-    }
+}
 
 

@@ -11,7 +11,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class LoanRequest {
 
-    private Long requestId;
+    private Long id;
     private String BorrowerId;
     private Long loanId;
     private LocalDateTime createdAt;
