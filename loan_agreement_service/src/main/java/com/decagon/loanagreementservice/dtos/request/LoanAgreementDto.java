@@ -18,21 +18,21 @@ public class LoanAgreementDto {
 
 
     private Long loanId;
-    @Column(name = "borrower_id")
-    private Long borrowerId;
 
-    @Column(name = "lender_id")
-    private Long lenderId;
+    private String borrowerId;
 
-    @Column(name = "interest")
+
+    private String lenderId;
+
+
     private double interestRate;
 
-    @Column(name = "repayment_schedule")
+
     private String repaymentSchedule;
     @Enumerated(EnumType.STRING)
     private Status status = NEW;
 
-    @Column(name = "conditions")
+
     private String conditions;
     public LoanAgreementDto(LoanAgreement loanAgreement) {
         this.loanId = loanAgreement.getLoanId();
