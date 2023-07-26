@@ -4,5 +4,5 @@ import com.decagon.lendingservice.dto.InvestmentDTORequest;
 import com.decagon.lendingservice.dto.InvestmentDTOResponse;
 
 public interface InvestmentPreferenceService {
-    InvestmentDTOResponse createInvestment(InvestmentDTORequest request);
+    InvestmentDTOResponse createInvestment(InvestmentDTORequest request, String token);
 }

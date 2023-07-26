@@ -5,6 +5,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface  InvestmentPreferenceRepository extends JpaRepository<InvestmentPreference,Long> {
+import java.util.Optional;
+import java.util.UUID;
+
+public interface  InvestmentPreferenceRepository extends JpaRepository<InvestmentPreference, UUID> {
     Optional<InvestmentPreference> findByUserId(String userId);
+
+
+
 }

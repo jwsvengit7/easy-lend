@@ -12,14 +12,16 @@
         <module name="Loan_and_disbursement_Service" />
         <module name="user-registration-service" />
         <module name="loan_agreement_service" />
+        <module name="Borrower-Service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="Borrower-Service" target="1.5" />
       <module name="Lending-Service" target="17" />
       <module name="loan_agreement_service" target="17" />
       <module name="Loan_and_disbursement_Service" target="17" />
       <module name="Profile-Management-Service" target="17" />
-      <module name="user-registration-service" target="1.6" />
+      <module name="user-registration-service" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
