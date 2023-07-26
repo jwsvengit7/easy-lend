@@ -1,8 +1,0 @@
-com\decagon\loanAgreementSelection\models\LoanAgreement.class
-com\decagon\loanAgreementSelection\services\AgreementService.class
-com\decagon\loanAgreementSelection\controllers\BorrowerController.class
-com\decagon\loanAgreementSelection\controllers\LenderController.class
-com\decagon\loanAgreementSelection\services\BorrowerService.class
-com\decagon\loanAgreementSelection\EasyLend14Application.class
-com\decagon\LoanAgreementService.class
-com\decagon\loanAgreementSelection\repository\LoanAgreementRepository.class

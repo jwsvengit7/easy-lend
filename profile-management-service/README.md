@@ -13,3 +13,36 @@ The Profile Management Service is responsible for the following tasks:
 - Verifying the user's identity through a robust document verification process to ensure the authenticity of the provided information.
 - Securely storing the user profile information in the database.
 - Providing options for users to update or modify their profile information as needed.
+
+
+# Profile Management Service API
+
+## API Endpoints
+
+### Update Contact Information
+
+Updates the contact information for a user profile.
+
+- Endpoint: PUT /api/profile/contact-information
+- Request Headers:
+    - Authorization: Bearer your-access-token
+- Request Body:
+  ```json
+  {
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@example.com",
+    "phoneNumber": "+1234567890"
+  }
+
+- Response:
+````json
+ {
+  "status": "success",
+  "data": {
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john.doe@example.com",
+  "phoneNumber": "+1234567890"
+  }
+  }

@@ -1,24 +1,23 @@
 package com.decagon.consumer;
 
-import com.decagon.domain.message.*;
-import com.decagon.dto.pojoDTO.*;
+import com.decagon.domain.message.CreateProfileMessage;
+import com.decagon.dto.pojoDTO.ContactInformationDTO;
 import com.decagon.service.ProfileService;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ProfileCreationConsumer {
-
     private final ProfileService profileService;
 
     public ProfileCreationConsumer(ProfileService profileService) {
         this.profileService = profileService;
     }
 
-    @RabbitListener(queues = "${rabbitmq.queueName}")
+    @RabbitListener(queues = "${rabbitmq.queue}")
     public void receiveCreateProfileMessage(CreateProfileMessage message) {
         // Fetch user information using the provided user_id from the userDetails
-        Long user_id = message.getUser_id();
+        String user_id = message.getUser_id();
         String fullName = message.getFullName();
         String email = message.getEmail();
 
@@ -33,11 +32,8 @@ public class ProfileCreationConsumer {
         contactInformation.setLastName(lastName);
         contactInformation.setEmail(email);
 
-        // Set the profileCreationStatus as "new"
-        String profileCreationStatus = "new";
-
         // Create the Profile entity and save it in the database using the ProfileService
-        profileService.createProfile(user_id, profileCreationStatus, contactInformation);
+        profileService.createProfile(user_id, contactInformation);
     }
 }
 

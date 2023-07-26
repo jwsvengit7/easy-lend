@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class CreateProfileMessage {
-    private Long user_id;
+    private String user_id;
     private String fullName;
     private String email;
 }

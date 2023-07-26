@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -22,7 +23,8 @@ import java.math.BigDecimal;
 public class  InvestmentPreference {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+
+    private UUID id;
     @Column(name = "loan_amount")
     private BigDecimal loanAmount;
     @Column(name = "interest_rate")
