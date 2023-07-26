@@ -1,6 +1,6 @@
 # Borrow Loan App | Online Loan Application (Backend)
 
-* An online loan application where a user can login, signup, apply a loan, pay EMIs, and track their transactions.
+* An online borrower application where a user can login, signup, apply a borrower, pay EMIs, and track their transactions.
 * RESTful backend server developed in Spring boot enabling users to stores data persistently in a relational database.
 * Integration of a third party chat system (tawk.to), Java Mail API and Swagger for API documentation.
 

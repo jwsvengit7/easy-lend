@@ -1,9 +1,7 @@
-package com.decagon.borrowerservice.model;
+package com.decagon.borrowerservice.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -11,26 +9,24 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "loan")
+@Table(name = "loan_request")
 
-public class Loan {
+public class LoanRequest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long loanId;
+    private Long id;
 
-    private int userId;
+    @Column(name = "user_Id", unique = true)
+    private String userId;
 
     @Column(name = "loanAmt", nullable = false)
     private double loanAmt;
-
-    @Column(name = "monthly_emi", nullable = true)
-    private Double monthlyEmi;
-
 
     @Column(name = "interestRate", nullable = false)
     private double interestRate;
@@ -50,7 +46,7 @@ public class Loan {
     private LocalDateTime updatedAt;
 
     @ElementCollection
-    @CollectionTable(name = "loan_documents", joinColumns = @JoinColumn(name = "loan_id"))
+    @CollectionTable(name = "loan_documents", joinColumns = @JoinColumn(name = "id"))
     private List<String> requiredDocuments = new ArrayList<>();
 
 }

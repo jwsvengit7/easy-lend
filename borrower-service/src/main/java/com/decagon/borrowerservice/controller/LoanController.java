@@ -1,23 +1,23 @@
 package com.decagon.borrowerservice.controller;
 
-import com.decagon.borrowerservice.dto.LoanDto;
-import com.decagon.borrowerservice.model.Loan;
-import com.decagon.borrowerservice.service.LoanService;
+import com.decagon.borrowerservice.dto.BorrowerDto;
+import com.decagon.borrowerservice.service.BorrowerService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/loan")
+@RequestMapping("/loanApplication")
 public class LoanController {
-
-    private LoanService loanService;
+    @Autowired
+    private BorrowerService borrowerService;
 
     @PostMapping("/apply")
-    public ResponseEntity<LoanDto> loanRequest(@RequestBody LoanDto loanDto) {
-        LoanDto savedLoan = loanService.loanRequest(loanDto);
+    public ResponseEntity<BorrowerDto> loanRequest(@RequestBody BorrowerDto borrowerDto) {
+        BorrowerDto savedLoan = borrowerService.loanRequest(borrowerDto);
         return new ResponseEntity<>(savedLoan, HttpStatus.CREATED);
     }
 }
