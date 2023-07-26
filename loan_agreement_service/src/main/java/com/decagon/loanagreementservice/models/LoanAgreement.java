@@ -23,7 +23,7 @@ import static com.decagon.loanagreementservice.models.Status.NEW;
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "agreement_id")
-        private Long agreementId;
+        private Long id;
 
         @Column(name = "loan_id")
         private Long loanId;

@@ -11,7 +11,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LoanOffer {
-    private Long offerId;
+    private Long id;
     private String lenderId;
     private Long loanId;
     private LocalDateTime createdAt;

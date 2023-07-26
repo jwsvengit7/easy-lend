@@ -26,7 +26,7 @@ public class LenderServiceImpl implements LenderService {
     public LoanAgreementDto selectLoanRequest(Long loanId, HttpServletRequest request) {
         String auth = request.getHeader("Authorization");
         String token = auth.substring(7);
-        if(jwtUtils.getUserTypeFromToken(token) != "LENDER"){
+        if(!jwtUtils.getUserTypeFromToken(token).equalsIgnoreCase("LENDER")){
             throw  new UserNotAuthorizedException("permission denied");
         }
     LoanAgreement loanAgreement = agreementRepository.findByLoanId(loanId).get();
