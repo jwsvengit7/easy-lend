@@ -2,12 +2,11 @@ package com.decagon.lendingservice.service.serviceImpl;
 
 
 
+import com.decagon.lendingservice.dto.InvestmentDTORequest;
+import com.decagon.lendingservice.dto.InvestmentDTOResponse;
 import com.decagon.lendingservice.entity.InvestmentPreference;
 import com.decagon.lendingservice.exceptions.BorrowersNotAllowedException;
 import com.decagon.lendingservice.exceptions.InvestmentPreferenceExistsException;
-
-import com.decagon.lendingservice.lendingDTORequest.InvestmentDTORequest;
-import com.decagon.lendingservice.lendingDTOResponse.InvestmentDTOResponse;
 import com.decagon.lendingservice.repo.InvestmentPreferenceRepository;
 import com.decagon.lendingservice.utils.JwtUtils;
 import jakarta.validation.ValidationException;
@@ -22,7 +21,6 @@ import java.math.BigDecimal;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 class InvestmentPreferenceServiceImplTest {

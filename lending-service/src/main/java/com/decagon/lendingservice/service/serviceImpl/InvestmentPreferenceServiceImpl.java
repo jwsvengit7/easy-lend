@@ -6,8 +6,6 @@ import com.decagon.lendingservice.entity.InvestmentPreference;
 
 import com.decagon.lendingservice.exceptions.BorrowersNotAllowedException;
 import com.decagon.lendingservice.exceptions.InvestmentPreferenceExistsException;
-import com.decagon.lendingservice.lendingDTORequest.InvestmentDTORequest;
-import com.decagon.lendingservice.lendingDTOResponse.InvestmentDTOResponse;
 import com.decagon.lendingservice.dto.InvestmentDTORequest;
 import com.decagon.lendingservice.dto.InvestmentDTOResponse;
 import com.decagon.lendingservice.repo.InvestmentPreferenceRepository;

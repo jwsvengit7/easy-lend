@@ -36,7 +36,8 @@ public class JwtUtils {
         return claims.get("userType", String.class);
     }
     public String extractUserIdFromToken(String token) {
-        return parseToken(token).getSubject();
+        Claims claims = parseToken(token);
+        return claims.get("userId", String.class);
 
     }
     private  Key getSigningKey(){
