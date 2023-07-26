@@ -8,7 +8,7 @@ import java.util.Optional;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface  InvestmentPreferenceRepository extends JpaRepository<InvestmentPreference, UUID> {
+public interface  InvestmentPreferenceRepository extends JpaRepository<InvestmentPreference, Long> {
     Optional<InvestmentPreference> findByUserId(String userId);
 
 
