@@ -1,24 +1,22 @@
 package com.decagon.borrowerservice.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "loan")
+@Table(name = "loan_request")
 
-public class Loan {
+public class LoanRequest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,9 +27,6 @@ public class Loan {
 
     @Column(name = "loanAmt", nullable = false)
     private double loanAmt;
-
-    @Column(name = "monthly_emi", nullable = true)
-    private Double monthlyEmi;
 
     @Column(name = "interestRate", nullable = false)
     private double interestRate;

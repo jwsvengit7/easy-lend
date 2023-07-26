@@ -5,9 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(value = HttpStatus.NOT_FOUND)
-public class LoanNotFoundException extends RuntimeException{
+public class BorrowerNotFoundException extends RuntimeException{
 
-    public LoanNotFoundException(String message){
-        super(message);
+    public BorrowerNotFoundException(String message){super(message);
     }
 }

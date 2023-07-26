@@ -1,6 +1,6 @@
 package com.decagon.borrowerservice.dto;
 
-import com.decagon.borrowerservice.entities.Loan;
+import com.decagon.borrowerservice.entities.Borrower;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,10 +14,7 @@ import java.util.List;
 @Setter
 //@AllArgsConstructor
 @NoArgsConstructor
-public class LoanDto {
-
-    private Long loanId;
-
+public class BorrowerDto {
     private double loanAmt;
 
     private Double monthlyEmi;
@@ -36,16 +33,15 @@ public class LoanDto {
 
     private List<String> requiredDocuments = new ArrayList<>();
 
-    public LoanDto(Loan loan) {
-        this.loanId = loan.getLoanId();
-        this.loanAmt = loan.getLoanAmt();
-        this.monthlyEmi = loan.getMonthlyEmi();
-        this.interestRate = loan.getInterestRate();
-        this.repaymentTerm = loan.getRepaymentTerm();
-        this.totalRepayment = loan.getTotalRepayment();
-        this.purpose = loan.getPurpose();
-        this.createdAt = loan.getCreatedAt();
-        this.updatedAt = loan.getUpdatedAt();
-        this.requiredDocuments = loan.getRequiredDocuments();
+    public BorrowerDto(Borrower borrower) {
+        this.loanAmt = borrower.getLoanAmt();
+        this.monthlyEmi = borrower.getMonthlyEmi();
+        this.interestRate = borrower.getInterestRate();
+        this.repaymentTerm = borrower.getRepaymentTerm();
+        this.totalRepayment = borrower.getTotalRepayment();
+        this.purpose = borrower.getPurpose();
+        this.createdAt = borrower.getCreatedAt();
+        this.updatedAt = borrower.getUpdatedAt();
+        this.requiredDocuments = borrower.getRequiredDocuments();
     }
 }

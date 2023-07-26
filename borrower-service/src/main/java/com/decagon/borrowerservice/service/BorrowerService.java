@@ -1,12 +1,12 @@
 package com.decagon.borrowerservice.service;
 
 
-import com.decagon.borrowerservice.dto.LoanDto;
+import com.decagon.borrowerservice.dto.BorrowerDto;
 
-public interface LoanService {
+public interface BorrowerService {
 
 //   Loan applyLoan(Loan loan);
 
-    LoanDto loanRequest(LoanDto loanDto);
+    BorrowerDto loanRequest(BorrowerDto borrowerDto);
 
 }

@@ -1,6 +1,6 @@
 package com.decagon.borrowerservice.exception.handler;
 
-import com.decagon.borrowerservice.exception.LoanNotFoundException;
+import com.decagon.borrowerservice.exception.BorrowerNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -13,11 +13,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 @RestControllerAdvice
-
 public class LoanExceptionsHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler (LoanNotFoundException.class)
-    public ResponseEntity<Object> handleLoanNotFoundException (LoanNotFoundException ex, WebRequest request) {
+    @ExceptionHandler (BorrowerNotFoundException.class)
+    public ResponseEntity<Object> handleLoanNotFoundException (BorrowerNotFoundException ex, WebRequest request) {
         logger.error(ex.getMessage(), ex);
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("timeStamp", LocalDateTime.now());
