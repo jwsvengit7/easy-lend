@@ -16,24 +16,6 @@ import org.springframework.context.annotation.Configuration;
 public class SwaggerConfig {
     @Value("${swagger.version}")
     private String version;
-//    @Bean
-//    public Docket api() {
-//        return new Docket(DocumentationType.SWAGGER_2)
-//                .select()
-//                .apis(RequestHandlerSelectors.any())
-//                .paths(PathSelectors.any())
-//                .build()
-//                .apiInfo(apiInfo());
-//    }
-//
-//    private ApiInfo apiInfo() {
-//        return new ApiInfoBuilder()
-//                .title("Profile Management API")
-//                .description("API documentation for Profile Management Service")
-//                .version(version)
-//                .build();
-//    }
-
     @Bean
     public OpenAPI api() {
         return new OpenAPI()
@@ -47,7 +29,7 @@ public class SwaggerConfig {
     public GroupedOpenApi usersEndpoint() {
         return GroupedOpenApi
                 .builder()
-                .group("Users")
-                .pathsToMatch("/user/**").build();
+                .group("Profile")
+                .pathsToMatch("/api/profile/**").build();
     }
 }

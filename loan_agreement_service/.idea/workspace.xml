@@ -5,14 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="07627e74-d02f-4731-a1a7-835a0cecd8db" name="Changes" comment="Validated user and added swagger configuration for documentation">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/decagon/loanagreementservice/models/LoanAgreement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/decagon/loanagreementservice/models/LoanAgreement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/decagon/loanagreementservice/models/LoanOffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/decagon/loanagreementservice/models/LoanOffer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/decagon/loanagreementservice/models/LoanRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/decagon/loanagreementservice/models/LoanRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/decagon/loanagreementservice/security_config/JwtFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/decagon/loanagreementservice/security_config/WebConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/decagon/loanagreementservice/services/serviceImpl/BorrowerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/decagon/loanagreementservice/services/serviceImpl/BorrowerServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/decagon/loanagreementservice/services/serviceImpl/LenderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/decagon/loanagreementservice/services/serviceImpl/LenderServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../profile-management-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../profile-management-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../profile-management-service/src/main/java/com/decagon/config/SwaggerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../profile-management-service/src/main/java/com/decagon/config/SwaggerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../user-registration-service/src/main/java/com/easyLend/userservice/config/SwaggerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../user-registration-service/src/main/java/com/easyLend/userservice/config/SwaggerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../user-registration-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../user-registration-service/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,24 +53,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/decagon/IdeaProjects/easy-lend-14-updated/loan_agreement_service/pom.xml&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;cc7bf2e9854aa28b28cd0158732ed400&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/decagon/Desktop/Edirin/easy-lend-14/loan_agreement_service/pom.xml",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "terminal",
+    "spring.configuration.checksum": "cc7bf2e9854aa28b28cd0158732ed400",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.decagon.loanagreementservice.exceptions" />
@@ -108,6 +106,7 @@
       <updated>1689096632910</updated>
       <workItem from="1689850315750" duration="35437000" />
       <workItem from="1690211234934" duration="27734000" />
+      <workItem from="1690444158819" duration="243000" />
     </task>
     <task id="LOCAL-00001" summary="Validated user and added swagger configuration for documentation">
       <created>1690300097872</created>
