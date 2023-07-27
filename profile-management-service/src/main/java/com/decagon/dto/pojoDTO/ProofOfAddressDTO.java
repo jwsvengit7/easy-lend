@@ -1,9 +1,9 @@
 package com.decagon.dto.pojoDTO;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.decagon.domain.pojo.ProofOfAddress;
 
-@Getter
-@Setter
 public class ProofOfAddressDTO {
+
+    public ProofOfAddressDTO(ProofOfAddress proof) {
+    }
 }

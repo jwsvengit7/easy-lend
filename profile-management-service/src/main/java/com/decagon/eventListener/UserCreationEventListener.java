@@ -1,6 +1,6 @@
 package com.decagon.eventListener;
 
-import com.decagon.dto.UserObject;
+import com.decagon.domain.message.UserObject;
 import com.decagon.dto.pojoDTO.ContactInformationDTO;
 import com.decagon.service.ProfileService;
 import com.fasterxml.jackson.core.JsonProcessingException;

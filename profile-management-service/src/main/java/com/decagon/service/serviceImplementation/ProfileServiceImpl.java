@@ -66,7 +66,7 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public EmploymentStatusDTO updateEmploymentStatus(EmploymentStatusDTO employmentStatus, String userId) {
+    public ProfileResponseDTO updateEmploymentStatus(EmploymentStatusDTO employmentStatus, String userId) {
         // Fetch the profile from the database using the provided userId
         Profile profile = profileRepository.findByUserId(userId)
                 .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
@@ -84,11 +84,11 @@ public class ProfileServiceImpl implements ProfileService {
 
         profileRepository.save(profile);
 
-        return employmentStatus;
+        return new ProfileResponseDTO(profile);
     }
 
     @Override
-    public GovernmentIDDTO updateGovernmentID(GovernmentIDDTO governmentIDDTO, MultipartFile file, String userId) {
+    public ProfileResponseDTO updateGovernmentID(GovernmentIDDTO governmentIDDTO, MultipartFile file, String userId) {
         // Fetch the profile from the database using the provided userId
         Profile profile = profileRepository.findByUserId(userId)
                 .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
@@ -102,11 +102,11 @@ public class ProfileServiceImpl implements ProfileService {
         // Update the profileCreationStatus to reflect the screen update
         profile.setStatus(ProfileStatus.GOVERNMENT_UPDATED);
         profileRepository.save(profile);
-        return governmentIDDTO;
+        return new ProfileResponseDTO(profile);
     }
 
     @Override
-    public IncomeStatusDTO updateIncomeStatus(IncomeStatusDTO incomeStatusDTO, String userId) {
+    public ProfileResponseDTO updateIncomeStatus(IncomeStatusDTO incomeStatusDTO, String userId) {
         // Fetch the profile from the database using the provided userId
         Profile profile = profileRepository.findByUserId(userId)
                 .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
@@ -123,11 +123,11 @@ public class ProfileServiceImpl implements ProfileService {
 
         profileRepository.save(profile);
 
-        return incomeStatusDTO;
+        return new ProfileResponseDTO(profile);
     }
 
     @Override
-    public BankAccountDTO updateBankAccount(BankAccountDTO bankAccountDTO, String userId) {
+    public ProfileResponseDTO updateBankAccount(BankAccountDTO bankAccountDTO, String userId) {
         // Fetch the profile from the database using the provided userId
         Profile profile = profileRepository.findByUserId(userId)
                 .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
@@ -143,11 +143,11 @@ public class ProfileServiceImpl implements ProfileService {
 
         profileRepository.save(profile);
 
-        return bankAccountDTO;
+        return new ProfileResponseDTO(profile);
     }
 
     @Override
-    public ProofOfAddressDTO updateProofOfAddress(ProofOfAddressDTO proofOfAddressDTO, MultipartFile file, String userId) {
+    public ProfileResponseDTO updateProofOfAddress(ProofOfAddressDTO proofOfAddressDTO, MultipartFile file, String userId) {
         // Fetch the profile from the database using the provided userId
         Profile profile = profileRepository.findByUserId(userId)
                 .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
@@ -159,7 +159,7 @@ public class ProfileServiceImpl implements ProfileService {
 
         profileRepository.save(profile);
 
-        return proofOfAddressDTO;
+        return new ProfileResponseDTO(profile);
     }
 
     private String uploadFile(MultipartFile file, Long id) {
