@@ -41,7 +41,7 @@ rabbitmq:
   username: guest
   password: guest
   exchange: rabbitmq.exchange
-  queue: profile.queue
+  queue: rabbitmq.queue
   routingkey: rabbitmq.routingkey
   reply:
     timeout: 60000
