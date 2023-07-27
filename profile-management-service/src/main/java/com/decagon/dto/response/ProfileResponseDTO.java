@@ -16,6 +16,8 @@ public class ProfileResponseDTO {
     public ProfileResponseDTO(Profile profile) {
         this.userId = profile.getUserId();
         this.contactInformationDTO = new ContactInformationDTO(profile.getContactInformation());
-        this.incomeStatusDTO = new IncomeStatusDTO(profile.getIncomeStatus());
+        if (profile.getStatus().ordinal() >= 2){
+            this.incomeStatusDTO = new IncomeStatusDTO(profile.getIncomeStatus());
+        }
     }
 }

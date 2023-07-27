@@ -1,5 +1,13 @@
-# MySQL connection
+#RabbitMQ
 spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    dynamic: true
+
+  # MySQL connection
   security:
     enabled: false
   datasource:
@@ -33,23 +41,26 @@ cloudinary:
         max-file-size=3MB:
 
 
-#RabbitMQ settings
-rabbitmq:
-  host: localhost
-  virtualhost: /
-  port: 15672
-  username: guest
-  password: guest
-  exchange: rabbitmq.exchange
-  queue: rabbitmq.queue
-  routingkey: rabbitmq.routingkey
-  reply:
-    timeout: 60000
-  concurrent:
-    consumers: 1
-  max:
-    concurrent:
-      consumers: 1
+##RabbitMQ settings
+#rabbitmq:
+#  host: localhost
+#  virtualhost: /
+#  port: 15672
+#  username: guest
+#  password: guest
+#  exchange: rabbitmq.exchange
+#  queue: rabbitmq.queue
+#  routingkey: rabbitmq.routingkey
+#  reply:
+#    timeout: 60000
+#  concurrent:
+#    consumers: 1
+#  max:
+#    concurrent:
+#      consumers: 1
+
+
+
 
 #JWT secret from user-mgt-service
 jwt:
