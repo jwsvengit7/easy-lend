@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.Objects;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -28,6 +29,7 @@ public class InvestmentPreferenceServiceImpl implements InvestmentPreferenceServ
 
     @Override
     public InvestmentDTOResponse createInvestment(InvestmentDTORequest request, String token) {
+        String loanId = UUID.randomUUID().toString();
       if(request.getLoanAmount().compareTo(BigDecimal.ZERO ) <= 0){
           throw  new ValidationException("loan amount must be greater than 0");
       }
@@ -36,14 +38,18 @@ public class InvestmentPreferenceServiceImpl implements InvestmentPreferenceServ
           throw   new BorrowersNotAllowedException("Borrowers are not Allowed to create an Investment");
       }
       String userId = jwtUtils.extractUserIdFromToken(token);
-      InvestmentPreference investmentPreference = investmentRepository.findByUserId(userId).orElse(null);
-      if(Objects.nonNull(investmentPreference)){
-          throw new InvestmentPreferenceExistsException("Investment Already Exists for this User");
-      }
-      InvestmentPreference response = modelMapper.map(request, InvestmentPreference.class);
-      response.setUserId(userId);
-      return new InvestmentDTOResponse(investmentRepository.save(response));
 
+      InvestmentPreference response = modelMapper.map(request, InvestmentPreference.class);
+
+          response.setUserId(userId);
+          response.setLoanId(loanId);
+          return new InvestmentDTOResponse(investmentRepository.save(response));
+   }
+
+    @Override
+    public InvestmentDTOResponse getLoanOffer(String id) {
+        InvestmentPreference investmentPreference = investmentRepository.findInvestmentPreferenceById(id).orElseThrow(() -> new RuntimeException("No ID Found"));
+        return  new InvestmentDTOResponse(investmentPreference);
     }
 
 }

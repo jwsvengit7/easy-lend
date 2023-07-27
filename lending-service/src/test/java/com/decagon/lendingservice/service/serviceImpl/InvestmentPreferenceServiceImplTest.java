@@ -54,20 +54,6 @@ class InvestmentPreferenceServiceImplTest {
 
     }
 
-    @Test
-    public void testCreateInvestment_InvestmentPreferenceAlreadyExists_ThrowsInvestmentPreferenceExistsException() {
-        // Arrange
-        String token = "valid_jwt_token";
-        InvestmentDTORequest request = new InvestmentDTORequest(BigDecimal.valueOf(1000), BigDecimal.valueOf(5),
-                3, 30);
-        String userId = "8902c64a-13a8-4796-92a5-d64701e384f1";
-        when(jwtUtils.getUserTypeFromToken(token)).thenReturn("lender");
-        when(jwtUtils.extractUserIdFromToken(token)).thenReturn(userId);
-        when(investmentRepository.findByUserId(userId)).thenReturn(Optional.of(new InvestmentPreference()));
-
-        // Act & Assert
-        assertThrows(InvestmentPreferenceExistsException.class, () -> investmentPreferenceService.createInvestment(request, token));
-    }
 
     @Test
     public void testCreateInvestment_InvalidLoanAmount_ThrowsValidationException() {
@@ -91,7 +77,6 @@ class InvestmentPreferenceServiceImplTest {
         String userId = "8902c64a-13a8-4796-92a5-d64701e384f1";
         when(jwtUtils.getUserTypeFromToken(token)).thenReturn("lender");
         when(jwtUtils.extractUserIdFromToken(token)).thenReturn(userId);
-        when(investmentRepository.findByUserId(userId)).thenReturn(Optional.empty());
         InvestmentPreference investmentPreference = new InvestmentPreference();
         when(modelMapper.map(request, InvestmentPreference.class)).thenReturn(investmentPreference);
         when(investmentRepository.save(investmentPreference)).thenReturn(investmentPreference);
