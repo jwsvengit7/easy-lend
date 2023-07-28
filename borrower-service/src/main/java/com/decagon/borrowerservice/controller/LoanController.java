@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/loanApplication")
+@RequestMapping("api/loanApplication")
 public class LoanController {
     @Autowired
     private BorrowerService borrowerService;
