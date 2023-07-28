@@ -5,5 +5,5 @@ import jakarta.servlet.http.HttpServletRequest;
 
 public interface LenderService {
 
-    LoanAgreementDto selectLoanRequest(Long loanId, HttpServletRequest request);
+    LoanAgreementDto selectLoanRequest(String loanId, HttpServletRequest request);
 }

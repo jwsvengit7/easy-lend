@@ -13,6 +13,7 @@ import com.decagon.loanagreementservice.services.BorrowerService;
 import com.decagon.loanagreementservice.services.LoanOfferClient;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,7 @@ import java.util.Objects;
 
 @RequiredArgsConstructor
 @Service
+@Slf4j
 public class BorrowerServiceImpl implements BorrowerService {
     private final LoanOfferClient loanOfferClient;
     private final AgreementRepository repository;
@@ -27,7 +29,7 @@ public class BorrowerServiceImpl implements BorrowerService {
 
 
     @Override
-    public LoanAgreementDto selectLoanOffer(Long loanId, HttpServletRequest request) {
+    public LoanAgreementDto selectLoanOffer(String loanId, HttpServletRequest request) {
         String authHeader = request.getHeader("Authorization");
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             throw new UserNotAuthorizedException("permission denied");
@@ -48,20 +50,24 @@ public class BorrowerServiceImpl implements BorrowerService {
         }
         // todo Set the status of the loan offer to pending. NB the loan application entity is present in a different service
         LoanAgreement loanAgreement = new LoanAgreement();
-        loanAgreement.setInterestRate(loanOffer.getInterestRate());
+
         // todo get the id of the logged in user who in this case is a borrower and replace randomLong.
         loanAgreement.setBorrowerId(userId);
-        loanAgreement.setLenderId(loanOffer.getLenderId());
-        loanAgreement.setStatus(Status.PENDING);
+        loanAgreement.setLenderId(loanOffer.getUserId());
+        log.info("loan offer payload {}", loanOffer.getUserId());
         loanAgreement.setLoanId(loanOffer.getLoanId());
-        loanAgreement.setRepaymentSchedule(loanOffer.getRepaymentSchedule());
+        loanAgreement.setInterestRate(loanOffer.getInterestRate());
+        loanAgreement.setLoanAmount(loanOffer.getLoanAmount());
+        loanAgreement.setStatus(Status.PENDING);
+//        loanAgreement.setLoanId(loanOffer.getLoanId());
+        loanAgreement.setDurationInDays(loanOffer.getDurationInDays());
         repository.save(loanAgreement);
         //            BeanUtils.copyProperties(loanAgreement, loanAgreementDto);
         return new LoanAgreementDto(loanAgreement);
     }
 
 
-    public LoanOffer getLoanOffer(Long offerId) {
+    public LoanOffer getLoanOffer(String offerId) {
         // todo Use ur FeignClient to call the loanOffer service
         ResponseEntity<LoanOffer> response = loanOfferClient.getLoanOffer(offerId);
         if (response.getStatusCode().is2xxSuccessful()) {
@@ -74,5 +80,3 @@ public class BorrowerServiceImpl implements BorrowerService {
 
 
 }
-
-

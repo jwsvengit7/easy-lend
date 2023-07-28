@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 import static com.decagon.loanagreementservice.models.Status.NEW;
 
 @Getter
@@ -17,7 +19,7 @@ public class LoanAgreementDto {
     private Long agreementId;
 
 
-    private Long loanId;
+    private String loanId;
 
     private String borrowerId;
 
@@ -25,10 +27,10 @@ public class LoanAgreementDto {
     private String lenderId;
 
 
-    private double interestRate;
+    private BigDecimal interestRate;
 
 
-    private String repaymentSchedule;
+    private int durationInDays;
     @Enumerated(EnumType.STRING)
     private Status status = NEW;
 
@@ -39,10 +41,8 @@ public class LoanAgreementDto {
         this.borrowerId = loanAgreement.getBorrowerId();
         this.lenderId = loanAgreement.getLenderId();
         this.interestRate = loanAgreement.getInterestRate();
-        this.repaymentSchedule = loanAgreement.getRepaymentSchedule();
+        this.durationInDays = loanAgreement.getDurationInDays();
         this.status = loanAgreement.getStatus();
         this.conditions = conditions;
     }
 }
-
-
