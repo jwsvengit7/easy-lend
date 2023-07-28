@@ -26,6 +26,11 @@ public class InvestmentPreferenceController {
        InvestmentDTOResponse invest = investmentPreferenceService.createInvestment(request, token );
        return  new ResponseEntity<>(invest, HttpStatus.OK);
     }
+    @GetMapping("/getloan/{id}")
+    public ResponseEntity<InvestmentDTOResponse> getLoanOffer(@PathVariable String id){
+        InvestmentDTOResponse getLoans  = investmentPreferenceService.getLoanOffer(id);
+        return new ResponseEntity<>(getLoans, HttpStatus.OK);
+    }
     @GetMapping("/investment")
     public ResponseEntity<Page<InvestmentDTOResponse>> investmentPage(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int pageSize){
         Page<InvestmentDTOResponse> paginated =  pagination.getPaginatedInvestment(page, pageSize);
