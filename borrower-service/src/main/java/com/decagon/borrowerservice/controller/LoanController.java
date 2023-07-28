@@ -1,7 +1,8 @@
 package com.decagon.borrowerservice.controller;
 
-import com.decagon.borrowerservice.dto.BorrowerDto;
+import com.decagon.borrowerservice.dto.LoanRequestDto;
 import com.decagon.borrowerservice.service.BorrowerService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,8 +17,9 @@ public class LoanController {
     private BorrowerService borrowerService;
 
     @PostMapping("/apply")
-    public ResponseEntity<BorrowerDto> loanRequest(@RequestBody BorrowerDto borrowerDto) {
-        BorrowerDto savedLoan = borrowerService.loanRequest(borrowerDto);
+    public ResponseEntity<LoanRequestDto> loanRequest(@RequestBody LoanRequestDto loanRequestDto, HttpServletRequest request) {
+        LoanRequestDto savedLoan = borrowerService.loanRequest(loanRequestDto, request);
         return new ResponseEntity<>(savedLoan, HttpStatus.CREATED);
     }
+
 }
