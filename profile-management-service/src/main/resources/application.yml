@@ -1,14 +1,13 @@
 #RabbitMQ
 spring:
   rabbitmq:
-    host: 2.tcp.eu.ngrok.io
-    port: 10174
+    host: localhost
+    port: 5672
     username: guest
     password: guest
     dynamic: true
 
   # MySQL connection
-  security:
     enabled: false
   datasource:
     url: jdbc:mysql://localhost:3306/profile_mgt?allowPublicKeyRetrieval=true
@@ -23,7 +22,7 @@ spring:
               MySQL8Dialect:
 
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     show-sql: true
 
   mvc:
@@ -31,19 +30,19 @@ spring:
       matching-strategy: ant_path_matcher
 
 #Cloudinary
-  cloudinary:
-    cloud_name: dqqlpmdpm
-    api_key: 967725158739296
-    api_secret: WzXnPmgukKQXG6BxkQuPxMhuxYU
-    spring:
-      servlet:
-        multipart:
-          max-file-size=3MB:
+cloudinary:
+  cloud_name: dqqlpmdpm
+  api_key: 967725158739296
+  api_secret: WzXnPmgukKQXG6BxkQuPxMhuxYU
+  spring:
+    servlet:
+      multipart:
+        max-file-size=3MB:
 
 #JWT secret from user-mgt-service
 jwt:
   secret: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
 
 #Swagger
-  swagger:
-    version: 1.0.0
+swagger:
+  version: 1.0.0

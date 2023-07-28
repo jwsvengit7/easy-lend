@@ -31,8 +31,8 @@ public class ProfileResponseDTO {
         if (profile.getStatus().ordinal() >= 5) {
             this.bankAccountDTO = new BankAccountDTO(profile.getBankAccount());
         }
-        if (profile.getStatus().ordinal() >= 6){
-            this.proofOfAddressDTO = new ProofOfAddressDTO(profile.getProofOfAddress());
-        }
+//        if (profile.getStatus().ordinal() >= 6){
+//            this.proofOfAddressDTO = new ProofOfAddressDTO(profile.getProofOfAddress());
+//        }
     }
 }
