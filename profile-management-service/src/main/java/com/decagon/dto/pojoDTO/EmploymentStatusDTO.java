@@ -1,6 +1,6 @@
 package com.decagon.dto.pojoDTO;
 
-import com.decagon.domain.pojo.EmploymentStatus;
+import com.decagon.domain.screen.EmploymentStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,7 +1,7 @@
 package com.decagon.dto.pojoDTO;
 
 
-import com.decagon.domain.pojo.IncomeStatus;
+import com.decagon.domain.screen.IncomeStatus;
 import lombok.Getter;
 import lombok.Setter;
 

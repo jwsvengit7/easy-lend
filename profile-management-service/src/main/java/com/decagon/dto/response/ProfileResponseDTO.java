@@ -10,28 +10,30 @@ import lombok.Setter;
 public class ProfileResponseDTO {
     private String userId;
     private ContactInformationDTO contactInformationDTO;
-    private IncomeStatusDTO incomeStatusDTO;
     private EmploymentStatusDTO employmentStatusDTO;
     private GovernmentIDDTO governmentIDDTO;
+    private IncomeStatusDTO incomeStatusDTO;
     private BankAccountDTO bankAccountDTO;
     private ProofOfAddressDTO proofOfAddressDTO;
 
     public ProfileResponseDTO(Profile profile) {
         this.userId = profile.getUserId();
         this.contactInformationDTO = new ContactInformationDTO(profile.getContactInformation());
-        if (profile.getStatus().ordinal() >= 2) {
-            this.incomeStatusDTO = new IncomeStatusDTO(profile.getIncomeStatus());
-        }
-        if (profile.getStatus().ordinal() >= 3) {
+
+        // Check if employmentStatus is not null before creating the DTO
+        if (profile.getEmploymentStatus() != null && profile.getStatus().ordinal() >= 2) {
             this.employmentStatusDTO = new EmploymentStatusDTO(profile.getEmploymentStatus());
         }
-        if (profile.getStatus().ordinal() >= 4) {
+        if (profile.getGovernmentId() != null && profile.getStatus().ordinal() >= 3) {
             this.governmentIDDTO = new GovernmentIDDTO(profile.getGovernmentId());
         }
-        if (profile.getStatus().ordinal() >= 5) {
+        if (profile.getIncomeStatus() != null && profile.getStatus().ordinal() >= 4) {
+            this.incomeStatusDTO = new IncomeStatusDTO(profile.getIncomeStatus());
+        }
+        if (profile.getBankAccount() != null && profile.getStatus().ordinal() >= 5) {
             this.bankAccountDTO = new BankAccountDTO(profile.getBankAccount());
         }
-//        if (profile.getStatus().ordinal() >= 6){
+//        if (profile.getProofOfAddress() != null && profile.getStatus().ordinal() >= 6) {
 //            this.proofOfAddressDTO = new ProofOfAddressDTO(profile.getProofOfAddress());
 //        }
     }
