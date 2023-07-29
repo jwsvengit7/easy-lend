@@ -1,22 +1,17 @@
 package com.decagon.service.serviceImplementation;
 
+import com.decagon.config.CloudinaryConfig;
 import com.decagon.domain.entity.Profile;
-import com.decagon.domain.pojo.ContactInformation;
-import com.decagon.domain.pojo.EmploymentStatus;
-import com.decagon.domain.pojo.ProfileStatus;
-import com.decagon.dto.pojoDTO.BankAccountDTO;
-import com.decagon.dto.pojoDTO.ContactInformationDTO;
-import com.decagon.dto.pojoDTO.EmploymentStatusDTO;
-import com.decagon.dto.pojoDTO.GovernmentIDDTO;
-import com.decagon.dto.pojoDTO.IncomeStatusDTO;
-import com.decagon.dto.pojoDTO.ProofOfAddressDTO;
+import com.decagon.domain.pojo.*;
+import com.decagon.dto.pojoDTO.*;
 import com.decagon.dto.response.ProfileResponseDTO;
 import com.decagon.exception.ProfileNotFoundException;
 import com.decagon.repository.ProfileRepository;
 import com.decagon.service.ProfileService;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class ProfileServiceImpl implements ProfileService {
@@ -28,7 +23,7 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public ProfileResponseDTO createProfile(Long user_id, String profileCreationStatus, ContactInformationDTO contactInformationDTO) {
+    public ProfileResponseDTO createProfile(String user_id, ContactInformationDTO contactInformationDTO) {
         // Convert ContactInformationDTO to ContactInformation
         ContactInformation contactInformation = new ContactInformation();
         contactInformation.setFirstName(contactInformationDTO.getFirstName());
@@ -49,9 +44,10 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public ProfileResponseDTO updateContactInformation(Long profileId, ContactInformationDTO contactInfo) {
-        // Fetch the profile from the database
-        Profile profile = profileRepository.findById(profileId).orElseThrow(() -> new ProfileNotFoundException("Profile not found with ID: " + profileId));
+    public ProfileResponseDTO updateContactInformation(ContactInformationDTO contactInfo, String userId) {
+        // Fetch the profile from the database using the provided userId
+        Profile profile = profileRepository.findByUserId(userId)
+                .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
 
         // Update the ContactInformation screen directly with the provided data
         ContactInformation contactInformation = profile.getContactInformation();
@@ -62,7 +58,7 @@ public class ProfileServiceImpl implements ProfileService {
 
         profile.setContactInformation(contactInformation);
         // Update the profileCreationStatus to reflect the screen update
-        profile.setStatus(ProfileStatus.INCOME_UPDATED);
+        profile.setStatus(ProfileStatus.CONTACT_UPDATED);
 
         profileRepository.save(profile);
 
@@ -70,15 +66,10 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public EmploymentStatusDTO updateEmploymentStatus(Long profileId, EmploymentStatusDTO employmentStatus) {
-        // Fetch the profile from the database
-        Optional<Profile> optionalProfile = profileRepository.findById(profileId);
-
-        if (optionalProfile.isEmpty()) {
-            throw new ProfileNotFoundException("Profile not found with ID: " + profileId);
-        }
-
-        Profile profile = optionalProfile.get();
+    public EmploymentStatusDTO updateEmploymentStatus(EmploymentStatusDTO employmentStatus, String userId) {
+        // Fetch the profile from the database using the provided userId
+        Profile profile = profileRepository.findByUserId(userId)
+                .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
 
         // Update the EmploymentStatus screen directly with the provided data
         EmploymentStatus employmentStatusObj = profile.getEmploymentStatus();
@@ -87,7 +78,9 @@ public class ProfileServiceImpl implements ProfileService {
         employmentStatusObj.setIncome(employmentStatus.getIncome());
         employmentStatusObj.setJobType(employmentStatus.getJobType());
 
-        // Update the profileCreationStatus to reflect the screen updateprofile.setStatus(ProfileStatus.EMPLOYMENT_UPDATED);
+        profile.setEmploymentStatus(employmentStatusObj);
+
+        profile.setStatus(ProfileStatus.EMPLOYMENT_UPDATED);
 
         profileRepository.save(profile);
 
@@ -95,44 +88,36 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public GovernmentIDDTO updateGovernmentID(Long profileId, GovernmentIDDTO governmentIDDTO) {
-        Optional<Profile> optionalProfile = profileRepository.findById(profileId);
+    public GovernmentIDDTO updateGovernmentID(GovernmentIDDTO governmentIDDTO, MultipartFile file, String userId) {
+        // Fetch the profile from the database using the provided userId
+        Profile profile = profileRepository.findByUserId(userId)
+                .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
 
-        if (optionalProfile.isEmpty()) {
-            throw new ProfileNotFoundException("Profile not found with ID: " + profileId);
-        }
-
-        Profile profile = optionalProfile.get();
-
+        String url = uploadFile(file, profile.getId());
         // Update the GovernmentID screen
-        profile.getGovernmentId().setDocumentType(governmentIDDTO.getDocumentType());
-        profile.getGovernmentId().setDocumentNumber(governmentIDDTO.getDocumentNumber());
-        profile.getGovernmentId().setDocumentUrl(governmentIDDTO.getDocumentUrl());
-
+        GovernmentID governmentID = new GovernmentID();
+        governmentID.setDocumentType(governmentIDDTO.getDocumentType());
+        governmentID.setDocumentNumber(governmentIDDTO.getDocumentNumber());
+        profile.setGovernmentId(governmentID);
         // Update the profileCreationStatus to reflect the screen update
         profile.setStatus(ProfileStatus.GOVERNMENT_UPDATED);
-
         profileRepository.save(profile);
-
         return governmentIDDTO;
     }
 
     @Override
-    public IncomeStatusDTO updateIncomeStatus(Long profileId, IncomeStatusDTO incomeStatusDTO) {
-        Optional<Profile> optionalProfile = profileRepository.findById(profileId);
-
-        if (optionalProfile.isEmpty()) {
-            throw new ProfileNotFoundException("Profile not found with ID: " + profileId);
-        }
-
-        Profile profile = optionalProfile.get();
+    public IncomeStatusDTO updateIncomeStatus(IncomeStatusDTO incomeStatusDTO, String userId) {
+        // Fetch the profile from the database using the provided userId
+        Profile profile = profileRepository.findByUserId(userId)
+                .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
 
         // Update the IncomeStatus screen
-        profile.getIncomeStatus().setEmploymentStatus(incomeStatusDTO.getEmploymentStatus());
-        profile.getIncomeStatus().setMonthlyPersonalIncome(incomeStatusDTO.getMonthlyPersonalIncome());
-        profile.getIncomeStatus().setHasOtherSourcesOfIncome(incomeStatusDTO.isHasOtherSourcesOfIncome());
-        profile.getIncomeStatus().setExtraIncomeDescription(incomeStatusDTO.getExtraIncomeDescription());
-
+        IncomeStatus incomeStatus = new IncomeStatus();
+        incomeStatus.setEmploymentStatus(incomeStatusDTO.getEmploymentStatus());
+        incomeStatus.setMonthlyPersonalIncome(incomeStatusDTO.getMonthlyPersonalIncome());
+        incomeStatus.setHasOtherSourcesOfIncome(incomeStatusDTO.isHasOtherSourcesOfIncome());
+        incomeStatus.setExtraIncomeDescription(incomeStatusDTO.getExtraIncomeDescription());
+        profile.setIncomeStatus(incomeStatus);
         // Update the profileCreationStatus to reflect the screen update
         profile.setStatus(ProfileStatus.INCOME_UPDATED);
 
@@ -142,20 +127,17 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public BankAccountDTO updateBankAccount(Long profileId, BankAccountDTO bankAccountDTO) {
-        Optional<Profile> optionalProfile = profileRepository.findById(profileId);
-
-        if (optionalProfile.isEmpty()) {
-            throw new ProfileNotFoundException("Profile not found with ID: " + profileId);
-        }
-
-        Profile profile = optionalProfile.get();
+    public BankAccountDTO updateBankAccount(BankAccountDTO bankAccountDTO, String userId) {
+        // Fetch the profile from the database using the provided userId
+        Profile profile = profileRepository.findByUserId(userId)
+                .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
 
         // Update the BankAccount screen
-        profile.getBankAccount().setBank(bankAccountDTO.getBank());
-        profile.getBankAccount().setAccountNumber(bankAccountDTO.getAccountNumber());
-        profile.getBankAccount().setAccountName(bankAccountDTO.getAccountName());
-
+        BankAccount bankAccount = new BankAccount();
+        bankAccount.setBank(bankAccountDTO.getBank());
+        bankAccount.setAccountNumber(bankAccountDTO.getAccountNumber());
+        bankAccount.setAccountName(bankAccountDTO.getAccountName());
+        profile.setBankAccount(bankAccount);
         // Update the profileCreationStatus to reflect the screen update
         profile.setStatus(ProfileStatus.BANK_ACCOUNT_UPDATED);
 
@@ -165,17 +147,12 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public ProofOfAddressDTO updateProofOfAddress(Long profileId, ProofOfAddressDTO proofOfAddressDTO) {
-        Optional<Profile> optionalProfile = profileRepository.findById(profileId);
+    public ProofOfAddressDTO updateProofOfAddress(ProofOfAddressDTO proofOfAddressDTO, MultipartFile file, String userId) {
+        // Fetch the profile from the database using the provided userId
+        Profile profile = profileRepository.findByUserId(userId)
+                .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
 
-        if (optionalProfile.isEmpty()) {
-            throw new ProfileNotFoundException("Profile not found with ID: " + profileId);
-        }
-
-        Profile profile = optionalProfile.get();
-
-        // Update the ProofOfAddress screen
-        profile.getProofOfAddress().setDocument_Url(proofOfAddressDTO.getDocument_Url());
+        String url = uploadFile(file, profile.getId());
 
         // Update the profileCreationStatus to reflect the screen update
         profile.setStatus(ProfileStatus.PROOF_OF_ADDRESS);
@@ -183,5 +160,11 @@ public class ProfileServiceImpl implements ProfileService {
         profileRepository.save(profile);
 
         return proofOfAddressDTO;
+    }
+
+    private String uploadFile(MultipartFile file, Long id) {
+        CloudinaryConfig cloudinaryConfig = new CloudinaryConfig();
+        String generator = UUID.randomUUID().toString() + id;
+        return cloudinaryConfig.imageLink(file, generator);
     }
 }

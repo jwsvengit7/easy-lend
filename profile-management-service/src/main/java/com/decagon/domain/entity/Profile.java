@@ -19,7 +19,7 @@ public class Profile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long userId;
+    private String userId;
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)

@@ -8,5 +8,4 @@ import lombok.Setter;
 public class GovernmentIDDTO {
     private String documentType;
     private String documentNumber;
-    private String documentUrl;
 }

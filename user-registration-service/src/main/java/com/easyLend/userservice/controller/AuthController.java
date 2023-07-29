@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -22,13 +23,13 @@ public class AuthController {
     private final VerificationServiceImpl verificationService;
 
     @PostMapping("/register/{usertype}")
-    public ResponseEntity<ApiResponse<RegisterResponse>> registerUser (@RequestBody RegisterRequest registerRequest,
+    public ResponseEntity<ApiResponse<RegisterResponse>> registerUser (@Validated @RequestBody RegisterRequest registerRequest,
                                                                        @PathVariable UserType usertype, HttpServletRequest request) {
         ApiResponse<RegisterResponse> apiResponse = new ApiResponse<>(appUserService.registerUser(registerRequest, usertype, request));
         return new ResponseEntity<>(apiResponse, HttpStatus.CREATED);
     }
     @PostMapping("/login")
-    public ResponseEntity<ApiResponse<LoginResponse>> login (@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<ApiResponse<LoginResponse>> login (@Validated@RequestBody LoginRequest loginRequest) {
         ApiResponse<LoginResponse> apiResponse = new ApiResponse<>(appUserService.loginAuth(loginRequest));
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
