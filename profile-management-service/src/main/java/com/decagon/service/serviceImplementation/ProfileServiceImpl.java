@@ -5,22 +5,22 @@ import com.decagon.domain.entity.Profile;
 import com.decagon.domain.pojo.*;
 import com.decagon.dto.pojoDTO.*;
 import com.decagon.dto.response.ProfileResponseDTO;
+import com.decagon.exception.InvalidTokenException;
 import com.decagon.exception.ProfileNotFoundException;
 import com.decagon.repository.ProfileRepository;
+import com.decagon.utils.JwtUtils;
 import com.decagon.service.ProfileService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
 public class ProfileServiceImpl implements ProfileService {
     private final ProfileRepository profileRepository;
-
-
-    public ProfileServiceImpl(ProfileRepository profileRepository) {
-        this.profileRepository = profileRepository;
-    }
+    private final JwtUtils jwtUtils;
 
     @Override
     public ProfileResponseDTO createProfile(String user_id, ContactInformationDTO contactInformationDTO) {
@@ -44,12 +44,20 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public ProfileResponseDTO updateContactInformation(ContactInformationDTO contactInfo, String userId) {
+    public ProfileResponseDTO updateContactInformation(ContactInformationDTO contactInfo, String authorizationHeader) {
+
+        String token = jwtUtils.extractToken(authorizationHeader);
+        String userId = jwtUtils.extractUserIdFromToken(token);
+        System.out.println(userId);
+        if (userId == null) {
+            throw new InvalidTokenException("UserId is null");
+        }
+
         // Fetch the profile from the database using the provided userId
-        Profile profile = profileRepository.findByUserId(userId)
+        Profile profile = profileRepository.findBy_user_id(userId)
                 .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
 
-        // Update the ContactInformation screen directly with the provided data
+//         Update the ContactInformation screen directly with the provided data
         ContactInformation contactInformation = profile.getContactInformation();
         contactInformation.setFirstName(contactInfo.getFirstName());
         contactInformation.setLastName(contactInfo.getLastName());

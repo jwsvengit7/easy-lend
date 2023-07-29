@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 public interface ProfileService {
     ProfileResponseDTO createProfile(String user_id, ContactInformationDTO contactInformation);
 
-    ProfileResponseDTO updateContactInformation(ContactInformationDTO contactInfo, String userId);
+    ProfileResponseDTO updateContactInformation(ContactInformationDTO contactInfo, String authorizationHeader);
 
     ProfileResponseDTO updateEmploymentStatus(EmploymentStatusDTO employmentStatus, String userId);
 
