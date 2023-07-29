@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class TransactionController {
     private final TransactionService transactionService;
 
-@PostMapping("/initialize-payment")
-    public ResponseEntity<?> initializeTransaction(@RequestBody LoanTransactionRequest request){
-    return new ResponseEntity<>(transactionService.initializePay(request), HttpStatus.OK);
-        }
+    @PostMapping("/initialize-payment")
+    public ResponseEntity<?> initializeTransaction(@RequestBody LoanTransactionRequest request) {
+        return new ResponseEntity<>(transactionService.initializePay(request), HttpStatus.OK);
+    }
 }

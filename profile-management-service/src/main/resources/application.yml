@@ -1,5 +1,7 @@
 # MySQL connection
 spring:
+  security:
+    enabled: false
   datasource:
     url: jdbc:mysql://localhost:3306/profile_mgt?allowPublicKeyRetrieval=true
     username: root
@@ -16,12 +18,19 @@ spring:
       ddl-auto: create
     show-sql: true
 
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
 
 #Cloudinary
 cloudinary:
   cloud_name: dqqlpmdpm
   api_key: 967725158739296
   api_secret: WzXnPmgukKQXG6BxkQuPxMhuxYU
+  spring:
+    servlet:
+      multipart:
+        max-file-size=3MB:
 
 
 #RabbitMQ settings
@@ -31,9 +40,9 @@ rabbitmq:
   port: 15672
   username: guest
   password: guest
-  exchange: profile-exchange
-  queue: create-profile
-  routingkey: profile-routingkey
+  exchange: rabbitmq.exchange
+  queue: rabbitmq.queue
+  routingkey: rabbitmq.routingkey
   reply:
     timeout: 60000
   concurrent:
@@ -41,3 +50,15 @@ rabbitmq:
   max:
     concurrent:
       consumers: 1
+
+#JWT secret from user-mgt-service
+jwt:
+  secret: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+
+# Enable Swagger UI
+springfox:
+  documentation:
+    swagger-ui:
+      enabled: true
+swagger:
+  version: 1.0.0
