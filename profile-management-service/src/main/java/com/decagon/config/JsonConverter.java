@@ -1,6 +1,6 @@
 package com.decagon.config;
 
-
+import com.decagon.domain.pojo.ContactInformation;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -27,11 +27,11 @@ public class JsonConverter implements AttributeConverter<Object, String> {
     @Override
     public Object convertToEntityAttribute(String dbData) {
         try {
-            return objectMapper.readValue(dbData, Object.class);
+            // Change Object to the specific target class (e.g., ContactInformation)
+            return objectMapper.readValue(dbData, ContactInformation.class);
         } catch (Exception e) {
             // Handle exception or log error
             return null;
         }
     }
 }
-

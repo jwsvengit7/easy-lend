@@ -5,22 +5,22 @@ import com.decagon.domain.entity.Profile;
 import com.decagon.domain.pojo.*;
 import com.decagon.dto.pojoDTO.*;
 import com.decagon.dto.response.ProfileResponseDTO;
+import com.decagon.exception.InvalidTokenException;
 import com.decagon.exception.ProfileNotFoundException;
 import com.decagon.repository.ProfileRepository;
 import com.decagon.service.ProfileService;
+import com.decagon.utils.JwtUtils;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
 public class ProfileServiceImpl implements ProfileService {
     private final ProfileRepository profileRepository;
-
-
-    public ProfileServiceImpl(ProfileRepository profileRepository) {
-        this.profileRepository = profileRepository;
-    }
+    private final JwtUtils jwtUtils;
 
     @Override
     public ProfileResponseDTO createProfile(String user_id, ContactInformationDTO contactInformationDTO) {
@@ -44,20 +44,29 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public ProfileResponseDTO updateContactInformation(ContactInformationDTO contactInfo, String userId) {
+    public ProfileResponseDTO updateContactInformation(ContactInformationDTO contactInformationDTO, String authorizationHeader) {
+
+        String token = jwtUtils.extractToken(authorizationHeader);
+        String userId = jwtUtils.extractUserIdFromToken(token);
+        System.out.println(userId);
+        if (userId == null) {
+            throw new InvalidTokenException("UserId is null");
+        }
+
         // Fetch the profile from the database using the provided userId
         Profile profile = profileRepository.findByUserId(userId)
                 .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
+        System.out.println(profile);
 
-        // Update the ContactInformation screen directly with the provided data
+        //Update the ContactInformation screen directly with the provided data
         ContactInformation contactInformation = profile.getContactInformation();
-        contactInformation.setFirstName(contactInfo.getFirstName());
-        contactInformation.setLastName(contactInfo.getLastName());
-        contactInformation.setEmail(contactInfo.getEmail());
-        contactInformation.setPhoneNumber(contactInfo.getPhoneNumber());
+        contactInformation.setFirstName(contactInformationDTO.getFirstName());
+        contactInformation.setLastName(contactInformationDTO.getLastName());
+        contactInformation.setEmail(contactInformationDTO.getEmail());
+        contactInformation.setPhoneNumber(contactInformationDTO.getPhoneNumber());
 
         profile.setContactInformation(contactInformation);
-        // Update the profileCreationStatus to reflect the screen update
+        //Update the profileCreationStatus to reflect the screen update
         profile.setStatus(ProfileStatus.CONTACT_UPDATED);
 
         profileRepository.save(profile);
@@ -66,7 +75,7 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public EmploymentStatusDTO updateEmploymentStatus(EmploymentStatusDTO employmentStatus, String userId) {
+    public ProfileResponseDTO updateEmploymentStatus(EmploymentStatusDTO employmentStatus, String userId) {
         // Fetch the profile from the database using the provided userId
         Profile profile = profileRepository.findByUserId(userId)
                 .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
@@ -84,11 +93,11 @@ public class ProfileServiceImpl implements ProfileService {
 
         profileRepository.save(profile);
 
-        return employmentStatus;
+        return new ProfileResponseDTO(profile);
     }
 
     @Override
-    public GovernmentIDDTO updateGovernmentID(GovernmentIDDTO governmentIDDTO, MultipartFile file, String userId) {
+    public ProfileResponseDTO updateGovernmentID(GovernmentIDDTO governmentIDDTO, MultipartFile file, String userId) {
         // Fetch the profile from the database using the provided userId
         Profile profile = profileRepository.findByUserId(userId)
                 .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
@@ -102,11 +111,11 @@ public class ProfileServiceImpl implements ProfileService {
         // Update the profileCreationStatus to reflect the screen update
         profile.setStatus(ProfileStatus.GOVERNMENT_UPDATED);
         profileRepository.save(profile);
-        return governmentIDDTO;
+        return new ProfileResponseDTO(profile);
     }
 
     @Override
-    public IncomeStatusDTO updateIncomeStatus(IncomeStatusDTO incomeStatusDTO, String userId) {
+    public ProfileResponseDTO updateIncomeStatus(IncomeStatusDTO incomeStatusDTO, String userId) {
         // Fetch the profile from the database using the provided userId
         Profile profile = profileRepository.findByUserId(userId)
                 .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
@@ -123,11 +132,11 @@ public class ProfileServiceImpl implements ProfileService {
 
         profileRepository.save(profile);
 
-        return incomeStatusDTO;
+        return new ProfileResponseDTO(profile);
     }
 
     @Override
-    public BankAccountDTO updateBankAccount(BankAccountDTO bankAccountDTO, String userId) {
+    public ProfileResponseDTO updateBankAccount(BankAccountDTO bankAccountDTO, String userId) {
         // Fetch the profile from the database using the provided userId
         Profile profile = profileRepository.findByUserId(userId)
                 .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
@@ -143,11 +152,11 @@ public class ProfileServiceImpl implements ProfileService {
 
         profileRepository.save(profile);
 
-        return bankAccountDTO;
+        return new ProfileResponseDTO(profile);
     }
 
     @Override
-    public ProofOfAddressDTO updateProofOfAddress(ProofOfAddressDTO proofOfAddressDTO, MultipartFile file, String userId) {
+    public ProfileResponseDTO updateProofOfAddress(ProofOfAddressDTO proofOfAddressDTO, MultipartFile file, String userId) {
         // Fetch the profile from the database using the provided userId
         Profile profile = profileRepository.findByUserId(userId)
                 .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
@@ -159,7 +168,7 @@ public class ProfileServiceImpl implements ProfileService {
 
         profileRepository.save(profile);
 
-        return proofOfAddressDTO;
+        return new ProfileResponseDTO(profile);
     }
 
     private String uploadFile(MultipartFile file, Long id) {
