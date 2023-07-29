@@ -11,4 +11,3 @@ public class ContactInformation {
     private String email;
     private String phoneNumber;
 }
-//TODO receives user's fullname user service, split into firstName and LastName
