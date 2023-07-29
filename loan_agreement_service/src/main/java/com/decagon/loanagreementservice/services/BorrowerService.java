@@ -5,6 +5,6 @@ import com.decagon.loanagreementservice.models.LoanOffer;
 import jakarta.servlet.http.HttpServletRequest;
 
 public interface BorrowerService {
-    LoanAgreementDto selectLoanOffer(Long loanId, HttpServletRequest request);
-    LoanOffer getLoanOffer(Long offerId);
+    LoanAgreementDto selectLoanOffer(String loanId, HttpServletRequest request);
+    LoanOffer getLoanOffer(String offerId);
 }
