@@ -8,8 +8,8 @@ import com.decagon.dto.response.ProfileResponseDTO;
 import com.decagon.exception.InvalidTokenException;
 import com.decagon.exception.ProfileNotFoundException;
 import com.decagon.repository.ProfileRepository;
-import com.decagon.utils.JwtUtils;
 import com.decagon.service.ProfileService;
+import com.decagon.utils.JwtUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -44,7 +44,7 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public ProfileResponseDTO updateContactInformation(ContactInformationDTO contactInfo, String authorizationHeader) {
+    public ProfileResponseDTO updateContactInformation(ContactInformationDTO contactInformationDTO, String authorizationHeader) {
 
         String token = jwtUtils.extractToken(authorizationHeader);
         String userId = jwtUtils.extractUserIdFromToken(token);
@@ -54,18 +54,19 @@ public class ProfileServiceImpl implements ProfileService {
         }
 
         // Fetch the profile from the database using the provided userId
-        Profile profile = profileRepository.findBy_user_id(userId)
+        Profile profile = profileRepository.findByUserId(userId)
                 .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
+        System.out.println(profile);
 
-//         Update the ContactInformation screen directly with the provided data
+        //Update the ContactInformation screen directly with the provided data
         ContactInformation contactInformation = profile.getContactInformation();
-        contactInformation.setFirstName(contactInfo.getFirstName());
-        contactInformation.setLastName(contactInfo.getLastName());
-        contactInformation.setEmail(contactInfo.getEmail());
-        contactInformation.setPhoneNumber(contactInfo.getPhoneNumber());
+        contactInformation.setFirstName(contactInformationDTO.getFirstName());
+        contactInformation.setLastName(contactInformationDTO.getLastName());
+        contactInformation.setEmail(contactInformationDTO.getEmail());
+        contactInformation.setPhoneNumber(contactInformationDTO.getPhoneNumber());
 
         profile.setContactInformation(contactInformation);
-        // Update the profileCreationStatus to reflect the screen update
+        //Update the profileCreationStatus to reflect the screen update
         profile.setStatus(ProfileStatus.CONTACT_UPDATED);
 
         profileRepository.save(profile);
