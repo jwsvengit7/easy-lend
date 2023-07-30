@@ -2,6 +2,7 @@ package com.decagon.borrowerservice.service.impl;
 
 import com.decagon.borrowerservice.dto.LoanRequestDto;
 import com.decagon.borrowerservice.entities.LoanRequest;
+import com.decagon.borrowerservice.exception.BorrowerNotFoundException;
 import com.decagon.borrowerservice.exception.handler.UserNotAuthorizedException;
 import com.decagon.borrowerservice.repository.BorrowerRepository;
 import com.decagon.borrowerservice.service.BorrowerService;
@@ -9,9 +10,12 @@ import com.decagon.borrowerservice.utils.JwtUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -78,6 +82,18 @@ public class BorrowerServiceImpl implements BorrowerService {
 
         // Map the saved Loan entity back to LoanDto and return it
         return new LoanRequestDto(savedLoan);
+    }
+    @Override
+    public LoanRequestDto getLoan(Long id) {
+        LoanRequest loanRequestDto  = borrowerRepository.findById(id)
+                .orElseThrow(()-> new BorrowerNotFoundException("Borrower Not found with id : " + id));
+        return modelMapper.map(loanRequestDto, LoanRequestDto.class);
+    }
+    @Override
+    public List<LoanRequestDto> getAllLoans() {
+        List <LoanRequest> borrowers = borrowerRepository.findAll();
+        return borrowers.stream().map((borrower) -> modelMapper.map(borrower, LoanRequestDto.class))
+                .collect(Collectors.toList());
     }
 
 }

@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @AllArgsConstructor
 @RestController
 @RequestMapping("api/loanApplication")
@@ -20,6 +22,18 @@ public class LoanController {
     public ResponseEntity<LoanRequestDto> loanRequest(@RequestBody LoanRequestDto loanRequestDto, HttpServletRequest request) {
         LoanRequestDto savedLoan = borrowerService.loanRequest(loanRequestDto, request);
         return new ResponseEntity<>(savedLoan, HttpStatus.CREATED);
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<LoanRequestDto> getLoan(@PathVariable ("id") Long id){
+        LoanRequestDto getLoan = borrowerService.getLoan(id);
+        return new ResponseEntity<>(getLoan, HttpStatus.OK);
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<LoanRequestDto>> getAllLoans(){
+        List <LoanRequestDto> getAllLoans = borrowerService.getAllLoans();
+        return  ResponseEntity.ok(getAllLoans);
     }
 
 }
