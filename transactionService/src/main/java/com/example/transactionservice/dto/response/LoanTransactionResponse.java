@@ -18,6 +18,7 @@ public class LoanTransactionResponse {
     public LoanTransactionResponse() {
     }
 
+
     public static void setSerialVersionUID(Long serialVersionUID) {
         LoanTransactionResponse.serialVersionUID = serialVersionUID;
     }

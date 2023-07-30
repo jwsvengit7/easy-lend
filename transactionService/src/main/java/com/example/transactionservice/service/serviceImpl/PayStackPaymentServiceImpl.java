@@ -52,7 +52,6 @@ public class PayStackPaymentServiceImpl implements PaymentService {
         paymentResponse.setStatus(true);
         paymentResponse.setMessage("successful");
         paymentResponse.setData(savedTransaction);
-
         return  paymentResponse;
     }
 }

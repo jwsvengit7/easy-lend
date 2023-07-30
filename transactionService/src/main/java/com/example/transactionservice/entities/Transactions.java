@@ -31,6 +31,7 @@ public class Transactions {
     @Enumerated(EnumType.STRING)
     private PaymentChoice paymentChoice;
 
+
     public Transactions(Long id, String loanId, String borrowId, String lenderId, BigDecimal amount, LocalDate transactionDate, LocalDateTime createdAt, LocalDateTime updatedAt, String transactionId, PaymentChoice paymentChoice) {
         this.id = id;
         this.loanId = loanId;

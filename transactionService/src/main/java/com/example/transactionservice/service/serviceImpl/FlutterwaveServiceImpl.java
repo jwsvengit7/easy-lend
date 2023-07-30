@@ -18,6 +18,7 @@ import static com.example.transactionservice.enums.PaymentChoice.MOCKED;
 public class FlutterwaveServiceImpl implements PaymentService {
 
     private final TransactionRepository transactionRepository;
+
     @Override
     public LoanTransactionResponse makePayment(LoanTransactionRequest request) {
         Transactions transactions = new Transactions();

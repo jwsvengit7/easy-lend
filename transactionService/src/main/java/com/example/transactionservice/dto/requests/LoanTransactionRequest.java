@@ -63,4 +63,5 @@ public class LoanTransactionRequest {
     public void setPaymentChoice(String paymentChoice) {
         this.paymentChoice = paymentChoice;
     }
+
 }

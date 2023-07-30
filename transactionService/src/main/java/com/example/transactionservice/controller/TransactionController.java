@@ -20,4 +20,5 @@ public class TransactionController {
     public ResponseEntity<?> initializeTransaction(@RequestBody LoanTransactionRequest request) {
         return new ResponseEntity<>(paymentProcessor.getProcessor(request.getPaymentChoice().toUpperCase()).makePayment(request), HttpStatus.OK);
     }
+
 }

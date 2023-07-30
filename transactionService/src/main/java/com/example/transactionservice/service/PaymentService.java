@@ -6,4 +6,5 @@ import com.example.transactionservice.dto.response.LoanTransactionResponse;
 
 public interface PaymentService {
     LoanTransactionResponse makePayment(LoanTransactionRequest request);
+
 }
