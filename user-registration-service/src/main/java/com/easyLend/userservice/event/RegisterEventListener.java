@@ -10,7 +10,6 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
-
 import java.io.UnsupportedEncodingException;
 import java.util.UUID;
 
@@ -26,7 +25,7 @@ public class RegisterEventListener implements ApplicationListener<RegisterEvent>
     String token = UUID.randomUUID().toString();
     VerificationEmail confirmationToken = new VerificationEmail(token, appUser);
         confirmationTokenService.saveToken(confirmationToken);
-    String url = event.getUrl()+"/token/"+token;
+    String url = event.getUrl()+"/user-auth?token="+token;
         try{
         sendConfirmationToken(url,appUser);
     }catch(UnsupportedEncodingException | MessagingException e){
@@ -51,6 +50,7 @@ public class RegisterEventListener implements ApplicationListener<RegisterEvent>
 
         helper.setText(mailContent,true);
         javaMailSender.send(mimeMessage);
+        System.out.println("sent");
     }
 
 

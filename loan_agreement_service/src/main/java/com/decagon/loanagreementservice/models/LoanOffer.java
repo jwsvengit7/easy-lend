@@ -4,18 +4,18 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.math.BigDecimal;
+
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class LoanOffer {
-    private Long offerId;
-    private Long lenderId;
-    private Long loanId;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
-    private double interestRate;
-    private String repaymentSchedule;
+    private Long id;
+    private String userId;
+    private BigDecimal loanAmount;
+    private String loanId;
+    private int riskTolerance;
+    private BigDecimal interestRate;
+    private int durationInDays;
 
-    // Constructors, getters, and setters
 }

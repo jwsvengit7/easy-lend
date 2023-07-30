@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
@@ -17,39 +18,43 @@ import static com.decagon.loanagreementservice.models.Status.NEW;
 @NoArgsConstructor
 @Data
 @Table(name = "loan_Agreement")
-    public class LoanAgreement {
+public class LoanAgreement {
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        @Column(name = "agreement_id")
-        private Long agreementId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "agreement_id")
+    private Long id;
 
-        @Column(name = "loan_id")
-        private Long loanId;
-        @Column(name = "borrower_id")
-        private Long borrowerId;
+    @Column(name = "loan_id")
+    private String loanId;
+    @Column(name = "borrower_id")
+    private String borrowerId;
 
-        @Column(name = "lender_id")
-        private Long lenderId;
+    @Column(name = "lender_id")
+    private String lenderId;
+    @Column(name = "loanAmount")
+    private BigDecimal loanAmount;
 
-        @Column(name = "interest")
-        private double interestRate;
+    @Column(name = "interest")
+    private BigDecimal interestRate;
 
-        @Column(name = "repayment_schedule")
-        private String repaymentSchedule;
-        @Enumerated(EnumType.STRING)
-        private Status status = NEW;
+    @Column(name = "durationInDays")
+    private int durationInDays;
+    @Column(name = "riskTolerance")
+    private int riskTolerance;
+    @Enumerated(EnumType.STRING)
+    private Status status = NEW;
 
-        @Column(name = "conditions")
-        private String conditions;
+    @Column(name = "conditions")
+    private String conditions;
 
-        @Column(name = "created_at")
-        @CreationTimestamp
-        private LocalDateTime createdAt;
+    @Column(name = "created_at")
+    @CreationTimestamp
+    private LocalDateTime createdAt;
 
-        @Column(name = "updated_at")
-        @UpdateTimestamp
-        private Timestamp updatedAt;
+    @Column(name = "updated_at")
+    @UpdateTimestamp
+    private Timestamp updatedAt;
 
 
 

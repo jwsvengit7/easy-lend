@@ -2,19 +2,20 @@ package com.decagon.service;
 
 import com.decagon.dto.pojoDTO.*;
 import com.decagon.dto.response.ProfileResponseDTO;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface ProfileService {
-    ProfileResponseDTO createProfile(Long user_id, String profileCreationStatus, ContactInformationDTO contactInformation);
+    ProfileResponseDTO createProfile(String user_id, ContactInformationDTO contactInformation);
 
-    ProfileResponseDTO updateContactInformation(Long profileId, ContactInformationDTO contactInfo);
+    ProfileResponseDTO updateContactInformation(ContactInformationDTO contactInfo, String authorizationHeader);
 
-    EmploymentStatusDTO updateEmploymentStatus(Long profileId, EmploymentStatusDTO employmentStatus);
+    ProfileResponseDTO updateEmploymentStatus(EmploymentStatusDTO employmentStatus, String authorizationHeader);
 
-    GovernmentIDDTO updateGovernmentID(Long profileId, GovernmentIDDTO governmentID);
+    ProfileResponseDTO updateGovernmentID(GovernmentIDDTO governmentID, MultipartFile file, String authorizationHeader);
 
-    IncomeStatusDTO updateIncomeStatus(Long profileId, IncomeStatusDTO incomeStatus);
+    ProfileResponseDTO updateIncomeStatus(IncomeStatusDTO incomeStatus, String authorizationHeader);
 
-    BankAccountDTO updateBankAccount(Long profileId, BankAccountDTO bankAccount);
+    ProfileResponseDTO updateBankAccount(BankAccountDTO bankAccount, String authorizationHeader);
 
-    ProofOfAddressDTO updateProofOfAddress(Long profileId, ProofOfAddressDTO proofOfAddress);
+    ProfileResponseDTO updateProofOfAddress(ProofOfAddressDTO proofOfAddress, MultipartFile file, String authorizationHeader);
 }

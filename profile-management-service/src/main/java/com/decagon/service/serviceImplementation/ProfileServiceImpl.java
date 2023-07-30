@@ -1,187 +1,133 @@
 package com.decagon.service.serviceImplementation;
 
+import com.decagon.config.CloudinaryConfig;
+import com.decagon.domain.constant.ProfileStatus;
 import com.decagon.domain.entity.Profile;
-import com.decagon.domain.pojo.ContactInformation;
-import com.decagon.domain.pojo.EmploymentStatus;
-import com.decagon.domain.pojo.ProfileStatus;
-import com.decagon.dto.pojoDTO.BankAccountDTO;
-import com.decagon.dto.pojoDTO.ContactInformationDTO;
-import com.decagon.dto.pojoDTO.EmploymentStatusDTO;
-import com.decagon.dto.pojoDTO.GovernmentIDDTO;
-import com.decagon.dto.pojoDTO.IncomeStatusDTO;
-import com.decagon.dto.pojoDTO.ProofOfAddressDTO;
+import com.decagon.domain.screen.*;
+import com.decagon.dto.pojoDTO.*;
 import com.decagon.dto.response.ProfileResponseDTO;
+import com.decagon.exception.InvalidTokenException;
 import com.decagon.exception.ProfileNotFoundException;
 import com.decagon.repository.ProfileRepository;
 import com.decagon.service.ProfileService;
+import com.decagon.utils.JwtUtils;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Optional;
+import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
 public class ProfileServiceImpl implements ProfileService {
     private final ProfileRepository profileRepository;
-
-
-    public ProfileServiceImpl(ProfileRepository profileRepository) {
-        this.profileRepository = profileRepository;
-    }
+    private final JwtUtils jwtUtils;
 
     @Override
-    public ProfileResponseDTO createProfile(Long user_id, String profileCreationStatus, ContactInformationDTO contactInformationDTO) {
-        // Convert ContactInformationDTO to ContactInformation
+    public ProfileResponseDTO createProfile(String user_id, ContactInformationDTO contactInformationDTO) {
         ContactInformation contactInformation = new ContactInformation();
         contactInformation.setFirstName(contactInformationDTO.getFirstName());
         contactInformation.setLastName(contactInformationDTO.getLastName());
         contactInformation.setEmail(contactInformationDTO.getEmail());
 
-        // Create the Profile entity and save it in the database
         Profile profile = new Profile();
         profile.setUserId(user_id);
         profile.setStatus(ProfileStatus.NEW);
         profile.setContactInformation(contactInformation);
 
         profileRepository.save(profile);
-        // Prepare the response DTO
         ProfileResponseDTO responseDTO = new ProfileResponseDTO(profile);
 
         return responseDTO;
     }
 
     @Override
-    public ProfileResponseDTO updateContactInformation(Long profileId, ContactInformationDTO contactInfo) {
-        // Fetch the profile from the database
-        Profile profile = profileRepository.findById(profileId).orElseThrow(() -> new ProfileNotFoundException("Profile not found with ID: " + profileId));
+    public ProfileResponseDTO updateContactInformation(ContactInformationDTO contactInformationDTO, String authorizationHeader) {
+        String userId = getUserID(authorizationHeader);
+        Profile profile = profileRepository.findByUserId(userId)
+                .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
 
-        // Update the ContactInformation screen directly with the provided data
-        ContactInformation contactInformation = profile.getContactInformation();
-        contactInformation.setFirstName(contactInfo.getFirstName());
-        contactInformation.setLastName(contactInfo.getLastName());
-        contactInformation.setEmail(contactInfo.getEmail());
-        contactInformation.setPhoneNumber(contactInfo.getPhoneNumber());
-
+        ContactInformation contactInformation = new ContactInformation(contactInformationDTO);
         profile.setContactInformation(contactInformation);
-        // Update the profileCreationStatus to reflect the screen update
-        profile.setStatus(ProfileStatus.INCOME_UPDATED);
-
+        profile.setStatus(ProfileStatus.CONTACT_UPDATED);
         profileRepository.save(profile);
-
         return new ProfileResponseDTO(profile);
     }
 
     @Override
-    public EmploymentStatusDTO updateEmploymentStatus(Long profileId, EmploymentStatusDTO employmentStatus) {
-        // Fetch the profile from the database
-        Optional<Profile> optionalProfile = profileRepository.findById(profileId);
-
-        if (optionalProfile.isEmpty()) {
-            throw new ProfileNotFoundException("Profile not found with ID: " + profileId);
-        }
-
-        Profile profile = optionalProfile.get();
-
-        // Update the EmploymentStatus screen directly with the provided data
-        EmploymentStatus employmentStatusObj = profile.getEmploymentStatus();
-        employmentStatusObj.setPreviouslyEmployed(employmentStatus.isPreviouslyEmployed());
-        employmentStatusObj.setEmploymentSituation(employmentStatus.getEmploymentSituation());
-        employmentStatusObj.setIncome(employmentStatus.getIncome());
-        employmentStatusObj.setJobType(employmentStatus.getJobType());
-
-        // Update the profileCreationStatus to reflect the screen updateprofile.setStatus(ProfileStatus.EMPLOYMENT_UPDATED);
-
+    public ProfileResponseDTO updateEmploymentStatus(EmploymentStatusDTO employmentStatusDTO, String authorizationHeader) {
+        String userId = getUserID(authorizationHeader);
+        Profile profile = profileRepository.findByUserId(userId)
+                .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
+        EmploymentStatus employmentStatus = new EmploymentStatus(employmentStatusDTO);
+        profile.setEmploymentStatus(employmentStatus);
         profileRepository.save(profile);
-
-        return employmentStatus;
+        return new ProfileResponseDTO(profile);
     }
 
     @Override
-    public GovernmentIDDTO updateGovernmentID(Long profileId, GovernmentIDDTO governmentIDDTO) {
-        Optional<Profile> optionalProfile = profileRepository.findById(profileId);
-
-        if (optionalProfile.isEmpty()) {
-            throw new ProfileNotFoundException("Profile not found with ID: " + profileId);
-        }
-
-        Profile profile = optionalProfile.get();
-
-        // Update the GovernmentID screen
-        profile.getGovernmentId().setDocumentType(governmentIDDTO.getDocumentType());
-        profile.getGovernmentId().setDocumentNumber(governmentIDDTO.getDocumentNumber());
-        profile.getGovernmentId().setDocumentUrl(governmentIDDTO.getDocumentUrl());
-
-        // Update the profileCreationStatus to reflect the screen update
+    public ProfileResponseDTO updateGovernmentID(GovernmentIDDTO governmentIDDTO, MultipartFile file, String authorizationHeader) {
+        String userId = getUserID(authorizationHeader);
+        Profile profile = profileRepository.findByUserId(userId)
+                .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
+        String url = uploadFile(file, profile.getId());
+        GovernmentID governmentID = new GovernmentID(governmentIDDTO);
+        profile.setGovernmentId(governmentID);
         profile.setStatus(ProfileStatus.GOVERNMENT_UPDATED);
-
         profileRepository.save(profile);
-
-        return governmentIDDTO;
+        return new ProfileResponseDTO(profile);
     }
 
     @Override
-    public IncomeStatusDTO updateIncomeStatus(Long profileId, IncomeStatusDTO incomeStatusDTO) {
-        Optional<Profile> optionalProfile = profileRepository.findById(profileId);
-
-        if (optionalProfile.isEmpty()) {
-            throw new ProfileNotFoundException("Profile not found with ID: " + profileId);
-        }
-
-        Profile profile = optionalProfile.get();
-
-        // Update the IncomeStatus screen
-        profile.getIncomeStatus().setEmploymentStatus(incomeStatusDTO.getEmploymentStatus());
-        profile.getIncomeStatus().setMonthlyPersonalIncome(incomeStatusDTO.getMonthlyPersonalIncome());
-        profile.getIncomeStatus().setHasOtherSourcesOfIncome(incomeStatusDTO.isHasOtherSourcesOfIncome());
-        profile.getIncomeStatus().setExtraIncomeDescription(incomeStatusDTO.getExtraIncomeDescription());
-
-        // Update the profileCreationStatus to reflect the screen update
+    public ProfileResponseDTO updateIncomeStatus(IncomeStatusDTO incomeStatusDTO, String authorizationHeader) {
+        String userId = getUserID(authorizationHeader);
+        Profile profile = profileRepository.findByUserId(userId)
+                .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
+        IncomeStatus incomeStatus = new IncomeStatus(incomeStatusDTO);
+        profile.setIncomeStatus(incomeStatus);
         profile.setStatus(ProfileStatus.INCOME_UPDATED);
-
         profileRepository.save(profile);
-
-        return incomeStatusDTO;
+        return new ProfileResponseDTO(profile);
     }
 
     @Override
-    public BankAccountDTO updateBankAccount(Long profileId, BankAccountDTO bankAccountDTO) {
-        Optional<Profile> optionalProfile = profileRepository.findById(profileId);
-
-        if (optionalProfile.isEmpty()) {
-            throw new ProfileNotFoundException("Profile not found with ID: " + profileId);
-        }
-
-        Profile profile = optionalProfile.get();
-
-        // Update the BankAccount screen
-        profile.getBankAccount().setBank(bankAccountDTO.getBank());
-        profile.getBankAccount().setAccountNumber(bankAccountDTO.getAccountNumber());
-        profile.getBankAccount().setAccountName(bankAccountDTO.getAccountName());
-
-        // Update the profileCreationStatus to reflect the screen update
+    public ProfileResponseDTO updateBankAccount(BankAccountDTO bankAccountDTO, String authorizationHeader) {
+        String userId = getUserID(authorizationHeader);
+        Profile profile = profileRepository.findByUserId(userId)
+                .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
+        BankAccount bankAccount = new BankAccount(bankAccountDTO);
+        profile.setBankAccount(bankAccount);
         profile.setStatus(ProfileStatus.BANK_ACCOUNT_UPDATED);
-
         profileRepository.save(profile);
-
-        return bankAccountDTO;
+        return new ProfileResponseDTO(profile);
     }
 
     @Override
-    public ProofOfAddressDTO updateProofOfAddress(Long profileId, ProofOfAddressDTO proofOfAddressDTO) {
-        Optional<Profile> optionalProfile = profileRepository.findById(profileId);
-
-        if (optionalProfile.isEmpty()) {
-            throw new ProfileNotFoundException("Profile not found with ID: " + profileId);
-        }
-
-        Profile profile = optionalProfile.get();
-
-        // Update the ProofOfAddress screen
-        profile.getProofOfAddress().setDocument_Url(proofOfAddressDTO.getDocument_Url());
-
-        // Update the profileCreationStatus to reflect the screen update
+    public ProfileResponseDTO updateProofOfAddress(ProofOfAddressDTO proofOfAddressDTO, MultipartFile file, String authorizationHeader) {
+        String userId = getUserID(authorizationHeader);
+        Profile profile = profileRepository.findByUserId(userId)
+                .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
+        String url = uploadFile(file, profile.getId());
+        ProofOfAddress proofOfAddress = new ProofOfAddress(proofOfAddressDTO);
+        profile.setProofOfAddress(proofOfAddress);
         profile.setStatus(ProfileStatus.PROOF_OF_ADDRESS);
-
         profileRepository.save(profile);
+        return new ProfileResponseDTO(profile);
+    }
 
-        return proofOfAddressDTO;
+    private String uploadFile(MultipartFile file, Long id) {
+        CloudinaryConfig cloudinaryConfig = new CloudinaryConfig();
+        String generator = UUID.randomUUID().toString() + id;
+        return cloudinaryConfig.imageLink(file, generator);
+    }
+
+    private String getUserID(String authorizationHeader) {
+        String token = jwtUtils.extractToken(authorizationHeader);
+        String userId = jwtUtils.extractUserIdFromToken(token);
+
+        if (userId == null) {
+            throw new InvalidTokenException("UserId is null");
+        }
+        return userId;
     }
 }

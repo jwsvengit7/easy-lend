@@ -1,7 +1,7 @@
 package com.example.transactionservice.controller;
 
 import com.example.transactionservice.dto.requests.LoanTransactionRequest;
-import com.example.transactionservice.service.TransactionService;
+import com.example.transactionservice.service.serviceImpl.PaymentProcessor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/transaction")
 public class TransactionController {
-    private final TransactionService transactionService;
+    private final PaymentProcessor paymentProcessor;
 
-@PostMapping("/initialize-payment")
-    public ResponseEntity<?> initializeTransaction(@RequestBody LoanTransactionRequest request){
-    return new ResponseEntity<>(transactionService.initializePay(request), HttpStatus.OK);
-        }
+    @PostMapping("/initialize-payment")
+    public ResponseEntity<?> initializeTransaction(@RequestBody LoanTransactionRequest request) {
+        return new ResponseEntity<>(paymentProcessor.getProcessor(request.getPaymentChoice().toUpperCase()).makePayment(request), HttpStatus.OK);
+    }
+
 }

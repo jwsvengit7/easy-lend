@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Component
 @FeignClient(name = "${loan-offer-api.name}", url = "${loan-offer-api.base-url}")
 public interface LoanOfferClient {
-    @GetMapping("/accept_offer/{offerId}")
-    ResponseEntity<LoanOffer> getLoanOffer(@PathVariable("offerId")Long offerId);
+
+    @GetMapping("api/v1/getloan/{id}")
+    ResponseEntity<LoanOffer> getLoanOffer(@PathVariable("id") String loanId);
 }
