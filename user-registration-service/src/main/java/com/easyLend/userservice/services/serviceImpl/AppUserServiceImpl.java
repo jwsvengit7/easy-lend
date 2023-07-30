@@ -49,12 +49,12 @@ public class AppUserServiceImpl implements AppUserService {
     private long expirationTime;
 
     public AppUser confirmUserExists(String email){
-        return appUserRepository.findAppUserByEmail(email).orElseThrow(()-> new UserAlreadyExistExceptions("USER NOT FOUND"));
+        return appUserRepository.findAppUserByEmail(email).orElseThrow(()-> new UserAlreadyExistExceptions("User Not Found"));
     }
     private void confirmUser(String email){
         Boolean appUser = appUserRepository.existsAppUserByEmail(email);
         if (appUser){
-            throw new UserAlreadyExistExceptions("USER ALREADY EXIST");
+            throw new UserAlreadyExistExceptions("User Already Exist");
         }
     }
     @Override
@@ -104,7 +104,7 @@ public class AppUserServiceImpl implements AppUserService {
                     .email(savedToken.getUser().getEmail())
                     .build();
         }
-        throw new UserNotActivatedException("USER NOT ACTIVATED");
+        throw new UserNotActivatedException("User Not Activated");
     }
 
 

@@ -47,7 +47,7 @@ public class VerificationServiceImpl implements VerificationEmailService {
         VerificationEmail confirmUserExists = emailRepository.findByToken(token);
         if(confirmUserExists.getExpiresAt().before(new Date())) {
             emailRepository.delete(confirmUserExists);
-            throw new TokenNotFoundException("TOKEN EXPIRED");
+            throw new TokenNotFoundException("Token Expired");
         }
         return confirmUserExists.getUser().getEmail();
 
@@ -57,11 +57,11 @@ public class VerificationServiceImpl implements VerificationEmailService {
     public String verifyUser(String token, HttpServletRequest request) {
         VerificationEmail verificationEmail = emailRepository.findByToken(token);
         if(verificationEmail==null){
-            throw new TokenNotFoundException("TOKEN NOT FOUND");
+            throw new TokenNotFoundException("Token Not Found");
         }
         AppUser appUser = verificationEmail.getUser();
         if (appUser.getRegistrationStatus()){
-            return "USER ALREADY VERIFIED";
+            return "User Already Verified";
         }
         if(verificationEmail.getExpiresAt().before(new Date())){
             emailRepository.delete(verificationEmail);
@@ -75,7 +75,7 @@ public class VerificationServiceImpl implements VerificationEmailService {
         appUserRepository.save(appUser);
         rabbitMQSender.send(new UserResponse(appUser.getUserId(),appUser.getFullName(),appUser.getEmail()));
 
-        return "USER VERIFIED";
+        return "User Verified";
 
     }
 
@@ -83,13 +83,13 @@ public class VerificationServiceImpl implements VerificationEmailService {
     public String sendNewVerificationLink(String email, HttpServletRequest request) {
         AppUser appUser = appUserService.confirmUserExists(email);
         if(appUser.getRegistrationStatus()){
-            return "USER ALREADY VERIFIED PLEASE LOG IN";
+            return "User Already Verified Please Log In";
         }
         VerificationEmail confirmUser = emailRepository.findByUser(appUser);
         if(confirmUser!=null){
             emailRepository.delete(confirmUser);
         }
-        publisher.publishEvent(new RegisterEvent(appUser, EmailUtils.applicationUrl(request)));
+        publisher.publishEvent(new RegisterEvent(appUser, EmailUtils.ReactUrl(request)));
         return "please check your email for verification link";
     }
 }
