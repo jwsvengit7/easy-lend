@@ -68,7 +68,7 @@ public class VerificationServiceImpl implements VerificationEmailService {
             return "Verification Link closed" +
                     "" +
                     "Please click the link to get a new link" +
-                    EmailUtils.applicationUrl(request)+"api/v1/auth/new-verification?email="+appUser.getEmail();
+                    EmailUtils.ReactUrl(request)+"api/v1/auth/new-verification?email="+appUser.getEmail();
 
         }
         appUser.setRegistrationStatus(true);
