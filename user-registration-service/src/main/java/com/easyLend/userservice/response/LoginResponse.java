@@ -15,4 +15,6 @@ public class LoginResponse {
     private String accessToken;
     private Boolean activate;
     private String refreshToken;
+    private Integer registrationStage;
+    private Boolean registrationStatus;
 }

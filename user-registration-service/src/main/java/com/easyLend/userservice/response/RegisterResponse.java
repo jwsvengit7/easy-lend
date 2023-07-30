@@ -7,8 +7,9 @@ import lombok.Data;
 public class RegisterResponse {
     private String fullName;
     private String email;
-    private String imageUrl;
+    private String image;
     private UserType userType;
+    private Boolean registrationStatus;
 
 
 }
