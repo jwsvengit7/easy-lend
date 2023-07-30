@@ -88,7 +88,7 @@ public class ProfileController {
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
-    @PutMapping(value = "/proof-of-address", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @GetMapping(value = "/proof-of-address", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(summary = "Update proof of address information for a user profile")
     public ResponseEntity<ApiResponse<ProfileResponseDTO>> updateProofOfAddress(
             @Parameter(description = "Proof of address information to update", required = true)
