@@ -8,6 +8,7 @@ import com.easyLend.userservice.domain.repository.JwtTokenRepository;
 import com.easyLend.userservice.event.RegisterEvent;
 import com.easyLend.userservice.exceptions.PasswordNotFoundException;
 import com.easyLend.userservice.exceptions.UserAlreadyExistExceptions;
+import com.easyLend.userservice.exceptions.UserNotActivatedException;
 import com.easyLend.userservice.request.LoginRequest;
 import com.easyLend.userservice.request.RegisterRequest;
 import com.easyLend.userservice.response.LoginResponse;
@@ -68,10 +69,11 @@ public class AppUserServiceImpl implements AppUserService {
     @Override
     public LoginResponse loginAuth(LoginRequest loginRequest) {
         AppUser user = confirmUserExists(loginRequest.getEmail());
-        if(user.getRegistrationStatus()){
+
             if(!passwordEncoder.matches(loginRequest.getPassword(),user.getPassword())){
                 throw new PasswordNotFoundException("Password does not match");
             }
+        if(user.getRegistrationStatus()){
             JwtToken token = jwtTokenRepository.findByUser(user);
             if (token != null) {
                 System.out.println(token.getAccessToken());
@@ -102,7 +104,7 @@ public class AppUserServiceImpl implements AppUserService {
                     .email(savedToken.getUser().getEmail())
                     .build();
         }
-        return null;
+        throw new UserNotActivatedException("USER NOT ACTIVATED");
     }
 
 

@@ -60,6 +60,19 @@ public class ExceptionsHandlers {
         return new ResponseEntity<>(apiResponse,HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(UserNotActivatedException.class)
+    public ResponseEntity<ApiResponse<EasyLendExceptionResponse>> userNotaCTIVATED(UserNotActivatedException e){
+
+        EasyLendExceptionResponse exceptionResponse = EasyLendExceptionResponse.builder()
+                .time(saveLocalDate(LocalDateTime.now()))
+                .message(e.getMessage())
+                .statusCode(HttpStatus.LOCKED.value())
+                .build();
+        ApiResponse<EasyLendExceptionResponse> apiResponse = new ApiResponse<>(exceptionResponse);
+        return new ResponseEntity<>(apiResponse,HttpStatus.LOCKED);
+    }
+
+
 
 
 
