@@ -1,9 +1,7 @@
 package com.example.transactionservice.entities;
 
+import com.example.transactionservice.enums.PaymentChoice;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -17,9 +15,9 @@ public class Transactions {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long loanId;
-    private Long borrowId;
-    private Long lenderId;
+    private String loanId;
+    private String borrowId;
+    private String lenderId;
     private BigDecimal amount;
     @Temporal(TemporalType.DATE)
     private LocalDate transactionDate;
@@ -29,8 +27,12 @@ public class Transactions {
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+    private String transactionId;
+    @Enumerated(EnumType.STRING)
+    private PaymentChoice paymentChoice;
 
-    public Transactions(Long id, Long loanId, Long borrowId, Long lenderId, BigDecimal amount, LocalDate transactionDate) {
+
+    public Transactions(Long id, String loanId, String borrowId, String lenderId, BigDecimal amount, LocalDate transactionDate, LocalDateTime createdAt, LocalDateTime updatedAt, String transactionId, PaymentChoice paymentChoice) {
         this.id = id;
         this.loanId = loanId;
         this.borrowId = borrowId;
@@ -39,6 +41,11 @@ public class Transactions {
         this.transactionDate = transactionDate;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.transactionId = transactionId;
+        this.paymentChoice = paymentChoice;
+    }
+
+    public Transactions() {
     }
 
     public Long getId() {
@@ -49,27 +56,27 @@ public class Transactions {
         this.id = id;
     }
 
-    public Long getLoanId() {
+    public String getLoanId() {
         return loanId;
     }
 
-    public void setLoanId(Long loanId) {
+    public void setLoanId(String loanId) {
         this.loanId = loanId;
     }
 
-    public Long getBorrowId() {
+    public String getBorrowId() {
         return borrowId;
     }
 
-    public void setBorrowId(Long borrowId) {
+    public void setBorrowId(String borrowId) {
         this.borrowId = borrowId;
     }
 
-    public Long getLenderId() {
+    public String getLenderId() {
         return lenderId;
     }
 
-    public void setLenderId(Long lenderId) {
+    public void setLenderId(String lenderId) {
         this.lenderId = lenderId;
     }
 
@@ -89,6 +96,35 @@ public class Transactions {
         this.transactionDate = transactionDate;
     }
 
-    public Transactions() {
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public String getTransactionId() {
+        return transactionId;
+    }
+
+    public void setTransactionId(String transactionId) {
+        this.transactionId = transactionId;
+    }
+
+    public PaymentChoice getPaymentChoice() {
+        return paymentChoice;
+    }
+
+    public void setPaymentChoice(PaymentChoice paymentChoice) {
+        this.paymentChoice = paymentChoice;
     }
 }

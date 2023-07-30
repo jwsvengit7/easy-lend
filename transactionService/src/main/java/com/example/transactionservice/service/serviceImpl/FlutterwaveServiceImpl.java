@@ -1,10 +1,8 @@
 package com.example.transactionservice.service.serviceImpl;
 
-import com.example.transactionservice.dto.requests.InitializePaymentRequest;
 import com.example.transactionservice.dto.requests.LoanTransactionRequest;
 import com.example.transactionservice.dto.response.LoanTransactionResponse;
 import com.example.transactionservice.entities.Transactions;
-import com.example.transactionservice.enums.PaymentChoice;
 import com.example.transactionservice.repositories.TransactionRepository;
 import com.example.transactionservice.service.PaymentService;
 import lombok.RequiredArgsConstructor;
@@ -13,11 +11,11 @@ import org.springframework.stereotype.Service;
 import java.util.Objects;
 import java.util.UUID;
 
+import static com.example.transactionservice.enums.PaymentChoice.FLUTTERWAVE;
 import static com.example.transactionservice.enums.PaymentChoice.MOCKED;
-
 @Service
 @RequiredArgsConstructor
-public class MockedPaymentServiceImpl implements PaymentService {
+public class FlutterwaveServiceImpl implements PaymentService {
 
     private final TransactionRepository transactionRepository;
 
@@ -33,7 +31,7 @@ public class MockedPaymentServiceImpl implements PaymentService {
         transactions.setLoanId(request.getLoanId());
         transactions.setAmount(request.getAmount());
         transactions.setBorrowId(request.getBorrowerId());
-        transactions.setPaymentChoice(MOCKED);
+        transactions.setPaymentChoice(FLUTTERWAVE);
         transactions.setTransactionId(transactionId);
         LoanTransactionResponse paymentResponse=new LoanTransactionResponse();
         Transactions savedTransaction = transactionRepository.save(transactions);
@@ -42,6 +40,4 @@ public class MockedPaymentServiceImpl implements PaymentService {
         paymentResponse.setData(savedTransaction);
         return paymentResponse;
     }
-
-
 }
