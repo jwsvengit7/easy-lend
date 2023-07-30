@@ -5,6 +5,7 @@ import com.decagon.dto.response.ApiResponse;
 import com.decagon.dto.response.ProfileResponseDTO;
 import com.decagon.service.ProfileService;
 import com.decagon.utils.JwtUtils;
+import com.google.gson.Gson;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -52,15 +53,16 @@ public class ProfileController {
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
-    @PutMapping(value = "/government-id", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @GetMapping(value = "/government-id", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(summary = "Update government ID information for a user profile")
     public ResponseEntity<ApiResponse<ProfileResponseDTO>> updateGovernmentID(
             @Parameter(description = "Government ID information to update", required = true)
-            @RequestPart("governmentIDDTO") GovernmentIDDTO governmentIDDTO,
-            @RequestPart("file") MultipartFile file,
+            @RequestParam("governmentIDDTO") String governmentIDDTO,
+            @RequestParam("file") MultipartFile file,
             @RequestHeader("Authorization") String authorizationHeader) {
 
-        ApiResponse<ProfileResponseDTO> responseDTO = new ApiResponse<>(profileService.updateGovernmentID(governmentIDDTO, file, authorizationHeader));
+        GovernmentIDDTO governmentID = new Gson().fromJson(governmentIDDTO, GovernmentIDDTO.class);
+        ApiResponse<ProfileResponseDTO> responseDTO = new ApiResponse<>(profileService.updateGovernmentID(governmentID, file, authorizationHeader));
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
