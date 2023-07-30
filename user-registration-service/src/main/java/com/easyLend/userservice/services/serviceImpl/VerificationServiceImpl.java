@@ -5,7 +5,10 @@ import com.easyLend.userservice.domain.entity.VerificationEmail;
 import com.easyLend.userservice.domain.repository.AppUserRepository;
 import com.easyLend.userservice.domain.repository.VerificationEmailRepository;
 import com.easyLend.userservice.event.RegisterEvent;
+import com.easyLend.userservice.exceptions.AppUserNotFoundExceptions;
 import com.easyLend.userservice.exceptions.TokenNotFoundException;
+import com.easyLend.userservice.exceptions.UserNotActivatedException;
+import com.easyLend.userservice.response.UserResponse;
 import com.easyLend.userservice.services.VerificationEmailService;
 import com.easyLend.userservice.utils.EmailUtils;
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,6 +27,7 @@ public class VerificationServiceImpl implements VerificationEmailService {
     private final PasswordEncoder passwordEncoder;
     private final ApplicationEventPublisher publisher;
     private final VerificationEmailRepository emailRepository;
+    private final RabbitMQSenderImpl rabbitMQSender;
 
     @Override
     public String findOtp() {
@@ -52,6 +56,9 @@ public class VerificationServiceImpl implements VerificationEmailService {
     @Override
     public String verifyUser(String token, HttpServletRequest request) {
         VerificationEmail verificationEmail = emailRepository.findByToken(token);
+        if(verificationEmail==null){
+            throw new TokenNotFoundException("TOKEN NOT FOUND");
+        }
         AppUser appUser = verificationEmail.getUser();
         if (appUser.getRegistrationStatus()){
             return "USER ALREADY VERIFIED";
@@ -66,6 +73,7 @@ public class VerificationServiceImpl implements VerificationEmailService {
         }
         appUser.setRegistrationStatus(true);
         appUserRepository.save(appUser);
+        rabbitMQSender.send(new UserResponse(appUser.getUserId(),appUser.getFullName(),appUser.getEmail()));
 
         return "USER VERIFIED";
 

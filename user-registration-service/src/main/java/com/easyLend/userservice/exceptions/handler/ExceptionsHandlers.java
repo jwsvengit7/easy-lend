@@ -1,9 +1,6 @@
 package com.easyLend.userservice.exceptions.handler;
 
-import com.easyLend.userservice.exceptions.AppUserNotFoundExceptions;
-import com.easyLend.userservice.exceptions.EasyLendExceptionResponse;
-import com.easyLend.userservice.exceptions.TokenNotFoundException;
-import com.easyLend.userservice.exceptions.UserAlreadyExistExceptions;
+import com.easyLend.userservice.exceptions.*;
 import com.easyLend.userservice.response.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,6 +37,19 @@ public class ExceptionsHandlers {
     }
     @ExceptionHandler(TokenNotFoundException.class)
     public ResponseEntity<ApiResponse<EasyLendExceptionResponse>> tokenNotfound(TokenNotFoundException e){
+
+        EasyLendExceptionResponse exceptionResponse = EasyLendExceptionResponse.builder()
+                .time(saveLocalDate(LocalDateTime.now()))
+                .message(e.getMessage())
+                .statusCode(HttpStatus.NOT_FOUND.value())
+                .build();
+        ApiResponse<EasyLendExceptionResponse> apiResponse = new ApiResponse<>(exceptionResponse);
+        return new ResponseEntity<>(apiResponse,HttpStatus.NOT_FOUND);
+    }
+
+
+    @ExceptionHandler(PasswordNotFoundException.class)
+    public ResponseEntity<ApiResponse<EasyLendExceptionResponse>> passwordNotfound(PasswordNotFoundException e){
 
         EasyLendExceptionResponse exceptionResponse = EasyLendExceptionResponse.builder()
                 .time(saveLocalDate(LocalDateTime.now()))
