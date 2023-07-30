@@ -1,7 +1,6 @@
 package com.example.transactionservice.controller;
 
 import com.example.transactionservice.dto.requests.LoanTransactionRequest;
-import com.example.transactionservice.service.TransactionService;
 import com.example.transactionservice.service.serviceImpl.PaymentProcessor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
