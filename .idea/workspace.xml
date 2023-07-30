@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea87701d-e819-4278-b20c-a16904c1dac4" name="Changes" comment="ini">
+      <change afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/domain/entity/Banks.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/services/serviceImpl/AppUserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/services/serviceImpl/AppUserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/services/serviceImpl/VerificationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/services/serviceImpl/VerificationServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/service/serviceImplementation/AccountNameServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/service/serviceImplementation/AccountNameServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile-management-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,7 +158,7 @@
       <workItem from="1689636493510" duration="14637000" />
       <workItem from="1690549842208" duration="9872000" />
       <workItem from="1690668274310" duration="182000" />
-      <workItem from="1690668470906" duration="10569000" />
+      <workItem from="1690668470906" duration="11125000" />
     </task>
     <task id="LOCAL-00001" summary="ini">
       <created>1689672179871</created>
