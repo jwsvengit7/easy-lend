@@ -7,15 +7,15 @@ import org.springframework.web.multipart.MultipartFile;
 public interface ProfileService {
     ProfileResponseDTO createProfile(String user_id, ContactInformationDTO contactInformation);
 
-    ProfileResponseDTO updateContactInformation(ContactInformationDTO contactInfo, String userId);
+    ProfileResponseDTO updateContactInformation(ContactInformationDTO contactInfo, String authorizationHeader);
 
-    EmploymentStatusDTO updateEmploymentStatus(EmploymentStatusDTO employmentStatus, String userId);
+    ProfileResponseDTO updateEmploymentStatus(EmploymentStatusDTO employmentStatus, String userId);
 
-    GovernmentIDDTO updateGovernmentID(GovernmentIDDTO governmentID, MultipartFile file, String userId);
+    ProfileResponseDTO updateGovernmentID(GovernmentIDDTO governmentID, MultipartFile file, String userId);
 
-    IncomeStatusDTO updateIncomeStatus(IncomeStatusDTO incomeStatus, String userId);
+    ProfileResponseDTO updateIncomeStatus(IncomeStatusDTO incomeStatus, String userId);
 
-    BankAccountDTO updateBankAccount(BankAccountDTO bankAccount, String userId);
+    ProfileResponseDTO updateBankAccount(BankAccountDTO bankAccount, String userId);
 
-    ProofOfAddressDTO updateProofOfAddress(ProofOfAddressDTO proofOfAddress, MultipartFile file, String userId);
+    ProfileResponseDTO updateProofOfAddress(ProofOfAddressDTO proofOfAddress, MultipartFile file, String userId);
 }

@@ -14,7 +14,7 @@ public class LenderController {
 
     @GetMapping("/accept_request/{requestId}")
 
-    public ResponseEntity<String> selectLoanRequest(@PathVariable("requestId") Long loanId, HttpServletRequest request) {
+    public ResponseEntity<String> selectLoanRequest(@PathVariable("requestId") String loanId, HttpServletRequest request) {
         // code to select the loan based on the loanId
         lenderService.selectLoanRequest(loanId, request);
         return ResponseEntity.ok("Loan selected successfully");
