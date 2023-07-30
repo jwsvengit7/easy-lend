@@ -3,10 +3,12 @@ package com.decagon.dto.pojoDTO;
 
 import com.decagon.domain.screen.IncomeStatus;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class IncomeStatusDTO {
     private String employmentStatus;
     private String monthlyPersonalIncome;

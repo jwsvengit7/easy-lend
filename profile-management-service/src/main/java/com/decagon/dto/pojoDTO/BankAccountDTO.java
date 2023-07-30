@@ -2,10 +2,12 @@ package com.decagon.dto.pojoDTO;
 
 import com.decagon.domain.screen.BankAccount;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class BankAccountDTO {
     private String bank;
     private String accountNumber;
