@@ -21,25 +21,27 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
     private final AppUserService appUserService;
     private final VerificationServiceImpl verificationService;
-
+    
+    @CrossOrigin("http://localhost:5173")
     @PostMapping("/register/{usertype}")
     public ResponseEntity<ApiResponse<RegisterResponse>> registerUser (@Validated @RequestBody RegisterRequest registerRequest,
                                                                        @PathVariable UserType usertype, HttpServletRequest request) {
         ApiResponse<RegisterResponse> apiResponse = new ApiResponse<>(appUserService.registerUser(registerRequest, usertype, request));
         return new ResponseEntity<>(apiResponse, HttpStatus.CREATED);
     }
+    @CrossOrigin("http://localhost:5173")
     @PostMapping("/login")
     public ResponseEntity<ApiResponse<LoginResponse>> login (@Validated@RequestBody LoginRequest loginRequest) {
         ApiResponse<LoginResponse> apiResponse = new ApiResponse<>(appUserService.loginAuth(loginRequest));
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
-
+    @CrossOrigin("http://localhost:5173")
     @GetMapping("/new-verification")
     public ResponseEntity<ApiResponse<String>>  newLink(@RequestParam("email") String email,HttpServletRequest request) {
         ApiResponse<String> apiResponse = new ApiResponse<>(verificationService.sendNewVerificationLink(email,request));
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
-
+    @CrossOrigin("http://localhost:5173")
     @GetMapping("/verify-user")
     public ResponseEntity<ApiResponse<String>> verifyUser(@RequestParam("token") String token,HttpServletRequest request) {
         ApiResponse<String> apiResponse = new ApiResponse<>(verificationService.verifyUser(token,request));

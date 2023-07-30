@@ -8,6 +8,7 @@ import com.easyLend.userservice.domain.repository.JwtTokenRepository;
 import com.easyLend.userservice.event.RegisterEvent;
 import com.easyLend.userservice.exceptions.PasswordNotFoundException;
 import com.easyLend.userservice.exceptions.UserAlreadyExistExceptions;
+import com.easyLend.userservice.exceptions.UserNotActivatedException;
 import com.easyLend.userservice.request.LoginRequest;
 import com.easyLend.userservice.request.RegisterRequest;
 import com.easyLend.userservice.response.LoginResponse;
@@ -41,44 +42,38 @@ public class AppUserServiceImpl implements AppUserService {
     private final ApplicationEventPublisher publisher;
     private final PasswordEncoder passwordEncoder;
     private final ModelMapper modelMapper;
-    private final RabbitMQSenderImpl rabbitMQSender;
     private final JwtService jwtService;
     private final JwtTokenRepository jwtTokenRepository;
-    private final AmqpTemplate rabbitTemplate;
 
-    private final Queue queue;
     @Value("${application.security.jwt.expiration}")
     private long expirationTime;
 
     public AppUser confirmUserExists(String email){
-        return appUserRepository.findAppUserByEmail(email).orElseThrow(()-> new UserAlreadyExistExceptions("USER NOT FOUND"));
+        return appUserRepository.findAppUserByEmail(email).orElseThrow(()-> new UserAlreadyExistExceptions("User Not Found"));
     }
     private void confirmUser(String email){
         Boolean appUser = appUserRepository.existsAppUserByEmail(email);
         if (appUser){
-            throw new UserAlreadyExistExceptions("USER ALREADY EXIST");
+            throw new UserAlreadyExistExceptions("User Already Exist");
         }
     }
     @Override
     public RegisterResponse registerUser(RegisterRequest request, UserType userType, HttpServletRequest httpServletRequest) {
         confirmUser(request.getEmail());
             AppUser appUser = appUserRepository.save(saveUserDTO(request));
-            rabbitMQSender.send(new UserResponse(appUser.getUserId(),appUser.getFullName(),appUser.getEmail()));
-            publisher.publishEvent(new RegisterEvent(appUser, EmailUtils.applicationUrl(httpServletRequest)));
-
+//
+            publisher.publishEvent(new RegisterEvent(appUser, EmailUtils.ReactUrl(httpServletRequest)));
             return modelMapper.map(appUser,RegisterResponse.class);
-
-
     }
 
     @Override
     public LoginResponse loginAuth(LoginRequest loginRequest) {
         AppUser user = confirmUserExists(loginRequest.getEmail());
-        if(user.getRegistrationStatus()){
+
             if(!passwordEncoder.matches(loginRequest.getPassword(),user.getPassword())){
                 throw new PasswordNotFoundException("Password does not match");
-
             }
+        if(user.getRegistrationStatus()){
             JwtToken token = jwtTokenRepository.findByUser(user);
             if (token != null) {
                 System.out.println(token.getAccessToken());
@@ -104,12 +99,12 @@ public class AppUserServiceImpl implements AppUserService {
                     .accessToken(savedToken.getAccessToken())
                     .refreshToken(savedToken.getRefreshToken())
                     .username(savedToken.getUser().getUsername())
+                    .registrationStatus(user.getRegistrationStatus())
+                    .registrationStage(user.getRegistrationStage())
                     .email(savedToken.getUser().getEmail())
                     .build();
         }
-
-
-        return null;
+        throw new UserNotActivatedException("User Not Activated");
     }
 
 
@@ -130,7 +125,8 @@ public class AppUserServiceImpl implements AppUserService {
                 .fullName(request.getFullName())
                 .email(request.getEmail())
                 .createdAt(LocalDateTime.now())
-                .registrationStatus(true)
+                .registrationStatus(false)
+                .image("https://res.cloudinary.com/jwsven/image/upload/v1690722516/319700901_1156202005084909_3853009742472973832_n_lmuvqu.jpg")
                 .password(passwordEncoder.encode(request.getPassword()))
                 .build();
     }
