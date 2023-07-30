@@ -1,5 +1,7 @@
 package com.example.transactionservice.service.serviceImpl;
 
+import com.example.transactionservice.enums.PaymentChoice;
+import com.example.transactionservice.repositories.TransactionRepository;
 import com.example.transactionservice.service.PaymentService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -9,18 +11,21 @@ import org.springframework.web.client.RestTemplate;
 @Component
 @RequiredArgsConstructor
 public class PaymentProcessor {
-    private final ObjectMapper objectMapper;
-    private final RestTemplate restTemplate;
-    public PaymentService getProcessor(PaymentChoice paymentChoice){
+    private final TransactionRepository transactionRepository;
+    public PaymentService getProcessor(String paymentChoice){
         switch (paymentChoice){
-            case GO_TO_PAYSTACK -> {
-                return new PayStackPaymentServiceImpl(objectMapper,restTemplate);
+            case "PAYSTACK" -> {
+                System.out.println("new paystack");
+                return new PayStackPaymentServiceImpl(transactionRepository);
             }
-            case MOCKED -> {
-                return new MockedPaymentServiceImpl();
+            case "MOCKED" -> {
+                return new MockedPaymentServiceImpl(transactionRepository);
+            }
+            case "FLUTTERWAVE" -> {
+                return new MockedPaymentServiceImpl(transactionRepository);
             }
             default -> {
-                return new PayStackPaymentServiceImpl(objectMapper,restTemplate);
+                return new PayStackPaymentServiceImpl(transactionRepository);
             }
         }
     }

@@ -4,37 +4,38 @@ package com.example.transactionservice.dto.requests;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.math.BigDecimal;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LoanTransactionRequest {
 
     @JsonProperty("loanId")
-    private Long loanId;
+    private String loanId;
     @JsonProperty("borrowerId")
 
     private String borrowerId;
-    @JsonProperty("lenderId")
-    private String lenderId;
     @JsonProperty("amount")
-    private Double amount;
-    @JsonProperty("email")
-    private String email;
+    private BigDecimal amount;
+    @JsonProperty("paymentChoice")
+    private String paymentChoice;
 
-    public LoanTransactionRequest(Long loanId, String borrowerId, String lenderId, Double amount, String email) {
+
+    public LoanTransactionRequest(String loanId, String borrowerId, BigDecimal amount, String paymentChoice) {
         this.loanId = loanId;
         this.borrowerId = borrowerId;
-        this.lenderId = lenderId;
         this.amount = amount;
-        this.email = email;
+        this.paymentChoice = paymentChoice;
     }
+
 
     public LoanTransactionRequest() {
     }
 
-    public Long getLoanId() {
+    public String getLoanId() {
         return loanId;
     }
 
-    public void setLoanId(Long loanId) {
+    public void setLoanId(String loanId) {
         this.loanId = loanId;
     }
 
@@ -46,27 +47,20 @@ public class LoanTransactionRequest {
         this.borrowerId = borrowerId;
     }
 
-    public String getLenderId() {
-        return lenderId;
-    }
 
-    public void setLenderId(String lenderId) {
-        this.lenderId = lenderId;
-    }
-
-    public Double getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(Double amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
-    public String getEmail() {
-        return email;
+    public String getPaymentChoice() {
+        return paymentChoice;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPaymentChoice(String paymentChoice) {
+        this.paymentChoice = paymentChoice;
     }
 }

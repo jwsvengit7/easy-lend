@@ -1,7 +1,10 @@
 package com.example.transactionservice.service.serviceImpl;
 
 import com.example.transactionservice.dto.requests.InitializePaymentRequest;
+import com.example.transactionservice.dto.requests.LoanTransactionRequest;
 import com.example.transactionservice.dto.response.LoanTransactionResponse;
+import com.example.transactionservice.entities.Transactions;
+import com.example.transactionservice.repositories.TransactionRepository;
 import com.example.transactionservice.service.PaymentService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,38 +19,40 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Objects;
+import java.util.UUID;
+
+import static com.example.transactionservice.enums.PaymentChoice.MOCKED;
+import static com.example.transactionservice.enums.PaymentChoice.PAYSTACK;
+
 @Service
 @RequiredArgsConstructor
 public class PayStackPaymentServiceImpl implements PaymentService {
-    private final ObjectMapper objectMapper;
-    private final RestTemplate restTemplate;
-    @Value("${application.paystack.secretKey}")
-    String API_SECRET;
-    public final static String PAY_STACK_BASE_URL = "https://api.paystack.co";
+    private final TransactionRepository transactionRepository;
     @Override
-    public LoanTransactionResponse makePayment(InitializePaymentRequest request) {
-        //todo: change to feign-client
-        HttpHeaders header = new HttpHeaders();
-        header.setContentType(MediaType.APPLICATION_JSON);
-        header.set(HttpHeaders.AUTHORIZATION, "Bearer " + API_SECRET);
-        HttpEntity<InitializePaymentRequest> requestHttpEntity = new HttpEntity<>(request, header);
-        ResponseEntity<String> response = restTemplate.exchange(PAY_STACK_BASE_URL + "/transaction/initialize",
-                HttpMethod.POST, requestHttpEntity, String.class);
-        LoanTransactionResponse paymentResponse = new LoanTransactionResponse();
-        paymentResponse.setStatus(false);
-        paymentResponse.setMessage("failed");
-        if (response.getStatusCode().equals(HttpStatus.OK)) {
-            String jsonResponse = response.getBody();
-            try {
-                JsonNode node = objectMapper.readTree(jsonResponse);
-                paymentResponse.setPayStackUrl(node.get("data").get("authorization_url").asText());
-                paymentResponse.setStatus(true);
-                paymentResponse.setMessage("successful");
-                return paymentResponse;
-            } catch (Exception e) {
-                throw new RuntimeException("Error in passing");
-            }
+    public LoanTransactionResponse makePayment(LoanTransactionRequest request) {
+
+        Transactions transactions = new Transactions();
+        String transactionId = UUID.randomUUID().toString().replace("-","").substring(9);
+        if(Objects.isNull(request)){
+            //TODO Controller Adviser
+            throw new RuntimeException();
+
         }
+        transactions.setLoanId(request.getLoanId());
+        transactions.setAmount(request.getAmount());
+        transactions.setBorrowId(request.getBorrowerId());
+        transactions.setPaymentChoice(PAYSTACK);
+        transactions.setTransactionId(transactionId);
+        System.out.println("before save");
+        Transactions savedTransaction = transactionRepository.save(transactions);
+        savedTransaction.setUpdatedAt(null);
+        savedTransaction.setCreatedAt(null);
+        LoanTransactionResponse paymentResponse=new LoanTransactionResponse();
+        paymentResponse.setStatus(true);
+        paymentResponse.setMessage("successful");
+        paymentResponse.setData(savedTransaction);
+
         return  paymentResponse;
     }
 }

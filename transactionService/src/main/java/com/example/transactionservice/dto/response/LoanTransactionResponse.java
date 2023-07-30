@@ -4,16 +4,22 @@ public class LoanTransactionResponse {
         return serialVersionUID;
     }
 
-    private static Long serialVersionUID = 2223L;
+    private static Long serialVersionUID = 2225L;
     private boolean status;
     private String message;
-    private String PayStackUrl;
-    public LoanTransactionResponse(boolean status, String message, String payStackUrl) {
+    private Object data;
+
+    public LoanTransactionResponse(boolean status, String message, Object data) {
         this.status = status;
         this.message = message;
-        PayStackUrl = payStackUrl;
+        this.data = data;
     }
+
     public LoanTransactionResponse() {
+    }
+
+    public static void setSerialVersionUID(Long serialVersionUID) {
+        LoanTransactionResponse.serialVersionUID = serialVersionUID;
     }
 
     public boolean isStatus() {
@@ -32,13 +38,11 @@ public class LoanTransactionResponse {
         this.message = message;
     }
 
-    public String getPayStackUrl() {
-        return PayStackUrl;
+    public Object getData() {
+        return data;
     }
 
-    public void setPayStackUrl(String payStackUrl) {
-        PayStackUrl = payStackUrl;
+    public void setData(Object data) {
+        this.data = data;
     }
-
-
 }
