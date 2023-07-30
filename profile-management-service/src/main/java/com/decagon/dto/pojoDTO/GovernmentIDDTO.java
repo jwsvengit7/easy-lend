@@ -1,6 +1,6 @@
 package com.decagon.dto.pojoDTO;
 
-import com.decagon.domain.pojo.GovernmentID;
+import com.decagon.domain.screen.GovernmentID;
 import lombok.Getter;
 import lombok.Setter;
 

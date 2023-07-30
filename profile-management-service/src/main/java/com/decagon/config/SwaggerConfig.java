@@ -11,8 +11,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@SecuritySchemes({@SecurityScheme(name = "bearerToken", type = SecuritySchemeType.HTTP,
-        scheme = "bearer", bearerFormat = "JWT")})
+@SecuritySchemes({@SecurityScheme(
+        name= "bearerToken",
+        type = SecuritySchemeType.HTTP,
+        scheme = "bearer",
+        bearerFormat = "JWT")})
 public class SwaggerConfig {
     @Value("${swagger.version}")
     private String version;

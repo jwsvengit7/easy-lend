@@ -9,13 +9,13 @@ public interface ProfileService {
 
     ProfileResponseDTO updateContactInformation(ContactInformationDTO contactInfo, String authorizationHeader);
 
-    ProfileResponseDTO updateEmploymentStatus(EmploymentStatusDTO employmentStatus, String userId);
+    ProfileResponseDTO updateEmploymentStatus(EmploymentStatusDTO employmentStatus, String authorizationHeader);
 
-    ProfileResponseDTO updateGovernmentID(GovernmentIDDTO governmentID, MultipartFile file, String userId);
+    ProfileResponseDTO updateGovernmentID(GovernmentIDDTO governmentID, MultipartFile file, String authorizationHeader);
 
-    ProfileResponseDTO updateIncomeStatus(IncomeStatusDTO incomeStatus, String userId);
+    ProfileResponseDTO updateIncomeStatus(IncomeStatusDTO incomeStatus, String authorizationHeader);
 
-    ProfileResponseDTO updateBankAccount(BankAccountDTO bankAccount, String userId);
+    ProfileResponseDTO updateBankAccount(BankAccountDTO bankAccount, String authorizationHeader);
 
-    ProfileResponseDTO updateProofOfAddress(ProofOfAddressDTO proofOfAddress, MultipartFile file, String userId);
+    ProfileResponseDTO updateProofOfAddress(ProofOfAddressDTO proofOfAddress, MultipartFile file, String authorizationHeader);
 }

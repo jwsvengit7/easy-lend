@@ -1,7 +1,8 @@
 package com.decagon.domain.entity;
 
-import com.decagon.config.JsonConverter;
-import com.decagon.domain.pojo.*;
+import com.decagon.domain.screen.converter.JsonConverter;
+import com.decagon.domain.constant.ProfileStatus;
+import com.decagon.domain.screen.*;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,6 +1,6 @@
 package com.decagon.dto.pojoDTO;
 
-import com.decagon.domain.pojo.BankAccount;
+import com.decagon.domain.screen.BankAccount;
 import lombok.Getter;
 import lombok.Setter;
 
