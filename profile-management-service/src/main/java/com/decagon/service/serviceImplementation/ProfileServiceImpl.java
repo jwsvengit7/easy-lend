@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Objects;
 import java.util.UUID;
 
 @Service
@@ -35,10 +36,9 @@ public class ProfileServiceImpl implements ProfileService {
         profile.setStatus(ProfileStatus.NEW);
         profile.setContactInformation(contactInformation);
 
-        profileRepository.save(profile);
-        ProfileResponseDTO responseDTO = new ProfileResponseDTO(profile);
+        profile=profileRepository.save(profile);
 
-        return responseDTO;
+        return new ProfileResponseDTO(profile);
     }
 
     @Override
@@ -49,8 +49,10 @@ public class ProfileServiceImpl implements ProfileService {
 
         ContactInformation contactInformation = new ContactInformation(contactInformationDTO);
         profile.setContactInformation(contactInformation);
-        profile.setStatus(ProfileStatus.CONTACT_UPDATED);
-        profileRepository.save(profile);
+        if(Objects.isNull(profile.getContactInformation())) {
+            profile.setStatus(ProfileStatus.CONTACT_UPDATED);
+        }
+        profile=profileRepository.save(profile);
         return new ProfileResponseDTO(profile);
     }
 
@@ -61,7 +63,7 @@ public class ProfileServiceImpl implements ProfileService {
                 .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
         EmploymentStatus employmentStatus = new EmploymentStatus(employmentStatusDTO);
         profile.setEmploymentStatus(employmentStatus);
-        profileRepository.save(profile);
+        profile=profileRepository.save(profile);
         return new ProfileResponseDTO(profile);
     }
 
@@ -72,9 +74,10 @@ public class ProfileServiceImpl implements ProfileService {
                 .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
         String url = uploadFile(file, profile.getId());
         GovernmentID governmentID = new GovernmentID(governmentIDDTO);
+        governmentID.setDocumentUrl(url);
         profile.setGovernmentId(governmentID);
         profile.setStatus(ProfileStatus.GOVERNMENT_UPDATED);
-        profileRepository.save(profile);
+        profile=profileRepository.save(profile);
         return new ProfileResponseDTO(profile);
     }
 
@@ -86,7 +89,7 @@ public class ProfileServiceImpl implements ProfileService {
         IncomeStatus incomeStatus = new IncomeStatus(incomeStatusDTO);
         profile.setIncomeStatus(incomeStatus);
         profile.setStatus(ProfileStatus.INCOME_UPDATED);
-        profileRepository.save(profile);
+        profile=profileRepository.save(profile);
         return new ProfileResponseDTO(profile);
     }
 
@@ -98,7 +101,7 @@ public class ProfileServiceImpl implements ProfileService {
         BankAccount bankAccount = new BankAccount(bankAccountDTO);
         profile.setBankAccount(bankAccount);
         profile.setStatus(ProfileStatus.BANK_ACCOUNT_UPDATED);
-        profileRepository.save(profile);
+        profile=profileRepository.save(profile);
         return new ProfileResponseDTO(profile);
     }
 
@@ -109,9 +112,10 @@ public class ProfileServiceImpl implements ProfileService {
                 .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
         String url = uploadFile(file, profile.getId());
         ProofOfAddress proofOfAddress = new ProofOfAddress(proofOfAddressDTO);
+        proofOfAddress.setDocument_Url(url);
         profile.setProofOfAddress(proofOfAddress);
         profile.setStatus(ProfileStatus.PROOF_OF_ADDRESS);
-        profileRepository.save(profile);
+        profile=profileRepository.save(profile);
         return new ProfileResponseDTO(profile);
     }
 
