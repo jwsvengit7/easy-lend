@@ -26,27 +26,21 @@ public class Profile {
     @Enumerated(EnumType.STRING)
     private ProfileStatus status;
 
-    @Column(columnDefinition = "json")
-    @Convert(converter = JsonConverter.class)
-    private ContactInformation contactInformation;
+    @Column(name = "contactInformation")
+    private String contactInformation;
 
-    @Column(columnDefinition = "json")
-    @Convert(converter = JsonConverter.class)
-    private EmploymentStatus employmentStatus;
+    @Column(name = "employmentStatus")
+    private String employmentStatus;
 
-    @Column(columnDefinition = "json")
-    @Convert(converter = JsonConverter.class)
-    private GovernmentID governmentId;
+    @Column(name = "governmentId")
+    private String governmentId;
 
-    @Column(columnDefinition = "json")
-    @Convert(converter = JsonConverter.class)
-    private IncomeStatus incomeStatus;
+    @Column(name = "incomeStatus")
+    private String incomeStatus;
 
-    @Column(columnDefinition = "json")
-    @Convert(converter = JsonConverter.class)
-    private ProofOfAddress proofOfAddress;
+    @Column(name = "proofOfAddress")
+    private String proofOfAddress;
 
-    @Column(columnDefinition = "json")
-    @Convert(converter = JsonConverter.class)
-    private BankAccount bankAccount;
+    @Column(name = "bankAccount")
+    private String bankAccount;
 }

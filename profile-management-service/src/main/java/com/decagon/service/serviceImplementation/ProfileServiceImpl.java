@@ -11,6 +11,8 @@ import com.decagon.exception.ProfileNotFoundException;
 import com.decagon.repository.ProfileRepository;
 import com.decagon.service.ProfileService;
 import com.decagon.utils.JwtUtils;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,6 +26,8 @@ public class ProfileServiceImpl implements ProfileService {
     private final ProfileRepository profileRepository;
     private final JwtUtils jwtUtils;
 
+    private static ObjectMapper mapper=new ObjectMapper();
+
     @Override
     public ProfileResponseDTO createProfile(String user_id, ContactInformationDTO contactInformationDTO) {
         ContactInformation contactInformation = new ContactInformation();
@@ -34,7 +38,6 @@ public class ProfileServiceImpl implements ProfileService {
         Profile profile = new Profile();
         profile.setUserId(user_id);
         profile.setStatus(ProfileStatus.NEW);
-        profile.setContactInformation(contactInformation);
 
         profile=profileRepository.save(profile);
 
@@ -48,7 +51,12 @@ public class ProfileServiceImpl implements ProfileService {
                 .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
 
         ContactInformation contactInformation = new ContactInformation(contactInformationDTO);
-        profile.setContactInformation(contactInformation);
+        try {
+            profile.setContactInformation(mapper.writeValueAsString(contactInformation));
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+
         if(Objects.isNull(profile.getContactInformation())) {
             profile.setStatus(ProfileStatus.CONTACT_UPDATED);
         }
@@ -62,7 +70,11 @@ public class ProfileServiceImpl implements ProfileService {
         Profile profile = profileRepository.findByUserId(userId)
                 .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
         EmploymentStatus employmentStatus = new EmploymentStatus(employmentStatusDTO);
-        profile.setEmploymentStatus(employmentStatus);
+        try {
+            profile.setEmploymentStatus(mapper.writeValueAsString(employmentStatus));
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
         profile=profileRepository.save(profile);
         return new ProfileResponseDTO(profile);
     }
@@ -75,7 +87,11 @@ public class ProfileServiceImpl implements ProfileService {
         String url = uploadFile(file, profile.getId());
         GovernmentID governmentID = new GovernmentID(governmentIDDTO);
         governmentID.setDocumentUrl(url);
-        profile.setGovernmentId(governmentID);
+        try {
+            profile.setGovernmentId(mapper.writeValueAsString(governmentID));
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
         profile.setStatus(ProfileStatus.GOVERNMENT_UPDATED);
         profile=profileRepository.save(profile);
         return new ProfileResponseDTO(profile);
@@ -87,7 +103,11 @@ public class ProfileServiceImpl implements ProfileService {
         Profile profile = profileRepository.findByUserId(userId)
                 .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
         IncomeStatus incomeStatus = new IncomeStatus(incomeStatusDTO);
-        profile.setIncomeStatus(incomeStatus);
+        try {
+            profile.setIncomeStatus(mapper.writeValueAsString(incomeStatus));
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
         profile.setStatus(ProfileStatus.INCOME_UPDATED);
         profile=profileRepository.save(profile);
         return new ProfileResponseDTO(profile);
@@ -99,7 +119,11 @@ public class ProfileServiceImpl implements ProfileService {
         Profile profile = profileRepository.findByUserId(userId)
                 .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
         BankAccount bankAccount = new BankAccount(bankAccountDTO);
-        profile.setBankAccount(bankAccount);
+        try {
+            profile.setBankAccount(mapper.writeValueAsString(bankAccount));
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
         profile.setStatus(ProfileStatus.BANK_ACCOUNT_UPDATED);
         profile=profileRepository.save(profile);
         return new ProfileResponseDTO(profile);
@@ -113,7 +137,11 @@ public class ProfileServiceImpl implements ProfileService {
         String url = uploadFile(file, profile.getId());
         ProofOfAddress proofOfAddress = new ProofOfAddress(proofOfAddressDTO);
         proofOfAddress.setDocument_Url(url);
-        profile.setProofOfAddress(proofOfAddress);
+        try {
+            profile.setProofOfAddress(mapper.writeValueAsString(proofOfAddress));
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
         profile.setStatus(ProfileStatus.PROOF_OF_ADDRESS);
         profile=profileRepository.save(profile);
         return new ProfileResponseDTO(profile);
