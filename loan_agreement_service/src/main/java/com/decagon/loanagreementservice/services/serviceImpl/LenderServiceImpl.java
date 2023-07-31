@@ -23,7 +23,7 @@ public class LenderServiceImpl implements LenderService {
     private final JwtUtils jwtUtils;
 
     @Override
-    public LoanAgreementDto selectLoanRequest(Long loanId, HttpServletRequest request) {
+    public LoanAgreementDto selectLoanRequest(String loanId, HttpServletRequest request) {
         String auth = request.getHeader("Authorization");
         String token = auth.substring(7);
         if(!jwtUtils.getUserTypeFromToken(token).equalsIgnoreCase("LENDER")){
