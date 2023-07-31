@@ -10,6 +10,7 @@ import com.decagon.exception.InvalidTokenException;
 import com.decagon.exception.ProfileNotFoundException;
 import com.decagon.repository.ProfileRepository;
 import com.decagon.service.ProfileService;
+import com.decagon.service.UploadService;
 import com.decagon.utils.JwtUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -24,6 +25,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ProfileServiceImpl implements ProfileService {
     private final ProfileRepository profileRepository;
+    private final UploadService uploadService;
     private final JwtUtils jwtUtils;
 
     private static ObjectMapper mapper=new ObjectMapper();
@@ -160,9 +162,8 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     private String uploadFile(MultipartFile file, Long id) {
-        CloudinaryConfig cloudinaryConfig = new CloudinaryConfig();
         String generator = UUID.randomUUID().toString() + id;
-        return cloudinaryConfig.imageLink(file, generator);
+        return uploadService.imageLink(file, generator);
     }
 
     private String getUserID(String authorizationHeader) {
