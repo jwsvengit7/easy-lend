@@ -6,7 +6,9 @@ import com.example.transactionservice.dto.response.LoanTransactionResponse;
 import com.example.transactionservice.entities.Transactions;
 import com.example.transactionservice.enums.PaymentChoice;
 import com.example.transactionservice.repositories.TransactionRepository;
+import com.example.transactionservice.securityConfig.JWTUtils;
 import com.example.transactionservice.service.PaymentService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,9 +22,20 @@ import static com.example.transactionservice.enums.PaymentChoice.MOCKED;
 public class MockedPaymentServiceImpl implements PaymentService {
 
     private final TransactionRepository transactionRepository;
+    private final JWTUtils jwtUtils;
 
     @Override
-    public LoanTransactionResponse makePayment(LoanTransactionRequest request) {
+    public LoanTransactionResponse makePayment(LoanTransactionRequest request, HttpServletRequest servletRequest) {
+        String authHeader = servletRequest.getHeader("Authorization");
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            throw new RuntimeException("permission denied");
+        }
+
+        String token = authHeader.substring(7);
+        if (!jwtUtils.getUserTypeFromToken(token).equalsIgnoreCase("LENDER")) {
+            throw new RuntimeException("permission denied");
+        }
+
         Transactions transactions = new Transactions();
         String transactionId = UUID.randomUUID().toString().replace("-","").substring(9);
         if(Objects.isNull(request)){
