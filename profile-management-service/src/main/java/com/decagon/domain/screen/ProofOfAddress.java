@@ -12,6 +12,6 @@ public class ProofOfAddress {
     private String document_Url;
 
     public ProofOfAddress(ProofOfAddressDTO proofOfAddressDTO) {
-//        this.document_Url = proofOfAddressDTO.getDocument_Url();
+        this.document_Url = proofOfAddressDTO.getDocumentUrl();
     }
 }

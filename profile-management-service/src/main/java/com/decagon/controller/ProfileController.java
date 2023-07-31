@@ -5,7 +5,6 @@ import com.decagon.dto.response.ApiResponse;
 import com.decagon.dto.response.ProfileResponseDTO;
 import com.decagon.service.ProfileService;
 import com.decagon.utils.JwtUtils;
-import com.google.gson.Gson;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -29,6 +28,16 @@ public class ProfileController {
     public ProfileController(ProfileService profileService, JwtUtils jwtUtils) {
         this.profileService = profileService;
         this.jwtUtils = jwtUtils;
+    }
+
+    @GetMapping("/get-profile")
+    @Operation(summary = "Fetch user profile")
+    public ResponseEntity<ApiResponse<ProfileResponseDTO>> getProfile(
+            @Parameter(description = "user profile is fetched", required = true)
+            @RequestHeader("Authorization") String authorizationHeader) {
+
+        ApiResponse<ProfileResponseDTO> responseDTO = new ApiResponse<>(profileService.getProfile(authorizationHeader));
+        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
     @PutMapping("/contact-information")
@@ -87,16 +96,15 @@ public class ProfileController {
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
-    @PutMapping(value = "/proof-of-address", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/proof-of-address", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(summary = "Update proof of address information for a user profile")
     public ResponseEntity<ApiResponse<ProfileResponseDTO>> updateProofOfAddress(
             @Parameter(description = "Proof of address information to update", required = true)
-            @RequestParam("proofOfAddressDTO") String proofOfAddressDTO,
+            @ModelAttribute ProofOfAddressDTO proofOfAddressDTO,
             @RequestParam("file") MultipartFile file,
             @RequestHeader("Authorization") String authorizationHeader) {
 
-        ProofOfAddressDTO address = new Gson().fromJson(proofOfAddressDTO, ProofOfAddressDTO.class);
-        ApiResponse<ProfileResponseDTO> responseDTO = new ApiResponse<>(profileService.updateProofOfAddress(address, file, authorizationHeader));
+        ApiResponse<ProfileResponseDTO> responseDTO = new ApiResponse<>(profileService.updateProofOfAddress(proofOfAddressDTO, file, authorizationHeader));
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 }
