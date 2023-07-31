@@ -53,16 +53,15 @@ public class ProfileController {
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/government-id", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/government-id", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(summary = "Update government ID information for a user profile")
     public ResponseEntity<ApiResponse<ProfileResponseDTO>> updateGovernmentID(
             @Parameter(description = "Government ID information to update", required = true)
-            @RequestParam("governmentIDDTO") String governmentIDDTO,
+            @ModelAttribute GovernmentIDDTO governmentIDDTO,
             @RequestParam("file") MultipartFile file,
             @RequestHeader("Authorization") String authorizationHeader) {
 
-        GovernmentIDDTO governmentID = new Gson().fromJson(governmentIDDTO, GovernmentIDDTO.class);
-        ApiResponse<ProfileResponseDTO> responseDTO = new ApiResponse<>(profileService.updateGovernmentID(governmentID, file, authorizationHeader));
+        ApiResponse<ProfileResponseDTO> responseDTO = new ApiResponse<>(profileService.updateGovernmentID(governmentIDDTO, file, authorizationHeader));
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
@@ -88,7 +87,7 @@ public class ProfileController {
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/proof-of-address", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PutMapping(value = "/proof-of-address", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(summary = "Update proof of address information for a user profile")
     public ResponseEntity<ApiResponse<ProfileResponseDTO>> updateProofOfAddress(
             @Parameter(description = "Proof of address information to update", required = true)

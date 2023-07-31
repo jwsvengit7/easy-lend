@@ -75,6 +75,9 @@ public class ProfileServiceImpl implements ProfileService {
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
+        if(Objects.isNull(profile.getEmploymentStatus())) {
+            profile.setStatus(ProfileStatus.EMPLOYMENT_UPDATED);
+        }
         profile=profileRepository.save(profile);
         return new ProfileResponseDTO(profile);
     }
@@ -92,7 +95,9 @@ public class ProfileServiceImpl implements ProfileService {
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-        profile.setStatus(ProfileStatus.GOVERNMENT_UPDATED);
+        if(Objects.isNull(profile.getGovernmentId())) {
+            profile.setStatus(ProfileStatus.GOVERNMENT_UPDATED);
+        }
         profile=profileRepository.save(profile);
         return new ProfileResponseDTO(profile);
     }
@@ -108,7 +113,9 @@ public class ProfileServiceImpl implements ProfileService {
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-        profile.setStatus(ProfileStatus.INCOME_UPDATED);
+        if(Objects.isNull(profile.getIncomeStatus())) {
+            profile.setStatus(ProfileStatus.INCOME_UPDATED);
+        }
         profile=profileRepository.save(profile);
         return new ProfileResponseDTO(profile);
     }
@@ -124,7 +131,9 @@ public class ProfileServiceImpl implements ProfileService {
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-        profile.setStatus(ProfileStatus.BANK_ACCOUNT_UPDATED);
+        if(Objects.isNull(profile.getBankAccount())) {
+            profile.setStatus(ProfileStatus.BANK_ACCOUNT_UPDATED);
+        }
         profile=profileRepository.save(profile);
         return new ProfileResponseDTO(profile);
     }
@@ -142,7 +151,10 @@ public class ProfileServiceImpl implements ProfileService {
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-        profile.setStatus(ProfileStatus.PROOF_OF_ADDRESS);
+        if(Objects.isNull(profile.getProofOfAddress())) {
+            profile.setStatus(ProfileStatus.PROOF_OF_ADDRESS);
+        }
+
         profile=profileRepository.save(profile);
         return new ProfileResponseDTO(profile);
     }
