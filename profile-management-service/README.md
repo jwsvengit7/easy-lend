@@ -301,22 +301,21 @@ documentUrl=@/path/to/proof_of_address_document.pdf
 {
   "success": true,
   "data": {
-  "userId": "user123",
-  "status": "PROOF_OF_ADDRESS",
-  "contactInformationDTO": null,
-  "employmentStatusDTO": null,
-  "incomeStatusDTO": null,
-  "governmentIDDTO": null,
-  "proofOfAddressDTO": {
-  "documentUrl": "https://example.com/documents/proof_of_address"
-  },
-  "bankAccountDTO": null
+    "userId": "user123",
+    "status": "PROOF_OF_ADDRESS",
+    "contactInformationDTO": null,
+    "employmentStatusDTO": null,
+    "incomeStatusDTO": null,
+    "governmentIDDTO": null,
+    "proofOfAddressDTO": {
+      "documentUrl": "https://example.com/documents/proof_of_address"
+    },
+    "bankAccountDTO": null
 ```
+
 }
-  
 
 With these API requests and responses, you can effectively manage user profiles and update their information as needed
 using the Profile Management Service.
-
 
 THANK YOU :)
