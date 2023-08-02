@@ -30,18 +30,18 @@ public class ProfileController {
         this.profileService = profileService;
         this.jwtUtils = jwtUtils;
     }
-
+    @CrossOrigin("http://localhost:5173")
     @PutMapping("/contact-information")
     @Operation(summary = "Update contact information for a user profile")
-    public ResponseEntity<ApiResponse<ProfileResponseDTO>> updateContactInformation(
+    public ResponseEntity<ApiResponse<String>> updateContactInformation(
             @Parameter(description = "Contact information to update", required = true)
             @RequestBody ContactInformationDTO contactInfo,
             @RequestHeader("Authorization") String authorizationHeader) {
 
-        ApiResponse<ProfileResponseDTO> responseDTO = new ApiResponse<>(profileService.updateContactInformation(contactInfo, authorizationHeader));
+        ApiResponse<String> responseDTO = new ApiResponse<>(profileService.updateContactInformation(contactInfo, authorizationHeader));
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
-
+    @CrossOrigin("http://localhost:5173")
     @PutMapping("/employment-status")
     @Operation(summary = "Update employment status for a user profile")
     public ResponseEntity<ApiResponse<ProfileResponseDTO>> updateEmploymentStatus(
@@ -52,19 +52,20 @@ public class ProfileController {
         ApiResponse<ProfileResponseDTO> responseDTO = new ApiResponse<>(profileService.updateEmploymentStatus(employmentStatusDTO, authorizationHeader));
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
-
+    @CrossOrigin("http://localhost:5173")
     @PostMapping(value = "/government-id", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(summary = "Update government ID information for a user profile")
     public ResponseEntity<ApiResponse<ProfileResponseDTO>> updateGovernmentID(
             @Parameter(description = "Government ID information to update", required = true)
-            @ModelAttribute GovernmentIDDTO governmentIDDTO,
+            @RequestParam("GovernmentIDDTO") String governmentIDDTO,
             @RequestParam("file") MultipartFile file,
             @RequestHeader("Authorization") String authorizationHeader) {
+        GovernmentIDDTO governmentIDDTO1 = new Gson().fromJson(governmentIDDTO,GovernmentIDDTO.class);
 
-        ApiResponse<ProfileResponseDTO> responseDTO = new ApiResponse<>(profileService.updateGovernmentID(governmentIDDTO, file, authorizationHeader));
+        ApiResponse<ProfileResponseDTO> responseDTO = new ApiResponse<>(profileService.updateGovernmentID(governmentIDDTO1, file, authorizationHeader));
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
-
+    @CrossOrigin("http://localhost:5173")
     @PutMapping("/income-status")
     @Operation(summary = "Update income status for a user profile")
     public ResponseEntity<ApiResponse<ProfileResponseDTO>> updateIncomeStatus(
@@ -75,7 +76,7 @@ public class ProfileController {
         ApiResponse<ProfileResponseDTO> responseDTO = new ApiResponse<>(profileService.updateIncomeStatus(incomeStatusDTO, authorizationHeader));
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
-
+    @CrossOrigin("http://localhost:5173")
     @PutMapping("/bank-account")
     @Operation(summary = "Update bank account information for a user profile")
     public ResponseEntity<ApiResponse<ProfileResponseDTO>> updateBankAccount(
@@ -86,7 +87,7 @@ public class ProfileController {
         ApiResponse<ProfileResponseDTO> responseDTO = new ApiResponse<>(profileService.updateBankAccount(bankAccountDTO, authorizationHeader));
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
-
+    @CrossOrigin("http://localhost:5173")
     @PutMapping(value = "/proof-of-address", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(summary = "Update proof of address information for a user profile")
     public ResponseEntity<ApiResponse<ProfileResponseDTO>> updateProofOfAddress(
@@ -97,6 +98,17 @@ public class ProfileController {
 
         ProofOfAddressDTO address = new Gson().fromJson(proofOfAddressDTO, ProofOfAddressDTO.class);
         ApiResponse<ProfileResponseDTO> responseDTO = new ApiResponse<>(profileService.updateProofOfAddress(address, file, authorizationHeader));
+        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+    }
+
+    @CrossOrigin("http://localhost:5173")
+    @GetMapping(value = "/getDetails")
+    @Operation(summary = "Update proof of address information for a user profile")
+    public ResponseEntity<ApiResponse<?>> getContact(
+            @Parameter(description = "Proof of address information to update", required = true)
+            @RequestHeader("Authorization") String authorizationHeader) {
+
+        ApiResponse<?> responseDTO = new ApiResponse<>(profileService.getContact(authorizationHeader));
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 }

@@ -19,4 +19,8 @@ public class Banks {
     private String bankName;
     private String bankCode;
 
+    public Banks(String code, String name) {
+        this.bankCode=code;
+        this.bankName=name;
+    }
 }

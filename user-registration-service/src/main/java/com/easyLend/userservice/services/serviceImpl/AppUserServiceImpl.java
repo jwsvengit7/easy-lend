@@ -98,7 +98,7 @@ public class AppUserServiceImpl implements AppUserService {
                     .activate(savedToken.getUser().getRegistrationStatus())
                     .accessToken(savedToken.getAccessToken())
                     .refreshToken(savedToken.getRefreshToken())
-                    .username(savedToken.getUser().getUsername())
+                    .username(user.getFullName())
                     .registrationStatus(user.getRegistrationStatus())
                     .registrationStage(user.getRegistrationStage())
                     .email(savedToken.getUser().getEmail())
@@ -121,7 +121,7 @@ public class AppUserServiceImpl implements AppUserService {
 
     private AppUser saveUserDTO(RegisterRequest request){
         return AppUser.builder()
-                .userType(request.getUserType())
+                .userType(UserType.BORROWER)
                 .fullName(request.getFullName())
                 .email(request.getEmail())
                 .createdAt(LocalDateTime.now())
