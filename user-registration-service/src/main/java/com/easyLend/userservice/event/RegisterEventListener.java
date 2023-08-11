@@ -20,15 +20,16 @@ public class RegisterEventListener implements ApplicationListener<RegisterEvent>
     private final VerificationServiceImpl confirmationTokenService;
     @Override
     public void onApplicationEvent(RegisterEvent event) {
-
         AppUser appUser = event.getAppUser();
     String token = UUID.randomUUID().toString();
     VerificationEmail confirmationToken = new VerificationEmail(token, appUser);
         confirmationTokenService.saveToken(confirmationToken);
     String url = event.getUrl()+"/user-auth?token="+token;
+        System.out.println(url);
         try{
         sendConfirmationToken(url,appUser);
-    }catch(UnsupportedEncodingException | MessagingException e){
+    }
+        catch(UnsupportedEncodingException | MessagingException e){
         throw new RuntimeException(e.getMessage());
     }
 }
