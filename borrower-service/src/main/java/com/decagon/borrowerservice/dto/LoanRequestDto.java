@@ -33,8 +33,8 @@ public class LoanRequestDto {
     @JsonProperty (value = "updatedAt")
     private LocalDateTime updatedAt;
 
-    @JsonProperty (value = "requiredDocuments")
-    private List<String> requiredDocuments;
+//    @JsonProperty (value = "requiredDocuments")
+//    private String requiredDocuments;
 
     public LoanRequestDto(LoanRequest loanRequest) {
         this.loanAmt = loanRequest.getLoanAmt();
@@ -44,6 +44,6 @@ public class LoanRequestDto {
         this.purpose = loanRequest.getPurpose();
         this.createdAt = loanRequest.getCreatedAt();
         this.updatedAt = loanRequest.getUpdatedAt();
-        this.requiredDocuments = loanRequest.getRequiredDocuments();
+//        this.requiredDocuments = loanRequest.getRequiredDocuments();
     }
 }

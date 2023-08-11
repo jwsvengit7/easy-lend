@@ -1,5 +1,6 @@
 package com.decagon.service.serviceImplementation;
 
+import com.decagon.config.CloudinaryConfig;
 import com.decagon.domain.constant.ProfileStatus;
 import com.decagon.domain.entity.Profile;
 import com.decagon.domain.screen.*;
@@ -13,6 +14,7 @@ import com.decagon.service.UploadService;
 import com.decagon.utils.JwtUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
@@ -25,7 +27,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ProfileServiceImpl implements ProfileService {
     private final ProfileRepository profileRepository;
-    private final UploadService uploadService;
+
     private final JwtUtils jwtUtils;
 
     private static ObjectMapper mapper = new ObjectMapper();
@@ -56,7 +58,23 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public ProfileResponseDTO updateContactInformation(ContactInformationDTO contactInformationDTO, String authorizationHeader) {
+    public Object getContact(String authorizationHeader){
+        String userId = getUserID(authorizationHeader);
+        if(userId!=null){
+            Profile profile = profileRepository.findByUserId(userId)
+                    .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
+
+           String contact = profile.getContactInformation();
+           ContactInformation contactInformation = new Gson().fromJson(contact,ContactInformation.class);
+           return contactInformation;
+
+        }
+        return null;
+
+    }
+
+    @Override
+    public String updateContactInformation(ContactInformationDTO contactInformationDTO, String authorizationHeader) {
         String userId = getUserID(authorizationHeader);
         Profile profile = profileRepository.findByUserId(userId)
                 .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
@@ -71,8 +89,14 @@ public class ProfileServiceImpl implements ProfileService {
             throw new RuntimeException(e);
         }
 
-        profile = profileRepository.save(profile);
-        return new ProfileResponseDTO(profile);
+
+        if(Objects.isNull(profile.getContactInformation())) {
+            profile.setStatus(ProfileStatus.CONTACT_UPDATED);
+        }
+        profile=profileRepository.save(profile);
+        new ProfileResponseDTO(profile);
+        return "success";
+
     }
 
     @Override
@@ -172,10 +196,11 @@ public class ProfileServiceImpl implements ProfileService {
 
     private String uploadFile(MultipartFile file, Long id) {
         String generator = UUID.randomUUID().toString() + id;
-        return uploadService.imageLink(file, generator);
+        CloudinaryConfig cloudinaryConfig =new CloudinaryConfig();
+        return cloudinaryConfig.imageLink(file, generator);
     }
 
-    private String getUserID(String authorizationHeader) {
+    public String getUserID(String authorizationHeader) {
         String token = jwtUtils.extractToken(authorizationHeader);
         String userId = jwtUtils.extractUserIdFromToken(token);
 
