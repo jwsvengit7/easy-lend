@@ -1,9 +1,10 @@
 package com.decagon.loanagreementservice.services;
 
-import com.decagon.loanagreementservice.dtos.request.LoanAgreementDto;
+import com.decagon.loanagreementservice.dtos.request.PaymentChoice;
+import com.decagon.loanagreementservice.dtos.response.TransactionResponse;
 import jakarta.servlet.http.HttpServletRequest;
 
 public interface LenderService {
 
-    LoanAgreementDto selectLoanRequest(String loanId, HttpServletRequest request);
+    TransactionResponse selectLoanRequest(String loanId, HttpServletRequest request, String paymentChoice);
 }

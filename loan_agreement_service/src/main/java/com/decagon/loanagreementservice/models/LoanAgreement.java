@@ -24,6 +24,7 @@ public class LoanAgreement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "agreement_id")
     private Long id;
+    private String loanAgreementId;
 
     @Column(name = "loan_id")
     private String loanId;
