@@ -5,9 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea87701d-e819-4278-b20c-a16904c1dac4" name="Changes" comment="initial commit">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/event/RegisterEventListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/event/RegisterEventListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-registration-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile-management-service/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile-management-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/controller/ProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/domain/screen/ProofOfAddress.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/domain/screen/ProofOfAddress.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/dto/pojoDTO/ProofOfAddressDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/dto/pojoDTO/ProofOfAddressDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/dto/request/ProfileRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/dto/request/ProfileRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/dto/response/ProfileResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/dto/response/ProfileResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/service/ProfileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/service/ProfileService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/service/UploadService.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/service/UploadService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/service/serviceImplementation/ProfileServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/service/serviceImplementation/ProfileServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,7 +185,7 @@
       <workItem from="1690895328808" duration="4742000" />
       <workItem from="1691065591699" duration="850000" />
       <workItem from="1691254266925" duration="256000" />
-      <workItem from="1691769289002" duration="1110000" />
+      <workItem from="1691769289002" duration="1491000" />
     </task>
     <task id="LOCAL-00001" summary="ini">
       <created>1689672179871</created>
@@ -208,7 +215,14 @@
       <option name="project" value="LOCAL" />
       <updated>1690967508426</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="initial commit">
+      <created>1691770802699</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1691770802704</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

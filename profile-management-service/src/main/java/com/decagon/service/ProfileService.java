@@ -5,6 +5,7 @@ import com.decagon.dto.response.ProfileResponseDTO;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface ProfileService {
+    ProfileResponseDTO getProfile(String authorizationHeader);
     ProfileResponseDTO createProfile(String user_id, ContactInformationDTO contactInformation);
 
     String updateContactInformation(ContactInformationDTO contactInfo, String authorizationHeader);
