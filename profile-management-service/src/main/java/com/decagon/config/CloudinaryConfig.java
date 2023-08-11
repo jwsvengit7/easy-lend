@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-@Configuration
+
 public class CloudinaryConfig {
 
     @Value("${cloudinary.cloud_name}")
@@ -23,8 +23,22 @@ public class CloudinaryConfig {
     @Value("${cloudinary.api_secret}")
     private String CLOUD_SECRET;
 
-    @Bean
-    public Cloudinary configCloudinary(){
+
+    private Cloudinary configCloudinary(){
         return new Cloudinary(ObjectUtils.asMap("cloud_name",CLOUD_NAME,"api_key",CLOUD_KEY,"api_secret",CLOUD_SECRET));
+    }
+
+    public String imageLink(MultipartFile file, String id) {
+        String url = "";
+        CloudinaryConfig cloudinaryConfig = new CloudinaryConfig();
+        Cloudinary cloudinary = cloudinaryConfig.configCloudinary();
+        try {
+            cloudinary.uploader().upload(file.getBytes(), ObjectUtils.asMap("public_id", "image_id" + id));
+            url = cloudinary.url().transformation(new Transformation().width(200).height(250).crop("fill")).generate("image_id" + id);
+            System.out.println(url);
+        } catch (IOException exception) {
+            System.out.println(exception.getMessage());
+        }
+        return url;
     }
 }

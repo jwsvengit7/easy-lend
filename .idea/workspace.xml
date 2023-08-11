@@ -4,11 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea87701d-e819-4278-b20c-a16904c1dac4" name="Changes" comment="ini">
-      <change afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/domain/entity/Banks.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/service/serviceImplementation/AccountNameServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/service/serviceImplementation/AccountNameServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/resources/application.properties" afterDir="false" />
+    <list default="true" id="ea87701d-e819-4278-b20c-a16904c1dac4" name="Changes" comment="initial commit">
+      <change beforePath="$PROJECT_DIR$/profile-management-service/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile-management-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/controller/ProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/domain/screen/ProofOfAddress.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/domain/screen/ProofOfAddress.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/dto/pojoDTO/ProofOfAddressDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/dto/pojoDTO/ProofOfAddressDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/dto/request/ProfileRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/dto/request/ProfileRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/dto/response/ProfileResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/dto/response/ProfileResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/service/ProfileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/service/ProfileService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/service/UploadService.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/service/UploadService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/service/serviceImplementation/ProfileServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/service/serviceImplementation/ProfileServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +27,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -51,37 +58,52 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "TODO_SCOPE": "All Places",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/olorunlexe/Documents/GitHub/easy-lend-14",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "spring.configuration.checksum": "ebafccb71b1e20ab0fa50459c1d6207a",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;TODO_SCOPE&quot;: &quot;All Places&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/olorunlexe/Documents/GitHub/easy-lend-14&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;a22aa9644577aa00fbe55562335c23e6&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.decagon.borrowerservice.exception" />
+      <recent name="com.decagon.borrowerservice.dto.response" />
+      <recent name="com.decagon.repository" />
+      <recent name="com.decagon.dto.request" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
   <component name="RunManager" selected="Spring Boot.UserRegApplication">
     <configuration name="All in user-registration-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="user-registration-service" />
@@ -159,6 +181,11 @@
       <workItem from="1690549842208" duration="9872000" />
       <workItem from="1690668274310" duration="182000" />
       <workItem from="1690668470906" duration="11125000" />
+      <workItem from="1690811429169" duration="17229000" />
+      <workItem from="1690895328808" duration="4742000" />
+      <workItem from="1691065591699" duration="850000" />
+      <workItem from="1691254266925" duration="256000" />
+      <workItem from="1691769289002" duration="1491000" />
     </task>
     <task id="LOCAL-00001" summary="ini">
       <created>1689672179871</created>
@@ -181,7 +208,21 @@
       <option name="project" value="LOCAL" />
       <updated>1689673481703</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="initial commit">
+      <created>1690967508426</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1690967508426</updated>
+    </task>
+    <task id="LOCAL-00005" summary="initial commit">
+      <created>1691770802699</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1691770802704</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -200,6 +241,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="ini" />
-    <option name="LAST_COMMIT_MESSAGE" value="ini" />
+    <MESSAGE value="initial" />
+    <MESSAGE value="initial commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="initial commit" />
   </component>
 </project>

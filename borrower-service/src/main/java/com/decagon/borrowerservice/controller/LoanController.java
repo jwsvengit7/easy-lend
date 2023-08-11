@@ -17,19 +17,19 @@ import java.util.List;
 public class LoanController {
     @Autowired
     private BorrowerService borrowerService;
-
+    @CrossOrigin("http://localhost:5173")
     @PostMapping("/apply")
     public ResponseEntity<LoanRequestDto> loanRequest(@RequestBody LoanRequestDto loanRequestDto, HttpServletRequest request) {
         LoanRequestDto savedLoan = borrowerService.loanRequest(loanRequestDto, request);
         return new ResponseEntity<>(savedLoan, HttpStatus.CREATED);
     }
-
+    @CrossOrigin("http://localhost:5173")
     @GetMapping("{id}")
     public ResponseEntity<LoanRequestDto> getLoan(@PathVariable ("id") Long id){
         LoanRequestDto getLoan = borrowerService.getLoan(id);
         return new ResponseEntity<>(getLoan, HttpStatus.OK);
     }
-
+    @CrossOrigin("http://localhost:5173")
     @GetMapping()
     public ResponseEntity<List<LoanRequestDto>> getAllLoans(){
         List <LoanRequestDto> getAllLoans = borrowerService.getAllLoans();
