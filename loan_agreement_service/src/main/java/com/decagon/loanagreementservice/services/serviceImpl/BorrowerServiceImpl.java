@@ -1,6 +1,5 @@
 package com.decagon.loanagreementservice.services.serviceImpl;
-
-import com.decagon.loanagreementservice.dtos.request.LoanAgreementDto;
+import com.decagon.loanagreementservice.dtos.response.LoanAgreementDto;
 import com.decagon.loanagreementservice.exceptions.InvalidTokenException;
 import com.decagon.loanagreementservice.exceptions.OfferNotFoundException;
 import com.decagon.loanagreementservice.exceptions.UserNotAuthorizedException;
@@ -13,7 +12,6 @@ import com.decagon.loanagreementservice.services.BorrowerService;
 import com.decagon.loanagreementservice.services.LoanOfferClient;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +19,6 @@ import java.util.Objects;
 
 @RequiredArgsConstructor
 @Service
-@Slf4j
 public class BorrowerServiceImpl implements BorrowerService {
     private final LoanOfferClient loanOfferClient;
     private final AgreementRepository repository;
@@ -50,16 +47,12 @@ public class BorrowerServiceImpl implements BorrowerService {
         }
         // todo Set the status of the loan offer to pending. NB the loan application entity is present in a different service
         LoanAgreement loanAgreement = new LoanAgreement();
-
+        loanAgreement.setInterestRate(loanOffer.getInterestRate());
         // todo get the id of the logged in user who in this case is a borrower and replace randomLong.
         loanAgreement.setBorrowerId(userId);
-        loanAgreement.setLenderId(loanOffer.getUserId());
-        log.info("loan offer payload {}", loanOffer.getUserId());
-        loanAgreement.setLoanId(loanOffer.getLoanId());
-        loanAgreement.setInterestRate(loanOffer.getInterestRate());
-        loanAgreement.setLoanAmount(loanOffer.getLoanAmount());
+        loanAgreement.setLenderId(loanOffer.getLenderId());
         loanAgreement.setStatus(Status.PENDING);
-//        loanAgreement.setLoanId(loanOffer.getLoanId());
+        loanAgreement.setLoanId(loanOffer.getLoanId());
         loanAgreement.setDurationInDays(loanOffer.getDurationInDays());
         repository.save(loanAgreement);
         //            BeanUtils.copyProperties(loanAgreement, loanAgreementDto);
@@ -80,3 +73,5 @@ public class BorrowerServiceImpl implements BorrowerService {
 
 
 }
+
+
