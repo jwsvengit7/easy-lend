@@ -32,15 +32,15 @@ private final ProfileServiceImpl profileService;
     @Override
     public void run(ApplicationArguments args) throws Exception {
         HeadersUtils.apiDetails(headers);
-        RequestEntity<?> requestEntity = new RequestEntity<>(headers, HttpMethod.GET, URI.create("https://api.paystack.co/bank"));
-        ResponseEntity<String> responseEntity = restTemplate.exchange(requestEntity,String.class);
-        List<BankData> bankDataList = new ObjectMapper().convertValue(new JSONParser(Objects.requireNonNull(responseEntity.getBody())).object().get("data"), new TypeReference<List<BankData>>() {});
-        bankRespository.deleteAll();
-        if(bankRespository.findAll().isEmpty()){
-            bankDataList.forEach(add ->{
-                bankRespository.save(new Banks(add.getCode(),add.getName()));
-            });
-        }
+//        RequestEntity<?> requestEntity = new RequestEntity<>(headers, HttpMethod.GET, URI.create("https://api.paystack.co/bank"));
+//        ResponseEntity<String> responseEntity = restTemplate.exchange(requestEntity,String.class);
+//        List<BankData> bankDataList = new ObjectMapper().convertValue(new JSONParser(Objects.requireNonNull(responseEntity.getBody())).object().get("data"), new TypeReference<List<BankData>>() {});
+//        bankRespository.deleteAll();
+//        if(bankRespository.findAll().isEmpty()){
+//            bankDataList.forEach(add ->{
+//                bankRespository.save(new Banks(add.getCode(),add.getName()));
+//            });
+//        }
     }
     @Override
     public Object getBankCodeAndSend(String bankName, String accountNumber,String authorizationHeader) {

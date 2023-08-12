@@ -3,6 +3,7 @@ package com.decagon.service.serviceImplementation;
 import com.decagon.config.CloudinaryConfig;
 import com.decagon.domain.constant.ProfileStatus;
 import com.decagon.domain.entity.Profile;
+import com.decagon.domain.message.UserObject;
 import com.decagon.domain.screen.*;
 import com.decagon.dto.pojoDTO.*;
 import com.decagon.dto.response.ProfileResponseDTO;
@@ -42,7 +43,7 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public ProfileResponseDTO createProfile(String user_id, ContactInformationDTO contactInformationDTO) {
+    public ProfileResponseDTO createProfile(String user_id, ContactInformationDTO contactInformationDTO) throws JsonProcessingException {
         ContactInformation contactInformation = new ContactInformation();
         contactInformation.setFirstName(contactInformationDTO.getFirstName());
         contactInformation.setLastName(contactInformationDTO.getLastName());
@@ -51,6 +52,7 @@ public class ProfileServiceImpl implements ProfileService {
         Profile profile = new Profile();
         profile.setUserId(user_id);
         profile.setStatus(ProfileStatus.NEW);
+        profile.setContactInformation(mapper.writeValueAsString(contactInformation));
 
         profile = profileRepository.save(profile);
 
@@ -58,7 +60,7 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public Object getContact(String authorizationHeader){
+    public ContactInformation getContact(String authorizationHeader){
         String userId = getUserID(authorizationHeader);
         if(userId!=null){
             Profile profile = profileRepository.findByUserId(userId)

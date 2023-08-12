@@ -19,21 +19,20 @@ public class UserCreationEventListener {
     @RabbitListener(queues = "rabbitmq.queue")
     public void handleCreateUserEvent(String message) throws JsonProcessingException {
         System.out.println("Received message: " + message);
-        // Fetch user information using the provided user_id from the userDetails
         UserObject user = new ObjectMapper().readValue(message, UserObject.class);
+        System.out.println(user.getEmail());
 
-        // Split the full name into two parts (firstName and lastName)
         String[] nameParts = user.getFullName().split(" ");
         String firstName = nameParts[0];
         String lastName = nameParts[1];
 
-        // Create and save the ContactInformation screen
+
         ContactInformationDTO contactInformation = new ContactInformationDTO();
         contactInformation.setFirstName(firstName);
         contactInformation.setLastName(lastName);
         contactInformation.setEmail(user.getEmail());
 
-        // Create the Profile entity and save it in the database using the ProfileService
+
         profileService.createProfile(user.getUserId(), contactInformation);
     }
 }

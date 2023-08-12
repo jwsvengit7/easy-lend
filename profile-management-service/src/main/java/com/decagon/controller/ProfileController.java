@@ -1,5 +1,6 @@
 package com.decagon.controller;
 
+import com.decagon.domain.screen.ContactInformation;
 import com.decagon.dto.pojoDTO.*;
 import com.decagon.dto.response.ApiResponse;
 import com.decagon.dto.response.ProfileResponseDTO;
@@ -22,7 +23,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class ProfileController {
     @Value("${jwt.secret}")
     private String jwtSecret;
-
     private final ProfileService profileService;
     private final JwtUtils jwtUtils;
 
@@ -42,7 +42,7 @@ public class ProfileController {
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
-
+    @CrossOrigin("http://localhost:5173")
     @PutMapping("/contact-information")
     @Operation(summary = "Update contact information for a user profile")
     public ResponseEntity<ApiResponse<String>> updateContactInformation(
@@ -116,11 +116,11 @@ public class ProfileController {
     @CrossOrigin("http://localhost:5173")
     @GetMapping(value = "/getDetails")
     @Operation(summary = "Update proof of address information for a user profile")
-    public ResponseEntity<ApiResponse<?>> getContact(
+    public ResponseEntity<ApiResponse<ContactInformation>> getContact(
             @Parameter(description = "Proof of address information to update", required = true)
             @RequestHeader("Authorization") String authorizationHeader) {
 
-        ApiResponse<?> responseDTO = new ApiResponse<>(profileService.getContact(authorizationHeader));
+        ApiResponse<ContactInformation> responseDTO = new ApiResponse<>(profileService.getContact(authorizationHeader));
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 }
