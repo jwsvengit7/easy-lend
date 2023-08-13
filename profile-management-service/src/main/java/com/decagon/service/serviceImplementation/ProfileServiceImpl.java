@@ -75,31 +75,30 @@ public class ProfileServiceImpl implements ProfileService {
 
     }
 
+
+
     @Override
-    public String updateContactInformation(ContactInformationDTO contactInformationDTO, String authorizationHeader) {
+    public ProfileResponseDTO updateContactInformation(ContactInformationDTO contactInformationDTO, String authorizationHeader) {
         String userId = getUserID(authorizationHeader);
         Profile profile = profileRepository.findByUserId(userId)
                 .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
 
         ContactInformation contactInformation = new ContactInformation(contactInformationDTO);
-        if (StringUtils.isBlank(profile.getContactInformation())) {
-            profile.setStatus(ProfileStatus.CONTACT_UPDATED);
-        }
+//        if(profile.getStatus().ordinal()<=1) {
+//            profile.setStatus(ProfileStatus.CONTACT_UPDATED);
+//        }
+        getOrdinal(profile,1,ProfileStatus.CONTACT_UPDATED);
+
         try {
             profile.setContactInformation(mapper.writeValueAsString(contactInformation));
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-
-
-        if(Objects.isNull(profile.getContactInformation())) {
-            profile.setStatus(ProfileStatus.CONTACT_UPDATED);
-        }
         profile=profileRepository.save(profile);
-        new ProfileResponseDTO(profile);
-        return "success";
-
+        return  new ProfileResponseDTO(profile);
     }
+
+
 
     @Override
     public ProfileResponseDTO updateEmploymentStatus(EmploymentStatusDTO employmentStatusDTO, String authorizationHeader) {
@@ -107,9 +106,9 @@ public class ProfileServiceImpl implements ProfileService {
         Profile profile = profileRepository.findByUserId(userId)
                 .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
         EmploymentStatus employmentStatus = new EmploymentStatus(employmentStatusDTO);
-        if (StringUtils.isBlank(profile.getEmploymentStatus())) {
-            profile.setStatus(ProfileStatus.EMPLOYMENT_UPDATED);
-        }
+
+        getOrdinal(profile,2,ProfileStatus.EMPLOYMENT_UPDATED);
+
         try {
             profile.setEmploymentStatus(mapper.writeValueAsString(employmentStatus));
         } catch (JsonProcessingException e) {
@@ -127,9 +126,9 @@ public class ProfileServiceImpl implements ProfileService {
         String url = uploadFile(file, profile.getId());
         GovernmentID governmentID = new GovernmentID(governmentIDDTO);
         governmentID.setDocumentUrl(url);
-        if (StringUtils.isBlank(profile.getGovernmentId())) {
-            profile.setStatus(ProfileStatus.GOVERNMENT_UPDATED);
-        }
+        getOrdinal(profile,3,ProfileStatus.GOVERNMENT_UPDATED);
+
+
         try {
             profile.setGovernmentId(mapper.writeValueAsString(governmentID));
         } catch (JsonProcessingException e) {
@@ -145,9 +144,9 @@ public class ProfileServiceImpl implements ProfileService {
         Profile profile = profileRepository.findByUserId(userId)
                 .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
         IncomeStatus incomeStatus = new IncomeStatus(incomeStatusDTO);
-        if (Objects.isNull(profile.getIncomeStatus())) {
-            profile.setStatus(ProfileStatus.INCOME_UPDATED);
-        }
+
+        getOrdinal(profile,4,ProfileStatus.INCOME_UPDATED);
+
         try {
             profile.setIncomeStatus(mapper.writeValueAsString(incomeStatus));
         } catch (JsonProcessingException e) {
@@ -163,9 +162,8 @@ public class ProfileServiceImpl implements ProfileService {
         Profile profile = profileRepository.findByUserId(userId)
                 .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
         BankAccount bankAccount = new BankAccount(bankAccountDTO);
-        if (StringUtils.isBlank(profile.getBankAccount())) {
-            profile.setStatus(ProfileStatus.BANK_ACCOUNT_UPDATED);
-        }
+
+        getOrdinal(profile,5,ProfileStatus.BANK_ACCOUNT_UPDATED);
         try {
             profile.setBankAccount(mapper.writeValueAsString(bankAccount));
         } catch (JsonProcessingException e) {
@@ -183,9 +181,9 @@ public class ProfileServiceImpl implements ProfileService {
         String url = uploadFile(file, profile.getId());
         ProofOfAddress proofOfAddress = new ProofOfAddress(proofOfAddressDTO);
         proofOfAddress.setDocument_Url(url);
-        if (StringUtils.isBlank(profile.getProofOfAddress())) {
-            profile.setStatus(ProfileStatus.PROOF_OF_ADDRESS);
-        }
+
+        getOrdinal(profile,6,ProfileStatus.PROOF_OF_ADDRESS);
+
         try {
             profile.setProofOfAddress(mapper.writeValueAsString(proofOfAddress));
         } catch (JsonProcessingException e) {
@@ -210,5 +208,11 @@ public class ProfileServiceImpl implements ProfileService {
             throw new InvalidTokenException("UserId is null");
         }
         return userId;
+    }
+    private void getOrdinal(Profile profile,int ordinal, ProfileStatus profileStatus){
+        if(profile.getStatus().ordinal()<=ordinal) {
+            profile.setStatus(profileStatus);
+        }
+
     }
 }

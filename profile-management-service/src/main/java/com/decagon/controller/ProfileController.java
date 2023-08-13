@@ -45,12 +45,12 @@ public class ProfileController {
     @CrossOrigin("http://localhost:5173")
     @PutMapping("/contact-information")
     @Operation(summary = "Update contact information for a user profile")
-    public ResponseEntity<ApiResponse<String>> updateContactInformation(
+    public ResponseEntity<ApiResponse<ProfileResponseDTO>> updateContactInformation(
             @Parameter(description = "Contact information to update", required = true)
             @RequestBody ContactInformationDTO contactInfo,
             @RequestHeader("Authorization") String authorizationHeader) {
 
-        ApiResponse<String> responseDTO = new ApiResponse<>(profileService.updateContactInformation(contactInfo, authorizationHeader));
+        ApiResponse<ProfileResponseDTO> responseDTO = new ApiResponse<>(profileService.updateContactInformation(contactInfo, authorizationHeader));
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
     @CrossOrigin("http://localhost:5173")

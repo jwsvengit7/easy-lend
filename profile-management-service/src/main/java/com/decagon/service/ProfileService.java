@@ -10,7 +10,7 @@ public interface ProfileService {
     ProfileResponseDTO getProfile(String authorizationHeader);
     ProfileResponseDTO createProfile(String user_id, ContactInformationDTO contactInformation) throws JsonProcessingException;
 
-    String updateContactInformation(ContactInformationDTO contactInfo, String authorizationHeader);
+    ProfileResponseDTO updateContactInformation(ContactInformationDTO contactInfo, String authorizationHeader);
 
     ProfileResponseDTO updateEmploymentStatus(EmploymentStatusDTO employmentStatus, String authorizationHeader);
 

@@ -5,7 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea87701d-e819-4278-b20c-a16904c1dac4" name="Changes" comment="Refactoring Services">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a6f7d4f6-1319-40be-9348-a4712909fbd5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a6f7d4f6-1319-40be-9348-a4712909fbd5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/messenging-service/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/messenging-service/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/messenging-service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/messenging-service/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/messenging-service/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/messenging-service/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/messenging-service/src/main/java/com/example/messengingservice/MessengingServiceApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/messenging-service/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/messenging-service/src/test/java/com/example/messengingservice/MessengingServiceApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/controller/ProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/service/ProfileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/service/ProfileService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/service/serviceImplementation/ProfileServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/service/serviceImplementation/ProfileServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-registration-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,7 +190,9 @@
       <workItem from="1691065591699" duration="850000" />
       <workItem from="1691254266925" duration="256000" />
       <workItem from="1691769289002" duration="6415000" />
-      <workItem from="1691801109863" duration="5693000" />
+      <workItem from="1691801109863" duration="12427000" />
+      <workItem from="1691877968759" duration="52000" />
+      <workItem from="1691878219364" duration="4518000" />
     </task>
     <task id="LOCAL-00001" summary="ini">
       <created>1689672179871</created>
@@ -221,7 +236,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691815222151</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Refactoring Services">
+      <created>1691856166707</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1691856166707</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
