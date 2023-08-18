@@ -1,5 +1,6 @@
 package com.decagon.controller;
 
+import com.decagon.domain.screen.ContactInformation;
 import com.decagon.dto.pojoDTO.*;
 import com.decagon.dto.response.ApiResponse;
 import com.decagon.dto.response.ProfileResponseDTO;
@@ -22,7 +23,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class ProfileController {
     @Value("${jwt.secret}")
     private String jwtSecret;
-
     private final ProfileService profileService;
     private final JwtUtils jwtUtils;
 
@@ -30,15 +30,27 @@ public class ProfileController {
         this.profileService = profileService;
         this.jwtUtils = jwtUtils;
     }
+
+    @CrossOrigin("http://localhost:5173")
+    @GetMapping("/get-profile")
+    @Operation(summary = "Fetch user profile")
+    public ResponseEntity<ApiResponse<ProfileResponseDTO>> getProfile(
+            @Parameter(description = "user profile is fetched", required = true)
+            @RequestHeader("Authorization") String authorizationHeader) {
+
+        ApiResponse<ProfileResponseDTO> responseDTO = new ApiResponse<>(profileService.getProfile(authorizationHeader));
+        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+    }
+
     @CrossOrigin("http://localhost:5173")
     @PutMapping("/contact-information")
     @Operation(summary = "Update contact information for a user profile")
-    public ResponseEntity<ApiResponse<String>> updateContactInformation(
+    public ResponseEntity<ApiResponse<ProfileResponseDTO>> updateContactInformation(
             @Parameter(description = "Contact information to update", required = true)
             @RequestBody ContactInformationDTO contactInfo,
             @RequestHeader("Authorization") String authorizationHeader) {
 
-        ApiResponse<String> responseDTO = new ApiResponse<>(profileService.updateContactInformation(contactInfo, authorizationHeader));
+        ApiResponse<ProfileResponseDTO> responseDTO = new ApiResponse<>(profileService.updateContactInformation(contactInfo, authorizationHeader));
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
     @CrossOrigin("http://localhost:5173")
@@ -87,28 +99,28 @@ public class ProfileController {
         ApiResponse<ProfileResponseDTO> responseDTO = new ApiResponse<>(profileService.updateBankAccount(bankAccountDTO, authorizationHeader));
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
+
     @CrossOrigin("http://localhost:5173")
     @PutMapping(value = "/proof-of-address", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(summary = "Update proof of address information for a user profile")
     public ResponseEntity<ApiResponse<ProfileResponseDTO>> updateProofOfAddress(
             @Parameter(description = "Proof of address information to update", required = true)
-            @RequestParam("proofOfAddressDTO") String proofOfAddressDTO,
+            @ModelAttribute ProofOfAddressDTO proofOfAddressDTO,
             @RequestParam("file") MultipartFile file,
             @RequestHeader("Authorization") String authorizationHeader) {
 
-        ProofOfAddressDTO address = new Gson().fromJson(proofOfAddressDTO, ProofOfAddressDTO.class);
-        ApiResponse<ProfileResponseDTO> responseDTO = new ApiResponse<>(profileService.updateProofOfAddress(address, file, authorizationHeader));
+        ApiResponse<ProfileResponseDTO> responseDTO = new ApiResponse<>(profileService.updateProofOfAddress(proofOfAddressDTO, file, authorizationHeader));
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
     @CrossOrigin("http://localhost:5173")
     @GetMapping(value = "/getDetails")
     @Operation(summary = "Update proof of address information for a user profile")
-    public ResponseEntity<ApiResponse<?>> getContact(
+    public ResponseEntity<ApiResponse<ContactInformation>> getContact(
             @Parameter(description = "Proof of address information to update", required = true)
             @RequestHeader("Authorization") String authorizationHeader) {
 
-        ApiResponse<?> responseDTO = new ApiResponse<>(profileService.getContact(authorizationHeader));
+        ApiResponse<ContactInformation> responseDTO = new ApiResponse<>(profileService.getContact(authorizationHeader));
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 }

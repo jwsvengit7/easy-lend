@@ -3,6 +3,7 @@ package com.decagon.service.serviceImplementation;
 import com.decagon.config.CloudinaryConfig;
 import com.decagon.domain.constant.ProfileStatus;
 import com.decagon.domain.entity.Profile;
+import com.decagon.domain.message.UserObject;
 import com.decagon.domain.screen.*;
 import com.decagon.dto.pojoDTO.*;
 import com.decagon.dto.response.ProfileResponseDTO;
@@ -16,6 +17,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -29,10 +31,19 @@ public class ProfileServiceImpl implements ProfileService {
 
     private final JwtUtils jwtUtils;
 
-    private static ObjectMapper mapper=new ObjectMapper();
+    private static ObjectMapper mapper = new ObjectMapper();
 
     @Override
-    public ProfileResponseDTO createProfile(String user_id, ContactInformationDTO contactInformationDTO) {
+    public ProfileResponseDTO getProfile(String authorizationHeader) {
+        String userId = getUserID(authorizationHeader);
+        Profile profile = profileRepository.findByUserId(userId)
+                .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
+
+        return new ProfileResponseDTO(profile);
+    }
+
+    @Override
+    public ProfileResponseDTO createProfile(String user_id, ContactInformationDTO contactInformationDTO) throws JsonProcessingException {
         ContactInformation contactInformation = new ContactInformation();
         contactInformation.setFirstName(contactInformationDTO.getFirstName());
         contactInformation.setLastName(contactInformationDTO.getLastName());
@@ -41,14 +52,15 @@ public class ProfileServiceImpl implements ProfileService {
         Profile profile = new Profile();
         profile.setUserId(user_id);
         profile.setStatus(ProfileStatus.NEW);
+        profile.setContactInformation(mapper.writeValueAsString(contactInformation));
 
-        profile=profileRepository.save(profile);
+        profile = profileRepository.save(profile);
 
         return new ProfileResponseDTO(profile);
     }
 
     @Override
-    public Object getContact(String authorizationHeader){
+    public ContactInformation getContact(String authorizationHeader){
         String userId = getUserID(authorizationHeader);
         if(userId!=null){
             Profile profile = profileRepository.findByUserId(userId)
@@ -63,26 +75,30 @@ public class ProfileServiceImpl implements ProfileService {
 
     }
 
+
+
     @Override
-    public String updateContactInformation(ContactInformationDTO contactInformationDTO, String authorizationHeader) {
+    public ProfileResponseDTO updateContactInformation(ContactInformationDTO contactInformationDTO, String authorizationHeader) {
         String userId = getUserID(authorizationHeader);
         Profile profile = profileRepository.findByUserId(userId)
                 .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
 
         ContactInformation contactInformation = new ContactInformation(contactInformationDTO);
+//        if(profile.getStatus().ordinal()<=1) {
+//            profile.setStatus(ProfileStatus.CONTACT_UPDATED);
+//        }
+        getOrdinal(profile,1,ProfileStatus.CONTACT_UPDATED);
+
         try {
             profile.setContactInformation(mapper.writeValueAsString(contactInformation));
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-
-        if(Objects.isNull(profile.getContactInformation())) {
-            profile.setStatus(ProfileStatus.CONTACT_UPDATED);
-        }
         profile=profileRepository.save(profile);
-        new ProfileResponseDTO(profile);
-        return "success";
+        return  new ProfileResponseDTO(profile);
     }
+
+
 
     @Override
     public ProfileResponseDTO updateEmploymentStatus(EmploymentStatusDTO employmentStatusDTO, String authorizationHeader) {
@@ -90,15 +106,15 @@ public class ProfileServiceImpl implements ProfileService {
         Profile profile = profileRepository.findByUserId(userId)
                 .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
         EmploymentStatus employmentStatus = new EmploymentStatus(employmentStatusDTO);
+
+        getOrdinal(profile,2,ProfileStatus.EMPLOYMENT_UPDATED);
+
         try {
             profile.setEmploymentStatus(mapper.writeValueAsString(employmentStatus));
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-        if(Objects.isNull(profile.getEmploymentStatus())) {
-            profile.setStatus(ProfileStatus.EMPLOYMENT_UPDATED);
-        }
-        profile=profileRepository.save(profile);
+        profile = profileRepository.save(profile);
         return new ProfileResponseDTO(profile);
     }
 
@@ -110,15 +126,15 @@ public class ProfileServiceImpl implements ProfileService {
         String url = uploadFile(file, profile.getId());
         GovernmentID governmentID = new GovernmentID(governmentIDDTO);
         governmentID.setDocumentUrl(url);
+        getOrdinal(profile,3,ProfileStatus.GOVERNMENT_UPDATED);
+
+
         try {
             profile.setGovernmentId(mapper.writeValueAsString(governmentID));
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-        if(Objects.isNull(profile.getGovernmentId())) {
-            profile.setStatus(ProfileStatus.GOVERNMENT_UPDATED);
-        }
-        profile=profileRepository.save(profile);
+        profile = profileRepository.save(profile);
         return new ProfileResponseDTO(profile);
     }
 
@@ -128,15 +144,15 @@ public class ProfileServiceImpl implements ProfileService {
         Profile profile = profileRepository.findByUserId(userId)
                 .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
         IncomeStatus incomeStatus = new IncomeStatus(incomeStatusDTO);
+
+        getOrdinal(profile,4,ProfileStatus.INCOME_UPDATED);
+
         try {
             profile.setIncomeStatus(mapper.writeValueAsString(incomeStatus));
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-        if(Objects.isNull(profile.getIncomeStatus())) {
-            profile.setStatus(ProfileStatus.INCOME_UPDATED);
-        }
-        profile=profileRepository.save(profile);
+        profile = profileRepository.save(profile);
         return new ProfileResponseDTO(profile);
     }
 
@@ -146,15 +162,14 @@ public class ProfileServiceImpl implements ProfileService {
         Profile profile = profileRepository.findByUserId(userId)
                 .orElseThrow(() -> new ProfileNotFoundException("Profile not found for user ID: " + userId));
         BankAccount bankAccount = new BankAccount(bankAccountDTO);
+
+        getOrdinal(profile,5,ProfileStatus.BANK_ACCOUNT_UPDATED);
         try {
             profile.setBankAccount(mapper.writeValueAsString(bankAccount));
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-        if(Objects.isNull(profile.getBankAccount())) {
-            profile.setStatus(ProfileStatus.BANK_ACCOUNT_UPDATED);
-        }
-        profile=profileRepository.save(profile);
+        profile = profileRepository.save(profile);
         return new ProfileResponseDTO(profile);
     }
 
@@ -166,16 +181,16 @@ public class ProfileServiceImpl implements ProfileService {
         String url = uploadFile(file, profile.getId());
         ProofOfAddress proofOfAddress = new ProofOfAddress(proofOfAddressDTO);
         proofOfAddress.setDocument_Url(url);
+
+        getOrdinal(profile,6,ProfileStatus.PROOF_OF_ADDRESS);
+
         try {
             profile.setProofOfAddress(mapper.writeValueAsString(proofOfAddress));
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-        if(Objects.isNull(profile.getProofOfAddress())) {
-            profile.setStatus(ProfileStatus.PROOF_OF_ADDRESS);
-        }
 
-        profile=profileRepository.save(profile);
+        profile = profileRepository.save(profile);
         return new ProfileResponseDTO(profile);
     }
 
@@ -193,5 +208,11 @@ public class ProfileServiceImpl implements ProfileService {
             throw new InvalidTokenException("UserId is null");
         }
         return userId;
+    }
+    private void getOrdinal(Profile profile,int ordinal, ProfileStatus profileStatus){
+        if(profile.getStatus().ordinal()<=ordinal) {
+            profile.setStatus(profileStatus);
+        }
+
     }
 }

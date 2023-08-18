@@ -4,40 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea87701d-e819-4278-b20c-a16904c1dac4" name="Changes" comment="initial">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_10_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/borrower-service/src/main/java/com/decagon/borrowerservice/dto/response/ApiResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/borrower-service/src/main/java/com/decagon/borrowerservice/exception/EasyLendExceptionResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/controller/AccountController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/dto/request/BankData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/exception/BankNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/repository/BankRespository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/service/AccountService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/service/serviceImplementation/AccountServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/utils/HeadersUtils.java" afterDir="false" />
+    <list default="true" id="ea87701d-e819-4278-b20c-a16904c1dac4" name="Changes" comment="Messaging Service &amp; Refactoring">
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a6f7d4f6-1319-40be-9348-a4712909fbd5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a6f7d4f6-1319-40be-9348-a4712909fbd5.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/borrower-service/src/main/java/com/decagon/borrowerservice/controller/LoanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/borrower-service/src/main/java/com/decagon/borrowerservice/controller/LoanController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/borrower-service/src/main/java/com/decagon/borrowerservice/dto/LoanRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/borrower-service/src/main/java/com/decagon/borrowerservice/dto/LoanRequestDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/borrower-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/borrower-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loan_agreement_service/.idea/shelf/Uncommitted_changes_before_Update_at_20_07_2023,_11_50_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loan_agreement_service/.idea/shelf/Uncommitted_changes_before_Update_at_20_07_2023,_22_06_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loan_agreement_service/.idea/shelf/Uncommitted_changes_before_Update_at_20_07_2023__11_50__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loan_agreement_service/.idea/shelf/Uncommitted_changes_before_Update_at_20_07_2023__22_06__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loan_agreement_service/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/loan_agreement_service/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/config/CloudinaryConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/config/CloudinaryConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/controller/ProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/domain/entity/Banks.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/domain/entity/Banks.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/eventListener/UserCreationEventListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/eventListener/UserCreationEventListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/exception/handler/ExceptionsHandlers.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/exception/handler/ExceptionsHandlers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/repository/ProfileRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/repository/ProfileRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/service/ProfileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/service/ProfileService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/service/UploadService.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/service/UploadService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/service/serviceImplementation/ProfileServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/java/com/decagon/service/serviceImplementation/ProfileServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-management-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/profile-management-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/UserRegApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/UserRegApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/services/serviceImpl/AppUserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-registration-service/src/main/java/com/easyLend/userservice/services/serviceImpl/AppUserServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,6 +89,13 @@
       <recent name="com.decagon.dto.request" />
     </key>
   </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
   <component name="RunManager" selected="Spring Boot.ProjectManagementServiceApplication">
     <configuration name="All in user-registration-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="user-registration-service" />
@@ -198,7 +174,13 @@
       <workItem from="1690668274310" duration="182000" />
       <workItem from="1690668470906" duration="11125000" />
       <workItem from="1690811429169" duration="17229000" />
-      <workItem from="1690895328808" duration="3634000" />
+      <workItem from="1690895328808" duration="4742000" />
+      <workItem from="1691065591699" duration="850000" />
+      <workItem from="1691254266925" duration="256000" />
+      <workItem from="1691769289002" duration="6415000" />
+      <workItem from="1691801109863" duration="12427000" />
+      <workItem from="1691877968759" duration="52000" />
+      <workItem from="1691878219364" duration="5416000" />
     </task>
     <task id="LOCAL-00001" summary="ini">
       <created>1689672179871</created>
@@ -221,7 +203,42 @@
       <option name="project" value="LOCAL" />
       <updated>1689673481703</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="initial commit">
+      <created>1690967508426</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1690967508426</updated>
+    </task>
+    <task id="LOCAL-00005" summary="initial commit">
+      <created>1691770802699</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1691770802704</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Refactoring Services">
+      <created>1691815222151</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1691815222151</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Refactoring Services">
+      <created>1691856166707</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1691856166707</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Messaging Service &amp; Refactoring">
+      <created>1691935448524</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1691935448524</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -241,6 +258,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="ini" />
     <MESSAGE value="initial" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial" />
+    <MESSAGE value="initial commit" />
+    <MESSAGE value="Refactoring Services" />
+    <MESSAGE value="Messaging Service &amp; Refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="Messaging Service &amp; Refactoring" />
   </component>
 </project>
